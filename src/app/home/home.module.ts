@@ -8,13 +8,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeroComponent } from './hero/hero.component';
+import { InfoCardComponent } from './info-card/info-card.component';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
     HeaderComponent,
-    HeroComponent
+    HeroComponent,
+    InfoCardComponent
   ],
   imports: [
     CommonModule,
