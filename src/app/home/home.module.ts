@@ -7,12 +7,14 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HeroComponent } from './hero/hero.component';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
-    HeaderComponent
+    HeaderComponent,
+    HeroComponent
   ],
   imports: [
     CommonModule,
