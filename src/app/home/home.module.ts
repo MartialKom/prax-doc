@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HeroComponent } from './hero/hero.component';
 import { InfoCardComponent } from './info-card/info-card.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ServiceSectionComponent } from './service-section/service-section.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     HeaderComponent,
     HeroComponent,
     InfoCardComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    ServiceSectionComponent
   ],
   imports: [
     CommonModule,
