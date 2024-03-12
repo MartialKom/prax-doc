@@ -14,6 +14,7 @@ import { ServiceSectionComponent } from './service-section/service-section.compo
 import { InterestingLinksComponent } from './interesting-links/interesting-links.component';
 import { TeamComponent } from './team/team.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
     ServiceSectionComponent,
     InterestingLinksComponent,
     TeamComponent,
-    TestimonialsComponent
+    TestimonialsComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
