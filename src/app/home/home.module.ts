@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeroComponent } from './hero/hero.component';
 import { InfoCardComponent } from './info-card/info-card.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { InfoCardComponent } from './info-card/info-card.component';
     IndexComponent,
     HeaderComponent,
     HeroComponent,
-    InfoCardComponent
+    InfoCardComponent,
+    AboutUsComponent
   ],
   imports: [
     CommonModule,
