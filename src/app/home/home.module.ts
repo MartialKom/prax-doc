@@ -11,6 +11,7 @@ import { HeroComponent } from './hero/hero.component';
 import { InfoCardComponent } from './info-card/info-card.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ServiceSectionComponent } from './service-section/service-section.component';
+import { InterestingLinksComponent } from './interesting-links/interesting-links.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ServiceSectionComponent } from './service-section/service-section.compo
     HeroComponent,
     InfoCardComponent,
     AboutUsComponent,
-    ServiceSectionComponent
+    ServiceSectionComponent,
+    InterestingLinksComponent
   ],
   imports: [
     CommonModule,
