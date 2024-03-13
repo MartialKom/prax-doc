@@ -17,10 +17,14 @@
             </div>
             <div class="hidden md:block">
                 <div class="ml-4 flex items-center md:ml-6">
-                    <button class="bg-[#f7961c0d] hover:bg-[#f7961c] text-gray-800 font-bold py-2 px-4 rounded-full"
-                        (click)="openModal(login)"><span class="h1 items-center text-black">
-                            <mat-icon class="w-[40px] h-[40px]">account_circle</mat-icon>
-                        </span></button>
+                    <button *ngIf="!isAuth" class=" bg-white shadow-lg border hover:bg-[#f7961c] hover:text-white text-[#f7961c] font-bold w-[40px] h-[40px] rounded-[50%]"
+                        (click)="openModal(login)">
+                            <mat-icon >account_circle</mat-icon>
+                    </button>
+
+                        <div *ngIf="isAuth" class="user-avatar">
+                            <div class="avatar-circle shadow-lg border text-orange-400">{{ userInitial }}</div>
+                        </div>   
                 </div>
             </div>
         </div>
@@ -38,34 +42,97 @@
 
 </div>
 
+
+
+<ng-template #register role="document" let-modal>
+    <div class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <span (click)="hideModal()" class=" cursor-pointer mb-6 text-[26px]  font-bold float-right text-[#aaa]">&times;</span>
+            <div class=" pt-10 h-auto flex items-center justify-center">
+                <h2 class="text-3xl font-bold mb-4"><mat-icon class="pt-1 text-orange-500">account_circle</mat-icon>Register</h2>
+            </div>
+
+            <form [formGroup]="registerForm" (ngSubmit)="toRegister()">
+
+                <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{errorMessage}}.
+                </ngb-alert>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-bold mb-2">Email <span
+                            class="text-red-600">*</span></label>
+                    <input type="email" placeholder="Email" formControlName="email" id="email"
+                        name="email"
+                        class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
+                    <div *ngIf="submitted && registerForm.controls.email.errors" class="text-red-600">
+                        Bitte geben Sie eine gültige E-Mail-Adresse an
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-bold mb-2">Nutzername <span
+                            class="text-red-600">*</span></label>
+                    <input type="email" placeholder="Nutzername/Email" formControlName="username" id="username"
+                        name="username"
+                        class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
+                    <div *ngIf="submitted && registerForm.controls.username.errors" class="text-red-600">
+                        Dieses Feld ist erforderlich
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 font-bold mb-2">Passwort <span
+                            class="text-red-600">*</span></label>
+                    <input type="password" placeholder="Passwort" formControlName="password" id="password"
+                        name="password"
+                        class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
+                    <div *ngIf="submitted && registerForm.controls.password.errors" class="text-red-600">
+                        Dieses Feld ist erforderlich
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <input type="checkbox" class="border border-gray-400">
+                    <span>
+                        Ich akzeptiere <a href="#" class="text-orange-500 font-semibold">die Nutzungsbedingungen </a> &  <a href="#" class="text-orange-500 font-semibold">Datenschutzbestimmungen</a> 
+                    </span>
+                  </div>
+
+                <button type="submit"
+                    class="w-full bg-[#f7961c] hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Sign
+                    Up
+                </button>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
 <ng-template #login role="document" let-modal>
     <div class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
         <div class="bg-white rounded-lg p-8 max-w-md w-full">
-            <span (click)="hideModal()" class=" mb-6 text-[26px]  font-bold float-right text-[#aaa]"><a
-                    href="#">&times;</a></span>
-            <div class=" mt-10 flex items-center justify-center">
-                <h2 class="text-2xl font-bold mb-4">Login</h2>
+            <span (click)="hideModal()" class=" cursor-pointer mb-6 text-[26px]  font-bold float-right text-[#aaa]">&times;</span>
+            <div class=" pt-10 h-auto flex items-center justify-center">
+                <h2 class="text-3xl font-bold mb-4"><mat-icon class="pt-1 text-orange-500">account_circle</mat-icon>Login</h2>
             </div>
 
             <form [formGroup]="loginForm" (ngSubmit)="toLogin()">
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700 font-bold mb-2">Email <span
                             class="text-red-600">*</span></label>
-                    <input type="email" placeholder="Username/Email" formControlName="username" id="username"
+                    <input type="email" placeholder="Nutzername/Email" formControlName="username" id="username"
                         name="username"
                         class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
                     <div *ngIf="submitted && loginForm.controls.username.errors" class="text-red-600">
-                        This field is required
+                        Dieses Feld ist erforderlich
                     </div>
                 </div>
                 <div class="mb-6">
-                    <label for="password" class="block text-gray-700 font-bold mb-2">Password <span
+                    <label for="password" class="block text-gray-700 font-bold mb-2">Passwort <span
                             class="text-red-600">*</span></label>
-                    <input type="password" placeholder="Password" formControlName="password" id="password"
+                    <input type="password" placeholder="Passwort" formControlName="password" id="password"
                         name="password"
                         class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
                     <div *ngIf="submitted && loginForm.controls.password.errors" class="text-red-600">
-                        This field is required
+                        Dieses Feld ist erforderlich
                     </div>
                 </div>
 
@@ -73,17 +140,22 @@
                     <div class="flex flex-row justify-around">
                         <div class="items-center mb-4">
                             <input id="rememberMe" type="checkbox" class="form-checkbox h-5 w-5 text-orange-400">
-                            <label for="rememberMe" class="ml-2 text-sm text-gray-700">Remember Me</label>
+                            <label for="rememberMe" class="ml-2 text-sm text-gray-700">Erinnern Sie sich an mich</label>
                         </div>
-                        <p class="float-right mb-0"><a href="#" class="text-black font-bold">Forgot password ?</a></p>
+                        <p class="float-right mb-0"><a href="#" class="text-black font-bold">Passwort vergessen?</a></p>
                     </div>
                 </div>
 
 
                 <button type="submit"
-                    class="w-full bg-[#f7961c] hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Sign
-                    In</button>
+                    class="w-full bg-[#f7961c] hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Eintragen
+                </button>
             </form>
+            <div class="mt-4 items-end float-left">
+                <p>Sie haben noch kein Konto,<span class="text-black font-bold cursor-pointer" (click)="openModal(register)">Melden Sie sich an.</span></p> 
+            </div>
         </div>
     </div>
 </ng-template>
+
+

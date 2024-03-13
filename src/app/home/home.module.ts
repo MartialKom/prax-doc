@@ -15,6 +15,10 @@ import { InterestingLinksComponent } from './interesting-links/interesting-links
 import { TeamComponent } from './team/team.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { FooterComponent } from './footer/footer.component';
+import { MakeRequestService } from '../services/commons/make-request.service';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @NgModule({
@@ -36,7 +40,12 @@ import { FooterComponent } from './footer/footer.component';
     MatIconModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule
+  ],
+  providers: [
+    MakeRequestService
   ]
 })
 export class HomeModule { }
