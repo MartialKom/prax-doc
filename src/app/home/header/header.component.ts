@@ -2,11 +2,13 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { LoginRequest } from 'src/app/models/login.model';
 import { RegisterRequest } from 'src/app/models/register.model';
 import { UserModel } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/authServices/login.service';
+import { FormatDateService } from 'src/app/services/commons/format-date.service';
 import { LocalStorageService } from 'src/app/services/commons/local-storage.service';
 import Swal from 'sweetalert2';
 
@@ -23,7 +25,7 @@ export class HeaderComponent implements OnInit {
   successmsg = false;
   errormsg = false;
   errorMessage: any;
-
+  userData: any;
   
   loginRequest: LoginRequest | undefined ;
   registerRequest: RegisterRequest | undefined;
@@ -48,17 +50,23 @@ export class HeaderComponent implements OnInit {
 
   constructor(private modalService: MatDialog, 
     private loginservice: LoginService,
-    private localstorageService: LocalStorageService){}
+    private localstorageService: LocalStorageService,
+    private formatDateService: FormatDateService,
+    private router: Router){}
     
     ngOnInit(): void {
       const userData =  this.localstorageService.get('user');
       if(userData){
         this.isAuth=true;
         this.userInitial = userData.username.charAt(0).toUpperCase();
+        this.userData = userData;
       }
   }
 
 
+  formatDate(date:string):string {
+    return this.formatDateService.format(date);
+};
 
   openModal(content:any): void {
     const dialogRef = this.modalService.open(content);
@@ -89,6 +97,10 @@ export class HeaderComponent implements OnInit {
         
         this.isAuth = true;
         console.log(response.body);
+        this.router.navigate(['/home']).then(r => {
+          this.loadingOp=false;
+          window.location.reload();
+      });
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -98,6 +110,7 @@ export class HeaderComponent implements OnInit {
         });
 
         this.userInitial = response.body.username.charAt(0).toUpperCase();
+        this.userData = response.body;
         this.localstorageService.set("user", response.body) 
       }
     }, (error: HttpErrorResponse) => {
@@ -118,7 +131,17 @@ export class HeaderComponent implements OnInit {
       
     });
 
-    this.loadingOp = false;
+  }
+
+  async toLogOut(){
+    this.loadingOp = true;
+    this.localstorageService.remove("user");
+    this.localstorageService.remove("documents");
+    
+    this.router.navigate(['/home']).then(r => {
+      this.loadingOp=false;
+      window.location.reload();
+  });
 
   }
 
@@ -144,6 +167,7 @@ export class HeaderComponent implements OnInit {
 
         this.isAuth = true;
         this.userInitial = response.body.username.charAt(0).toUpperCase(); 
+        this.userData = response.body;
 
         this.localstorageService.set("user", response.body)
       }

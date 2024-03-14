@@ -1,28 +1,29 @@
 <nav class="bg-transparent right-0 left-0 border-0 shadow-lg z-50 top-0 w-full fixed">
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
-            <div class="flex flex-row justify-between w-[60%] items-center">
+            <div class="flex flex-row justify-between  w-auto items-center">
                 <div class="flex-shrink-0">
                     <a href="#" class="text-[#212529] font-bold">Logo</a>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-10">
-                        <a href="#" class="text-[#212529] hover:text-[#f7961c]">Home</a>
+                    <div class="md:ml-20 flex items-baseline space-x-10">
+                        <a routerLink="/home" routerLinkActive="active" class="text-[#212529] hover:text-[#f7961c]">Home</a>
                         <a href="#" class="text-[#212529] hover:text-[#f7961c]">praxisräume</a>
                         <a href="#" class="text-[#212529] hover:text-[#f7961c]">praxisspektrum</a>
                         <a href="#" class="text-[#212529] hover:text-[#f7961c]">unser-team</a>
                         <a href="#" class="text-[#212529] hover:text-[#f7961c]">Hilgreiche Tel & Links</a>
+                        <a *ngIf="isAuth" routerLink="/user/media" routerLinkActive="active" class="text-[#212529] cursor-pointer hover:text-[#f7961c]">Meine Dokumente</a>
                     </div>
                 </div>
             </div>
             <div class="hidden md:block">
                 <div class="ml-4 flex items-center md:ml-6">
-                    <button *ngIf="!isAuth" class=" bg-white shadow-lg border hover:bg-[#f7961c] hover:text-white text-[#f7961c] font-bold w-[40px] h-[40px] rounded-[50%]"
+                    <button  *ngIf="!isAuth" class=" bg-white shadow-lg border hover:bg-[#f7961c] hover:text-white text-[#f7961c] font-bold w-[40px] h-[40px] rounded-[50%]"
                         (click)="openModal(login)">
                             <mat-icon >account_circle</mat-icon>
                     </button>
 
-                        <div *ngIf="isAuth" class="user-avatar">
+                        <div data-popover-target="popover-user-profile" *ngIf="isAuth" class="user-avatar cursor-pointer">
                             <div class="avatar-circle shadow-lg border text-orange-400">{{ userInitial }}</div>
                         </div>   
                 </div>
@@ -159,3 +160,24 @@
 </ng-template>
 
 
+
+<div data-popover id="popover-user-profile" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+    <div class="p-3">
+        <div class="flex items-center justify-between mb-2">
+            <a href="#">
+                <div *ngIf="isAuth" class="avatar-circle shadow-lg border text-orange-400">{{ userInitial }}</div>
+            </a>
+            <div>
+                <button type="button" (click)="toLogOut()" class="text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1.5">Log Out</button>
+            </div>
+        </div>
+        <p *ngIf="isAuth"  class="text-base font-semibold leading-none text-gray-900 dark:text-white">
+            <a href="#">{{userData.username}}</a>
+        </p>
+        <p *ngIf="isAuth"  class="mb-3 text-sm font-normal">
+            <a href="#" class="hover:underline">{{userData.email}}</a>
+        </p>
+        <p *ngIf="isAuth"  class="mb-4 text-sm">Member since {{formatDate(userData.createdAt)}}</p>
+    </div>
+    <div data-popper-arrow></div>
+</div>
