@@ -19,7 +19,7 @@ export class UserService {
       return this.makeRequest.request(
         "POST",
         `auth/update/${userId}`,
-        'http://localhost:8000/',
+        'http://207.180.206.20:6000/',
         body,
         'json',
         'response'

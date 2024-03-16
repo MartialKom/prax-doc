@@ -28,7 +28,7 @@ export class LoginService {
     return this.requestService.request(
       "POST",
       `auth/login`,
-      "http://localhost:8000/",
+      "http://207.180.206.20:6000/",
       request,
       'json',
       'response',
@@ -44,7 +44,7 @@ export class LoginService {
     return this.requestService.request(
       "POST",
       `auth/register`,
-      "http://localhost:8000/",
+      "http://207.180.206.20:6000/",
       request,
       'json',
       'response',
@@ -59,7 +59,7 @@ export class LoginService {
     return this.requestService.request(
       "GET",
       `auth/isAuth`,
-      "http://localhost:8000/",
+      "http://207.180.206.20:6000/",
       null,
       'json',
       'response'
