@@ -138,36 +138,54 @@ export class MediaComponent implements OnInit {
   }
 
   delete(index: number) {
-    this.loadingFile = true;
-    var url = this.documents[index];
 
-    var regex = /\/documents%2F([^?]+)/;
-    var match = url.match(regex);
-
-    if (match && match.length > 1) {
-      var path = "documents/"+match[1];
-      this.uploadService.deleteDocument(path).subscribe(
-        (response:HttpResponse<any>)=>{
-          if(response.status === 200){
-            this.loadingFile = false;
-            this.localstorageService.remove("documents");
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Die Datei wurde gelöscht',
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            setTimeout(()=>{
-              this.router.navigate(['/user/media']).then((r) => {
-                window.location.reload();
-              });
-            },1500)
-
-          }
+    Swal.fire({
+      title: 'Sind Sie sicher?',
+      text: 'Dass Sie dieses Bild löschen wollen?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#34c38f',
+      cancelButtonColor: '#f46a6a',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Oui'
+    }).then(result=>{
+      if(result.value){
+        this.loadingFile = true;
+        var url = this.documents[index];
+    
+        var regex = /\/documents%2F([^?]+)/;
+        var match = url.match(regex);
+    
+        if (match && match.length > 1) {
+          var path = "documents/"+match[1];
+          this.uploadService.deleteDocument(path).subscribe(
+            (response:HttpResponse<any>)=>{
+              if(response.status === 200){
+                this.loadingFile = false;
+                this.localstorageService.remove("documents");
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Die Datei wurde gelöscht',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                setTimeout(()=>{
+                  this.router.navigate(['/user/media']).then((r) => {
+                    window.location.reload();
+                  });
+                },1500)
+    
+              }
+            }
+          )
+          
         }
-      )
-      
-    }
+      }
+    })
+
+
+
+
   }
 }

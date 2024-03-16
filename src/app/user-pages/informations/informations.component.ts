@@ -93,6 +93,17 @@ export class InformationsComponent implements OnInit {
       body = {
         name: this.nameForm.get('name')!.value,
       }
+    } else if(attribut === 'password'){
+      this.submittedPassword = true;
+
+      if(!this.passwordForm.valid) return;
+
+      this.loadingModif = true;
+
+      body = {
+        oldPassword: this.passwordForm.get('oldPassword')!.value,
+        newPassword: this.passwordForm.get('newPassword')!.value
+      }
     }
 
     this.userService.updateAccount(body).subscribe(
