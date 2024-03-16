@@ -9,6 +9,6 @@ RUN npm run build
 
 #Deploiement avec nginx
 FROM nginx:stable 
-RUN ls /app/dist/
+RUN ls /app
 COPY --from=angular /app/dist/prax-doc/ /usr/share/nginx/html
 EXPOSE 80
