@@ -25,7 +25,7 @@ export class UploadMediaService {
       .request(
         'POST',
         `upload/${userId}`,
-        'http://207.180.206.20:6000/',
+        'http://207.180.206.20:5000/',
         formData,
         'json',
         'response',
@@ -45,7 +45,7 @@ export class UploadMediaService {
     return this.makeRequest.request(
       "GET",
       `import/${userId}`,
-      'http://207.180.206.20:6000/',
+      'http://207.180.206.20:5000/',
       null,
       'json',
       'response'
@@ -63,7 +63,7 @@ export class UploadMediaService {
     return this.makeRequest.request(
       "GET",
       `import/pdf/${userId}`,
-      'http://207.180.206.20:6000/',
+      'http://207.180.206.20:5000/',
       null,
       'json',
       'response'
@@ -82,7 +82,7 @@ export class UploadMediaService {
     return this.makeRequest.request(
       "POST",
       `media/delete/${userId}`,
-      'http://207.180.206.20:6000/',
+      'http://207.180.206.20:5000/',
       {
         "path": path
       },
