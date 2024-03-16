@@ -39,15 +39,8 @@ jobs:
           docker rm prax-doc | true
           docker rmi martialkom123615/prax-doc:V1
           docker pull martialkom123615/prax-doc:V1
-
-    - name: SSH into remote server and run container
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        password: ${{ secrets.SERVER_SSH_KEY }}
-        script: |
           docker run -d --name prax-doc -p 4300:80 martialkom123615/prax-doc:V1
+
 
     
       
