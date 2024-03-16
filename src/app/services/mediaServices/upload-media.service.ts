@@ -55,4 +55,44 @@ export class UploadMediaService {
       })
     )
   }
+
+  importPdf(){
+    const userData = this.localstorageService.get('user');
+    const userId = userData.id;
+
+    return this.makeRequest.request(
+      "GET",
+      `import/pdf/${userId}`,
+      'http://localhost:8000/',
+      null,
+      'json',
+      'response'
+    ).pipe(
+      map((response:any)=> {
+        return response;
+      })
+    )
+  }
+
+  deleteDocument(path:string){
+
+    const userData = this.localstorageService.get('user');
+    const userId = userData.id;
+
+    return this.makeRequest.request(
+      "POST",
+      `media/delete/${userId}`,
+      'http://localhost:8000/',
+      {
+        "path": path
+      },
+      'json',
+      'response'
+    ).pipe(
+      map((response:any)=>{
+        return response;
+      })
+    )
+
+  }
 }

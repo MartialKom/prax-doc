@@ -14,18 +14,18 @@ export class FormatDateService {
     }
     // Initialize the month object
     const monthNames: any = {
-      '01': 'Janvier',
-      '02': 'Février',
-      '03': 'Mars',
-      '04': 'Avril',
+      '02': 'Februar',
+      '01': 'Januar',
+      '03': 'März',
+      '04': 'April',
       '05': 'Mai',
-      '06': 'Juin',
-      '07': 'Juillet',
-      '08': 'Août',
-      '09': 'Septembre',
-      '10': 'Octobre',
-      '11': 'Novembre',
-      '12': 'Décembre'
+      '06': 'Juni',
+      '07': 'Juli',
+      '08': 'August',
+      '09': 'September',
+      '10': 'Oktober',
+      '11': 'November',
+      '12': 'Dezember'
     };
 
     // Adjust for the time zone difference
@@ -38,7 +38,7 @@ export class FormatDateService {
     const _date:string = adjustedDate.getDate() + "-"+monthNames[month]+"-"+year;
     const _hour:string = adjustedDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
     if (use_time) {
-      return _date + " à " + _hour
+      return _date + " bei " + _hour
     } else {
       return _date
     }
