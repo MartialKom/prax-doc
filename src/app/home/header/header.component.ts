@@ -168,6 +168,7 @@ export class HeaderComponent implements OnInit {
           this.userData = response.body;
 
           this.localstorageService.set('user', response.body);
+
         }
 
         Swal.fire({
@@ -177,6 +178,13 @@ export class HeaderComponent implements OnInit {
           showConfirmButton: false,
           timer: 3000,
         });
+        setTimeout(() => {
+          this.router.navigate(['/home']).then((r) => {
+            window.location.reload();
+          });
+        }, 2000);
+
+
       },
       (error: HttpErrorResponse) => {
         console.log('erreur');
@@ -193,8 +201,6 @@ export class HeaderComponent implements OnInit {
         });
       }
     );
-
-    this.loadingOp = false;
   }
 
   openProfile() {
