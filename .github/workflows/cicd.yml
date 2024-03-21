@@ -13,13 +13,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Replace environment.ts with environment-uat.ts
-      run: cp src/environments/environment-uat.ts  src/environments/environment.ts
-      
+    steps:      
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run:  |
+        cp src/environments/environment-uat.ts  src/environments/environment.ts
         docker build  -t martialkom123615/prax-doc:V1 .
 
     - name: Docker login
