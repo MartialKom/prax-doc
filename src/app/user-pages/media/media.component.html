@@ -16,7 +16,7 @@
 
 
         <div class="flex items-center justify-center w-full">
-            <label for="dropzone-file"
+            <label for="dropzone-file" 
                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -28,9 +28,11 @@
                             upload</span> or drag and drop</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400">PDF, SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                 </div>
-                <input id="dropzone-file" type="file" class="block" (change)="onFileSelected($event)" />
+                <input  type="file" class="block" (change)="onFileSelected($event)"/>
             </label>
+            
         </div>
+        
 
         <div *ngIf="file" class="mt-4">
             <button (click)="uploadFile()" type="button" [disabled]="myloading"
@@ -83,8 +85,7 @@
 
     <div *ngIf="loadingpdf" class="text-center mt-4">
         <div role="status">
-            <svg aria-hidden="true"
-                class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-orange-500"
+            <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-orange-500"
                 viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -101,36 +102,48 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:grid-cols-5 group ">
             <div *ngFor="let image of documents; let i = index"
                 class="duration-500 cursor-pointer group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 mix-blend-luminosity">
-                
-                <img class=" h-[160px] max-w-full rounded-lg mx-auto" src={{image}}>
+
+                <img class=" h-[160px] max-w-full rounded-lg mx-auto" src={{image.url}}>
 
 
-<div class="fixed z-50 w-[50%] h-10 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
-    <div class="grid h-full max-w-lg grid-cols-3 mx-auto">
+                <div
+                    class="fixed z-50 w-[50%] h-10 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+                    <div class="grid h-full max-w-lg grid-cols-3 mx-auto">
 
-        <button  type="button" class="inline-flex flex-col items-center justify-center px-5 cursor-pointer  group">
-            <svg class="w-5 h-5 mb-1 text-gray-500 group-hover:text-orange-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M11.074 4 8.442.408A.95.95 0 0 0 7.014.254L2.926 4h8.148ZM9 13v-1a4 4 0 0 1 4-4h6V6a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h17a1 1 0 0 0 1-1v-2h-6a4 4 0 0 1-4-4Z"/>
-                <path d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z"/>
-            </svg>
-        </button>
-        <div class="flex items-center justify-center">
-            <button type="button" class="inline-flex items-center justify-center w-6 h-6 font-medium bg-amber-400 rounded-full hover:bg-orange-400 group focus:ring-4 focus:ring-blue-300 focus:outline-none">
-                <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                </svg>
-            </button>
-        </div>
-        <button  (click)="delete(i)" type="button" class="inline-flex flex-col items-center justify-center px-5 cursor-pointer  group">
-            <svg class="w-5 h-5 mb-1 text-gray-500  group-hover:text-red-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-            </svg>
-        </button>
+                        <button type="button"
+                            class="inline-flex flex-col items-center justify-center px-5 cursor-pointer  group">
+                            <svg class="w-5 h-5 mb-1 text-gray-500 group-hover:text-orange-400" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M11.074 4 8.442.408A.95.95 0 0 0 7.014.254L2.926 4h8.148ZM9 13v-1a4 4 0 0 1 4-4h6V6a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h17a1 1 0 0 0 1-1v-2h-6a4 4 0 0 1-4-4Z" />
+                                <path
+                                    d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z" />
+                            </svg>
+                        </button>
+                        <div class="flex items-center justify-center">
+                            <button type="button"
+                                class="inline-flex items-center justify-center w-6 h-6 font-medium bg-amber-400 rounded-full hover:bg-orange-400 group focus:ring-4 focus:ring-blue-300 focus:outline-none">
+                                <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M9 1v16M1 9h16" />
+                                </svg>
+                            </button>
+                        </div>
+                        <button (click)="delete(image.$id)" type="button"
+                            class="inline-flex flex-col items-center justify-center px-5 cursor-pointer  group">
+                            <svg class="w-5 h-5 mb-1 text-gray-500  group-hover:text-red-700" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                            </svg>
+                        </button>
 
-    </div>
-</div>
+                    </div>
+                </div>
 
-                
+
             </div>
         </div>
     </div>
@@ -139,7 +152,7 @@
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:grid-cols-3 group ">
             <div *ngFor="let pdf of pdfs"
                 class="duration-500 cursor-pointer group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 mix-blend-luminosity">
-                <iframe class="h-[500px] w-auto max-w-full rounded-lg mx-auto" [src]="safeUrl(pdf)"
+                <iframe class="h-[500px] w-auto max-w-full rounded-lg mx-auto" [src]="safeUrl(pdf.url)"
                     [frameBorder]="'0'"></iframe>
             </div>
         </div>

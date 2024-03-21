@@ -1,4 +1,3 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +15,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   submitted = false;
   loadingOp = false;
   isAuth = false;
@@ -34,7 +32,7 @@ export class HeaderComponent implements OnInit {
   });
 
   registerForm = new FormGroup({
-    username: new FormControl(null, Validators.required),
+    name: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
   });
@@ -53,7 +51,7 @@ export class HeaderComponent implements OnInit {
     const userData = this.localstorageService.get('user');
     if (userData) {
       this.isAuth = true;
-      this.userInitial = userData.username.charAt(0).toUpperCase();
+      this.userInitial = userData.name.charAt(0).toUpperCase();
       this.userData = userData;
     }
   }
@@ -84,12 +82,16 @@ export class HeaderComponent implements OnInit {
     this.loginRequest.username = this.loginForm.get('username')!.value;
     this.loginRequest.password = this.loginForm.get('password')!.value;
 
-    this.loginservice.login(this.loginRequest).subscribe(
-      (response: HttpResponse<any>) => {
-        if (response.status === 200) {
+    this.loginservice
+      .login(this.loginRequest)
+      .then((response) => {
+        this.loadingOp = false;
+        if (response.name) {
+          console.log('Response: ' + response);
           this.isAuth = true;
-          console.log(response.body);
-          this.loadingOp = false;
+          this.userData = response;
+          this.userInitial = this.userData.name.charAt(0).toUpperCase();
+          this.localstorageService.set('user', this.userData);
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -98,40 +100,34 @@ export class HeaderComponent implements OnInit {
             timer: 3000,
           });
           setTimeout(() => {
-            if(response.body.isAdmin)
-            this.router.navigate(['/user/dashboard']).then((r) => {
-              window.location.reload();
-            });
-            else  this.router.navigate(['/home']).then((r) => {
-              window.location.reload();
-            });
+            if (response.labels[0] === 'admin')
+              this.router.navigate(['/user/dashboard']).then((r) => {
+                window.location.reload();
+              });
+            else
+              this.router.navigate(['/home']).then((r) => {
+                window.location.reload();
+              });
           }, 2000);
-
-          this.userInitial = response.body.username.charAt(0).toUpperCase();
-          this.userData = response.body;
-          this.localstorageService.set('user', response.body);
+        } else {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: response,
+            showConfirmButton: false,
+            timer: 3000,
+          });
         }
-      },
-      (error: HttpErrorResponse) => {
-        if (error.status === 404) {
-          console.log(error.error.errorMessage);
-        }
-
+      })
+      .catch((error) => {
         this.loadingOp = false;
-
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Fehler, keine Verbindung möglich',
-          showConfirmButton: false,
-          timer: 3000,
-        });
-      }
-    );
+        console.error('Login failed', error);
+      });
   }
 
   async toLogOut() {
     this.loadingOp = true;
+    await this.loginservice.logout();
     setTimeout(() => {
       this.localstorageService.remove('user');
       this.localstorageService.remove('documents');
@@ -157,52 +153,43 @@ export class HeaderComponent implements OnInit {
 
     this.registerRequest.email = this.registerForm.get('email')!.value;
     this.registerRequest.password = this.registerForm.get('password')!.value;
-    this.registerRequest.username = this.registerForm.get('username')!.value;
+    this.registerRequest.name = this.registerForm.get('name')!.value;
 
-    this.loginservice.register(this.registerRequest).subscribe(
-      (response: HttpResponse<any>) => {
-        if (response.status === 201) {
-          this.successmsg = true;
-          this.loadingOp = false;
-
-          this.isAuth = true;
-          this.userInitial = response.body.username.charAt(0).toUpperCase();
-          this.userData = response.body;
-
-          this.localstorageService.set('user', response.body);
-
-        }
-
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Sie sind authentifiziert',
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        setTimeout(() => {
-          this.router.navigate(['/home']).then((r) => {
-            window.location.reload();
-          });
-        }, 2000);
-
-
-      },
-      (error: HttpErrorResponse) => {
-        console.log('erreur');
+    this.loginservice
+      .register(this.registerRequest)
+      .then((response) => {
         this.loadingOp = false;
-        this.errorMessage = error.error.errorMessage;
-        this.errormsg = true;
-
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Ein Fehler ist aufgetreten',
-          showConfirmButton: false,
-          timer: 3000,
-        });
-      }
-    );
+        if (response.name) {
+          console.log('Response: ' + response);
+          this.isAuth = true;
+          this.userData = response;
+          this.userInitial = this.userData.name.charAt(0).toUpperCase();
+          this.localstorageService.set('user', this.userData);
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Sie sind authentifiziert',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          setTimeout(() => {
+            this.router.navigate(['/home']).then((r) => {
+              window.location.reload();
+            });
+          }, 2000);
+        } else
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: response,
+            showConfirmButton: false,
+            timer: 3000,
+          });
+      })
+      .catch((error) => {
+        this.loadingOp = false;
+        console.error('Register failed', error);
+      });
   }
 
   openProfile() {

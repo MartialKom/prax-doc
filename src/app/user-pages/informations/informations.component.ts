@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/authServices/login.service';
 import { LocalStorageService } from 'src/app/services/commons/local-storage.service';
 import { UserService } from 'src/app/services/user-services/user.service';
 import Swal from 'sweetalert2';
@@ -35,10 +36,12 @@ export class InformationsComponent implements OnInit {
     oldPassword: new FormControl(null, Validators.required),
     newPassword: new FormControl(null, [Validators.required]),
   });
+  loadingOut: boolean = false;
 
   constructor(
     private localstorageService: LocalStorageService,
     private modalService: MatDialog,
+    private loginservice: LoginService,
     private router: Router,
     private userService: UserService
   ) {}
@@ -147,5 +150,20 @@ export class InformationsComponent implements OnInit {
           });
       }
     );
+  }
+
+  async toLogOut() {
+    this.loadingOut = true;
+    await this.loginservice.logout();
+    setTimeout(() => {
+      this.localstorageService.remove('user');
+      this.localstorageService.remove('documents');
+      this.localstorageService.remove('pdfs');
+
+      this.router.navigate(['/home']).then((r) => {
+        this.loadingOut = false;
+        window.location.reload();
+      });
+    }, 3000);
   }
 }

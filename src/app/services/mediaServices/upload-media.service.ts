@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../commons/local-storage.service';
 import { MakeRequestService } from '../commons/make-request.service';
 import { map } from 'rxjs/operators';
+import { client, ID } from 'src/lib/appwrite';
+import { Databases, Query, Storage } from 'appwrite';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,87 +15,87 @@ export class UploadMediaService {
     private localstorageService: LocalStorageService
   ) {}
 
-  uploadFFile(file: File | undefined) {
+  async uploadFFile(file: File) {
     const userData = this.localstorageService.get('user');
-    const userId = userData.id;
+    const userId = userData.$id;
 
-    const contentType = 'multipart/form-data';
-    const formData: FormData = new FormData();
+    const databases = new Databases(client);
+    const storage = new Storage(client);
 
-    formData.append('document', file ?? '');
+    const fileUploaded = await storage.createFile(
+      environment.bucketId,
+      ID.unique(),
+      file
+    );
 
-    return this.makeRequest
-      .request(
-        'POST',
-        `upload/${userId}`,
-        'http://localhost:8000/',
-        formData,
-        'json',
-        'response',
-        contentType
-      )
-      .pipe(
-        map((response: any) => {
-          return response;
-        })
+    var url: URL;
+
+    if (file?.type.split('/')[1] != 'pdf')
+      url = storage.getFilePreview('praxStorage', fileUploaded.$id);
+    else url = storage.getFileView('praxStorage', fileUploaded.$id);
+
+    try {
+      const document = await databases.createDocument(
+        environment.databaseId,
+        environment.collectionIdDocument,
+        ID.unique(),
+        {
+          url: url.toString(),
+          idUtilisateur: userId,
+          type: file?.type.split('/')[1],
+        }
       );
+
+      return document;
+    } catch (error: any) {
+      console.error('Failed to get images:', error.message);
+      return null;
+    }
   }
 
-  importFile(){
+  async importFile() {
     const userData = this.localstorageService.get('user');
-    const userId = userData.id;
+    const userId = userData.$id;
+    const databases = new Databases(client);
 
-    return this.makeRequest.request(
-      "GET",
-      `import/${userId}`,
-      'http://localhost:8000/',
-      null,
-      'json',
-      'response'
-    ).pipe(
-      map((response:any)=> {
-        return response;
-      })
-    )
+    try {
+      const images = await databases.listDocuments(
+        environment.databaseId,
+        environment.collectionIdDocument,
+        [Query.notEqual('type', 'pdf'), Query.equal('idUtilisateur', userId)]
+      );
+
+      return images.documents;
+    } catch (error: any) {
+      console.error('Failed to get images:', error.message);
+      return null;
+    }
   }
 
-  importPdf(){
+  async importPdf() {
     const userData = this.localstorageService.get('user');
-    const userId = userData.id;
+    const userId = userData.$id;
+    const databases = new Databases(client);
 
-    return this.makeRequest.request(
-      "GET",
-      `import/pdf/${userId}`,
-      'http://localhost:8000/',
-      null,
-      'json',
-      'response'
-    ).pipe(
-      map((response:any)=> {
-        return response;
-      })
-    )
+    try{
+      const pdf = await databases.listDocuments(
+        environment.databaseId,
+        environment.collectionIdDocument,
+        [Query.equal('type', 'pdf'), Query.equal('idUtilisateur', userId)]
+      );
+
+      return pdf.documents;
+    }catch (error: any) {
+      console.error('Failed to get images:', error.message);
+      return null;
+    }
   }
 
-  deleteDocument(path:string){
+  async deleteDocument(id: string) {
+    const databases = new Databases(client);
 
-    const userData = this.localstorageService.get('user');
-    const userId = userData.id;
+    await databases.deleteDocument(environment.databaseId, environment.collectionIdDocument,id);
 
-    return this.makeRequest.request(
-      "POST",
-      `media/delete/${userId}`,
-      'http://localhost:8000/',
-      {
-        "path": path
-      },
-      'json',
-      'response'
-    ).pipe(
-      map((response:any)=>{
-        return response;
-      })
-    )
-
+    return true;
   }
 }

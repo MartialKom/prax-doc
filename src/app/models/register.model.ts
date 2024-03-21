@@ -1,5 +1,5 @@
 export class RegisterRequest{
-    username: string | undefined | null ;
+    name: string | undefined | null ;
     password: string | undefined | null ;
     email: string | undefined | null ;
 }

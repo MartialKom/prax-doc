@@ -1,37 +1,4 @@
   <!-- Main modal -->
-<div id="username-modal" tabindex="-1" aria-hidden="true" class="transition duration-75 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                  Ändern Sie Ihren Benutzernamen
-                </h3>
-                <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="username-modal">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <div class="p-4 md:p-5">
-                <form [formGroup]="usernameForm" class="space-y-4" action="#">
-                    <div>
-                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ihr Benutzername</label>
-                        <input type="text" name="username" id="username" formControlName="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder={{userData.username}} required />
-                        <div *ngIf="submittedUsername && usernameForm.controls.username.errors" class="text-red-600">
-                          Dieses Feld ist erforderlich
-                      </div>
-                    </div>
-                    <button type="submit" (click)="modify('username')" class="w-full text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Speichern</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div id="mail-modal" tabindex="-1" aria-hidden="true" class="transition duration-75 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
         <!-- Modal content -->
@@ -99,7 +66,6 @@
 </div>
 
 
-
 <div id="password-modal" tabindex="-1" aria-hidden="true" class="transition duration-75 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
         <!-- Modal content -->
@@ -141,6 +107,16 @@
 </div>
 
 
+<div *ngIf="loadingOut"
+    style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
+
+    <div class="flex flex-col justify-center items-center"
+        style="left:45%; top:50%; position: fixed; width: 200px; text-align: center; ">
+        <img style="width: 100px;" src="/assets/load 2.gif" alt="">
+        <div>Loading...</div>
+    </div>
+
+</div>
 
 
 <div class="p-4 sm:ml-64">
@@ -169,10 +145,10 @@
                     </span>
                     <input type="text" id="website-admin"
                         class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 "
-                        disabled value={{userData.username}}>
+                        disabled value={{userData.name}}>
                 </div>
 
-                <svg data-modal-target="username-modal" data-modal-toggle="username-modal" class="hover:text-white hover:bg-orange-500 w-8 h-10 mx-3 border rounded-lg text-orange-500 cursor-pointer " aria-hidden="true"
+                <svg data-modal-target="name-modal" data-modal-toggle="name-modal" class="hover:text-white hover:bg-orange-500 w-8 h-10 mx-3 border rounded-lg text-orange-500 cursor-pointer " aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
@@ -197,28 +173,6 @@
                 </div>
 
                 <svg data-modal-toggle="mail-modal" data-modal-target="mail-modal" class=" hover:text-white hover:bg-orange-500 w-8 h-10 mx-3 border rounded-lg text-orange-500 cursor-pointer " aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
-                </svg>
-            </div>
-            <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <div class="flex w-[70%]">
-                    <span
-                        class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                        <svg class="w-4 h-4 text-orange-400 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="square" stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M7 19H5a1 1 0 0 1-1-1v-1a3 3 0 0 1 3-3h1m4-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm7.441 1.559a1.907 1.907 0 0 1 0 2.698l-6.069 6.069L10 19l.674-3.372 6.07-6.07a1.907 1.907 0 0 1 2.697 0Z" />
-                        </svg>
-                    </span>
-                    <input type="text" id="website-admin"
-                        class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 "
-                        disabled value={{userData.name}}>
-                </div>
-
-                <svg data-modal-toggle="name-modal" data-modal-target="name-modal" class="hover:text-white hover:bg-orange-500 w-8 h-10 mx-3 border rounded-lg text-orange-500 cursor-pointer " aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />

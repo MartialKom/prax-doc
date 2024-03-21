@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Replace environment.ts with environment-uat.ts
+      run: cp environment-uat.ts environment.ts
+      
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run:  |

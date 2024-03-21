@@ -1,58 +1,75 @@
 import { Injectable } from '@angular/core';
 import { MakeRequestService } from '../commons/make-request.service';
 import { UserModel } from 'src/app/models/user.model';
-import { BehaviorSubject, Observable} from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginRequest } from 'src/app/models/login.model';
-import { HttpResponse } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { RegisterRequest } from 'src/app/models/register.model';
+import { account, ID, client } from 'src/lib/appwrite';
+import { Databases } from 'appwrite';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
+  private currentUser: Observable<UserModel> | undefined;
+  private currentUserSubject: BehaviorSubject<UserModel> | undefined;
 
-  private currentUser:Observable<UserModel> | undefined;
-  private currentUserSubject:BehaviorSubject<UserModel> | undefined;
-
-  
-  constructor(
-    private requestService: MakeRequestService,
-  ) { 
+  constructor(private requestService: MakeRequestService) {
     //this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(localStorage?.getItem("currentUser")?? ''));
     //this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  login(request: LoginRequest){
-
-    return this.requestService.request(
-      "POST",
-      `auth/login`,
-      "http://localhost:8000/",
-      request,
-      'json',
-      'response',
-    ).pipe(
-      map((response: any)=>{
-        return response;
-      })
-    )
+  async login(request: LoginRequest) {
+    try {
+      await account
+        .createEmailSession(request.username ?? '', request.password ?? '')
+        .then((response) => {
+          console.log('Response: ' + response);
+        });
+      return await account.get();
+    } catch (error: any) {
+      console.error('Failed to logIn:', error.message);
+      return error.message;
+    }
   }
 
-  register(request: RegisterRequest){
+  async register(request: RegisterRequest) {
+    try {
+      await account.create(
+        ID.unique(),
+        request.email ?? '',
+        request.password ?? '',
+        request.name ?? ''
+      );
+      const databases = new Databases(client);
 
-    return this.requestService.request(
-      "POST",
-      `auth/register`,
-      "http://localhost:8000/",
-      request,
-      'json',
-      'response',
-    ).pipe(
-      map((response: any)=>{
-        return response;
-      })
-    )
+      const newAccount = await this.login({
+        username: request.email,
+        password: request.password,
+      });
+
+      if (newAccount) {
+        await databases.createDocument(
+          environment.databaseId,
+          environment.collectionIdUser,
+          ID.unique(),
+          {
+            name: request.name,
+            email: request.email,
+            id: newAccount.$id,
+          }
+        );
+      }
+
+      return newAccount;
+    } catch (error: any) {
+      console.error('Failed to register:', error.message);
+      return error.message;
+    }
   }
 
+  async logout() {
+    await account.deleteSession('current');
+  }
 }

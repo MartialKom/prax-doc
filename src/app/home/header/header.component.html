@@ -77,12 +77,12 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="email" class="block text-gray-700 font-bold mb-2">Nutzername <span
+                    <label for="email" class="block text-gray-700 font-bold mb-2">Name <span
                             class="text-red-600">*</span></label>
-                    <input type="email" placeholder="Nutzername/Email" formControlName="username" id="username"
-                        name="username"
+                    <input type="text" placeholder="Name" formControlName="name" id="name"
+                        name="name"
                         class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
-                    <div *ngIf="submitted && registerForm.controls.username.errors" class="text-red-600">
+                    <div *ngIf="submitted && registerForm.controls.name.errors" class="text-red-600">
                         Dieses Feld ist erforderlich
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700 font-bold mb-2">Email <span
                             class="text-red-600">*</span></label>
-                    <input type="email" placeholder="Nutzername/Email" formControlName="username" id="username"
+                    <input type="email" placeholder="Email" formControlName="username" id="username"
                         name="username"
                         class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
                     <div *ngIf="submitted && loginForm.controls.username.errors" class="text-red-600">
@@ -183,12 +183,12 @@
             </div>
         </div>
         <p *ngIf="isAuth"  class="text-base font-semibold leading-none text-gray-900 dark:text-white">
-            <a href="#">{{userData.username.toUpperCase()}}</a>
+            <a href="#">{{userData.name.toUpperCase()}}</a>
         </p>
         <p *ngIf="isAuth"  class="mb-3 text-sm font-normal">
             <a href="#" class="hover:underline">{{userData.email}}</a>
         </p>
-        <p *ngIf="isAuth"  class="mb-4 text-sm">Sie sind Mitglied seit dem <strong>{{formatDate(userData.createdAt)}}</strong> </p>
+        <p *ngIf="isAuth"  class="mb-4 text-sm">Sie sind Mitglied seit dem <strong>{{formatDate(userData.$createdAt)}}</strong> </p>
     </div>
     <div data-popper-arrow></div>
 </div>

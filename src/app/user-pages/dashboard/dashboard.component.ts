@@ -16,12 +16,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingUsers = true;
-    this.userService.getAllUser().subscribe(
-      (response:HttpResponse<any>)=> {
-        if(response.status === 200){
-          this.userData = response.body;
+    this.userService.getAllUser().then(
+      response => {
+        if(response){
+          this.userData = response;
           this.loadingUsers = false;
-        } else this.loadingUsers = false
+        } else this.loadingUsers = false;
       }
     )
     
