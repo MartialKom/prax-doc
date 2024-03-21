@@ -8,6 +8,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { InformationsComponent } from './informations/informations.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MediaComponent,
     ProfileComponent,
     SideBarComponent,
-    InformationsComponent
+    InformationsComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

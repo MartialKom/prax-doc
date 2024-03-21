@@ -28,7 +28,7 @@ export class LoginService {
     return this.requestService.request(
       "POST",
       `auth/login`,
-      "http://207.180.206.20:5000/",
+      "http://localhost:8000/",
       request,
       'json',
       'response',
@@ -44,7 +44,7 @@ export class LoginService {
     return this.requestService.request(
       "POST",
       `auth/register`,
-      "http://207.180.206.20:5000/",
+      "http://localhost:8000/",
       request,
       'json',
       'response',
@@ -55,18 +55,4 @@ export class LoginService {
     )
   }
 
-  isAuth(){
-    return this.requestService.request(
-      "GET",
-      `auth/isAuth`,
-      "http://207.180.206.20:5000/",
-      null,
-      'json',
-      'response'
-    ).pipe(
-      map((response:any)=>{
-        return response;
-      })
-    )
-  }
 }

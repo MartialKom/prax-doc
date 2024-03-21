@@ -19,8 +19,23 @@ export class UserService {
       return this.makeRequest.request(
         "POST",
         `auth/update/${userId}`,
-        'http://207.180.206.20:5000/',
+        'http://localhost:8000/',
         body,
+        'json',
+        'response'
+      ).pipe(
+        map((response:any)=>{
+          return response;
+        })
+      )
+    }
+
+    getAllUser(){
+      return this.makeRequest.request(
+        "GET",
+        'user/all',
+        'http://localhost:8000/',
+        null,
         'json',
         'response'
       ).pipe(

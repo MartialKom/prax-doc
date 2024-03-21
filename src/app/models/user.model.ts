@@ -5,4 +5,5 @@ export class UserModel {
     email: string | undefined;
     password: string | undefined;
     name: string | undefined;
+    isAdmin: string | undefined;
 }

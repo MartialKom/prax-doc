@@ -3,10 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { map } from 'rxjs';
 import { LoginRequest } from 'src/app/models/login.model';
 import { RegisterRequest } from 'src/app/models/register.model';
-import { UserModel } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/authServices/login.service';
 import { FormatDateService } from 'src/app/services/commons/format-date.service';
 import { LocalStorageService } from 'src/app/services/commons/local-storage.service';
@@ -100,7 +98,11 @@ export class HeaderComponent implements OnInit {
             timer: 3000,
           });
           setTimeout(() => {
-            this.router.navigate(['/home']).then((r) => {
+            if(response.body.isAdmin)
+            this.router.navigate(['/user/dashboard']).then((r) => {
+              window.location.reload();
+            });
+            else  this.router.navigate(['/home']).then((r) => {
               window.location.reload();
             });
           }, 2000);
