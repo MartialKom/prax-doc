@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Replace environment.ts with environment-uat.ts
-      run: cp environment-uat.ts environment.ts
+      run: cp src/environments/environment-uat.ts  src/environments/environment.ts
       
     - uses: actions/checkout@v3
     - name: Build the Docker image
