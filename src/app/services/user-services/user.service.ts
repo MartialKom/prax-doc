@@ -4,6 +4,7 @@ import { MakeRequestService } from '../commons/make-request.service';
 import { map } from 'rxjs/operators';
 import { client } from 'src/lib/appwrite';
 import { Databases, Query } from 'appwrite';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -39,14 +40,32 @@ export class UserService {
       const databases = new Databases(client);
 
       const users = await databases.listDocuments(
-        '65fc13f84f65d95af5fa',
-        'users',
+        environment.databaseId,
+        environment.collectionIdUser,
         [Query.orderAsc('name')]
       );
 
       return users.documents;
     } catch (error: any) {
-      console.error('Failed to get images:', error.message);
+      console.error('Failed to get users:', error.message);
+      return null;
+    }
+  }
+
+  async getAllDoc(){
+    try{
+
+      const databases = new Databases(client);
+
+      const docs = await databases.listDocuments(
+        environment.databaseId,
+        environment.collectionIdDocument,
+        [Query.orderAsc('type')]
+      );
+
+      return docs.documents;
+    }catch (error: any) {
+      console.error('Failed to get documens:', error.message);
       return null;
     }
   }

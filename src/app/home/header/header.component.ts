@@ -193,6 +193,11 @@ export class HeaderComponent implements OnInit {
   }
 
   openProfile() {
+    if(this.userData.labels[0] === 'admin')
+    this.router.navigate(['/user/dashboard']).then((r) => {
+      window.location.reload();
+    });
+    else
     this.router.navigate(['/user/profile/info']).then((r) => {
       window.location.reload();
     });

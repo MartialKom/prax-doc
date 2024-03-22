@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../commons/local-storage.service';
 import { MakeRequestService } from '../commons/make-request.service';
-import { map } from 'rxjs/operators';
 import { client, ID } from 'src/lib/appwrite';
 import { Databases, Query, Storage } from 'appwrite';
 import { environment } from 'src/environments/environment';
@@ -21,7 +20,7 @@ export class UploadMediaService {
 
     const databases = new Databases(client);
     const storage = new Storage(client);
-
+    
     const fileUploaded = await storage.createFile(
       environment.bucketId,
       ID.unique(),

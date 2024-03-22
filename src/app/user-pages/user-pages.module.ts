@@ -9,6 +9,7 @@ import { InformationsComponent } from './informations/informations.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AppointmentViewComponent } from './appointment-view/appointment-view.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ProfileComponent,
     SideBarComponent,
     InformationsComponent,
-    DashboardComponent
+    DashboardComponent,
+    AppointmentViewComponent
   ],
   imports: [
     CommonModule,

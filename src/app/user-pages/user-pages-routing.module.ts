@@ -4,6 +4,7 @@ import { MediaComponent } from './media/media.component';
 import { ProfileComponent } from './profile/profile.component';
 import { InformationsComponent } from './informations/informations.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminGuardService } from '../services/commons/admin-guard.service';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AdminGuardService]
   }
 
 ];
