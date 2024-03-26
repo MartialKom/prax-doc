@@ -78,7 +78,7 @@
                     <hr class="w-full h-4">
                     <div class="flex justify-between mb-6">
                         <div>
-                            <div class="text-2xl font-semibold mb-1">{{userVeridied}}</div>
+                            <div class="text-2xl font-semibold mb-1">{{userVerified}}</div>
                             <div class="text-sm font-medium text-gray-400">Active users</div>
                         </div>
 
@@ -86,12 +86,12 @@
                     <div class="flex items-center">
                         <div class="w-full bg-gray-100 rounded-full h-4">
                             <div class="h-full bg-amber-500 rounded-full p-1"
-                                [style]=' "width: "+(userVeridied/totalUsers)*100+"%;"'>
+                                [style]=' "width: "+veriedUserPercentage+"%;"'>
                                 <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                             </div>
                         </div>
                         <span
-                            class="text-sm font-medium text-gray-600 ml-4">{{(userVeridied/totalUsers)*100+"%"}}</span>
+                            class="text-sm font-medium text-gray-600 ml-4">{{veriedUserPercentage+"%"}}</span>
                     </div>
                 </div>
                 <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
@@ -128,22 +128,22 @@
                     <div class="flex items-center mb-3">
                         <div class="w-[80%] bg-gray-100 rounded-full h-4">
                             <div class="h-full bg-amber-500 rounded-full p-1"
-                                [style]=' "width: "+(totalImg/totalDocs)*100+"%;"'>
+                                [style]=' "width: "+imagePercentage+"%;"'>
                                 <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                             </div>
                         </div>
                         <span
-                            class="text-sm font-light text-gray-600 ml-4">{{(totalImg/totalDocs)*100+"% images"}}</span>
+                            class="text-sm font-light text-gray-600 ml-4">{{imagePercentage+"% images"}}</span>
                     </div>
                     <div class="flex items-center">
                         <div class="w-[80%] bg-gray-100 rounded-full h-4">
                             <div class="h-full bg-amber-500 rounded-full p-1"
-                                [style]=' "width: "+(totalPdf/totalDocs)*100+"%;"'>
+                                [style]=' "width: "+pdfPercentage+"%;"'>
                                 <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                             </div>
                         </div>
                         <span
-                            class="text-sm font-medium text-gray-600 ml-4">{{(totalPdf/totalDocs)*100+"% PDF"}}</span>
+                            class="text-sm font-medium text-gray-600 ml-4">{{pdfPercentage+"% PDF"}}</span>
                     </div>
                 </div>
             </div>

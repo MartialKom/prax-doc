@@ -12,12 +12,16 @@ export class DashboardComponent implements OnInit {
   userData: any[] = [];
   docsData: any[]= [];
   loadingUsers: boolean = false;
-  userVeridied: number = 0;
+  userVerified: number = 0;
   totalUsers: number = 0;
   totalDocs: number = 0;
   totalPdf: number = 0;
   totalImg: number = 0;
   isActiveUser = true;
+
+  veriedUserPercentage:number = 0;
+  imagePercentage: number = 0;
+  pdfPercentage: number = 0;
 
   constructor(private userService: UserService){}
 
@@ -30,10 +34,15 @@ export class DashboardComponent implements OnInit {
             this.userData = response;
   
             for(let user of this.userData){
-              if(user.isVerified === true) this.userVeridied +=1;
+              if(user.isVerified === true) this.userVerified +=1;
             }
   
             this.totalUsers = this.userData.length;
+
+            const percentage = (this.userVerified/this.totalUsers)*100 ;
+
+            if(percentage)
+            this.veriedUserPercentage = percentage;
   
           }
         }
@@ -49,6 +58,14 @@ export class DashboardComponent implements OnInit {
             }
   
             this.totalDocs = this.docsData.length;
+
+            const percent = (this.totalImg/this.totalDocs)*100 ;
+
+            if(percent) this.imagePercentage = percent;
+
+            const percentPdf = (this.totalPdf/this.totalDocs)*100;
+
+            if(percentPdf) this.pdfPercentage = percentPdf;
           }
           this.loadingUsers = false;
         }
