@@ -5,5 +5,6 @@ export const environment = {
     databaseId: 'praxDB',
     collectionIdUser: 'users',
     collectionIdDocument: 'docs',
+    collectionIdAppointment: 'appointments',
     bucketId: 'praxStorage'
 }

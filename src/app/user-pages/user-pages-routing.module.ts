@@ -5,6 +5,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { InformationsComponent } from './informations/informations.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminGuardService } from '../services/commons/admin-guard.service';
+import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     children: [
-      {path:'info', component: InformationsComponent, pathMatch: "full"}
+      {path:'info', component: InformationsComponent, pathMatch: "full"},
+      {path: 'appointment', component: AppointmentFormComponent, pathMatch: "full"}
     ]
   },
   {

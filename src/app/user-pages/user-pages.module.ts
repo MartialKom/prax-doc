@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppointmentViewComponent } from './appointment-view/appointment-view.component';
+import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AppointmentViewComponent } from './appointment-view/appointment-view.co
     SideBarComponent,
     InformationsComponent,
     DashboardComponent,
-    AppointmentViewComponent
+    AppointmentViewComponent,
+    AppointmentFormComponent
   ],
   imports: [
     CommonModule,
