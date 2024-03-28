@@ -1,44 +1,115 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AppointmentRequest } from 'src/app/models/Appointment.model';
 import { UserService } from 'src/app/services/user-services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-appointment-form',
   templateUrl: './appointment-form.component.html',
-  styleUrls: ['./appointment-form.component.scss']
+  styleUrls: ['./appointment-form.component.scss'],
 })
 export class AppointmentFormComponent implements OnInit {
-
   loadingAppointments: boolean = false;
   appointments: any[] = [];
-  selectedHour: any;
-  hours: any[]=[
-    "10:00",
-    "10:30",
-    "11:00",
-    "11:30",
-    "12:30",
-    "13:00",
-    "14:00"
-  ]
-  constructor(private userService : UserService){}
+  selectedHour: any = "10:00";
+  selectedEndHour: any = "10:30";
+  request: AppointmentRequest | undefined;
+
+  submitted: boolean = false;
+  AppointmentForm = new FormGroup({
+    name: new FormControl(null, Validators.required),
+    age: new FormControl(null, Validators.required),
+    phone: new FormControl(null, Validators.required),
+    startDate: new FormControl(null, Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+  });
+
+  hours: any[] = [
+    '10:00',
+    '10:30',
+    '11:00',
+    '11:30',
+    '12:30',
+    '13:00',
+    '14:00',
+  ];
+  indexSelected: any;
+
+  constructor(
+    private userService: UserService,
+    private modalService: MatDialog
+  ) {}
+
+  openModal(content: any): void {
+    const dialogRef = this.modalService.open(content);
+  }
+
+  hideModal() {
+    this.submitted =false;
+    this.modalService.closeAll();
+  }
 
   async ngOnInit(): Promise<void> {
-  this.loadingAppointments =true;
-  await this.userService.getAppointments().then(
-    (response)=>{
-      if (response){
-        console.log("Appointments: "+response);
+    this.loadingAppointments = true;
+    await this.userService.getAppointments().then((response) => {
+      if (response) {
+        console.log('Appointments: ' + response);
         this.appointments = response;
-        this.loadingAppointments= false;
-      } else this.loadingAppointments =false;
+        this.loadingAppointments = false;
+      } else this.loadingAppointments = false;
+    });
+  }
+
+  selectHour(hour: any) {
+    this.selectedHour = hour;
+    console.log(hour);
+  }
+
+  selectEndHour(hour: any) {
+    this.selectedEndHour = hour;
+    console.log(hour);
+  }
+
+  submitAppointment() {
+
+    this.submitted = true;
+    if (!this.AppointmentForm.valid) {
+      return;
     }
-  )
-}
 
-selectHour(hour: any){
-  this.selectHour = hour;
-}
+    this.hideModal();
 
+    this.loadingAppointments = true
 
+    this.request = new AppointmentRequest();
+
+    this.request.age = this.AppointmentForm.get('age')?.value;
+    this.request.contact = this.AppointmentForm.get('phone')?.value;
+    this.request.date = this.AppointmentForm.get('startDate')?.value;
+    this.request.name = this.AppointmentForm.get('name')?.value;
+    this.request.time = this.selectedHour;
+    this.request.endTime = this.selectedEndHour;
+    this.request.email = this.AppointmentForm.get('email')?.value;
+    this.userService.createAppointment(this.request).then(
+      response => {
+        if(response?.$id){
+          this.appointments.push(response);
+          this.loadingAppointments = false;
+        } else{
+          this.loadingAppointments = false;
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: response,
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        } 
+      }
+    )
+
+  }
 
 }

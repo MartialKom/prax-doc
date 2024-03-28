@@ -16,8 +16,7 @@
         <div class="flex justify-between mb-4 items-start">
             <div class="font-medium">All Appointments</div>
 
-            <button data-modal-toggle="Appointmentmodal" data-modal-target="Appointmentmodal"
-                class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
+            <button (click)="openModal(Appointmentmodal)" class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
                 Add Appointment
             </button>
         </div>
@@ -48,14 +47,14 @@
 
                         <th scope="row"
                             class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                            <div class="text-base font-semibold">{{appointment.date}}</div>
+                            <div class="text-base font-semibold">{{appointment.date.split("T")[0]}}</div>
                         </th>
                         <td class="px-6 py-4">
-                            {{appointment.time}}
+                            {{appointment.time}} - {{appointment.timeEnd}}
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> {{appointment.status}}
+                                <div [ngClass]="{'bg-green-500': appointment.status !== 'WAITING', 'bg-orange-300': appointment.status ==='WAITING' }" class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> {{appointment.status}}
                             </div>
                         </td>
                         <td class="px-6 py-4">
@@ -70,106 +69,127 @@
             </table>
 
         </div>
-    </div>
 
 
-    <div id="Appointmentmodal" tabindex="-1" aria-hidden="true"
-        class="transition duration-75 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
 
-        <div class="relative p-4 w-auto bg-white rounded-lg shadow dark:bg-gray-700">
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Add Appointment
-                </h3>
-                <button type="button"
-                    class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-hide="Appointmentmodal">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
+        <ng-template #Appointmentmodal id="Appointmentmodal" tabindex="-1" aria-hidden="true"
+            class="transition duration-75 hidden overflow-y-scroll overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+            let-modal>
 
-
-            <form>
-                <div class="grid gap-6 mb-6 md:grid-cols-2">
-                    <div>
-                        <label for="first_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
-                        <input type="text" id="first_name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="John" required />
-                    </div>
-                    <div>
-                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
-                            name</label>
-                        <input type="text" id="last_name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Doe" required />
-                    </div>
-                    <div>
-                        <label for="company"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your age</label>
-                        <input type="number" id="company"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required />
-                    </div>
-                    <div>
-                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
-                            number</label>
-                        <input type="tel" id="phone"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
-                    </div>
-                    <div>
-                        <label for="website"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                        <input type="date" id="website"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                             required />
-                    </div>
+            <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Add Appointment
+                    </h3>
+                    <button type="button"
+                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        (click)="hideModal()">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
                 </div>
-                <label for="hours"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select hour</label>
-                <div class="mb-6 flex flex-col items-center gap-2 mt-2 p-4">
 
-                    <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6  text-md gap-2">
-                        <div *ngFor="let hour of hours">
-                            <button type="button" (click)="selectHour(hour)" class="bg-green-200 rounded-lg px-2 text-gray-800 relative hover:border hover:border-green-400 w-[60px] h-[26px]">{{hour}}</button>
+
+                <form [formGroup]="AppointmentForm" (ngSubmit)="submitAppointment()">
+
+                    <div class="grid gap-6  mb-6 md:grid-cols-2">
+                        <div>
+                            <label for="name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                            <input type="text" id="name" formControlName="name" name="name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="John" required />
+                                <div *ngIf="submitted && AppointmentForm.controls.name.errors" class="text-red-600">
+                                    Dieses Feld ist erforderlich
+                                </div>
+                        </div>
+                        <div>
+                            <label for="company"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your age</label>
+                            <input type="number" id="age" formControlName="age" name="age"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required />
+                                <div *ngIf="submitted && AppointmentForm.controls.age.errors" class="text-red-600">
+                                    Dieses Feld ist erforderlich
+                                </div>
+                        </div>
+                        <div>
+                            <label for="phone"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
+                                number</label>
+                            <input type="text" id="phone" formControlName="phone" name="phone"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="123-45-678" required />
+                                <div *ngIf="submitted && AppointmentForm.controls.phone.errors" class="text-red-600">
+                                    Dieses Feld ist erforderlich
+                                </div>
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                date</label>
+                            <input type="date" id="startDate" formControlName="startDate" name="startDate"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required />
+                                <div *ngIf="submitted && AppointmentForm.controls.startDate.errors" class="text-red-600">
+                                    Dieses Feld ist erforderlich
+                                </div>
                         </div>
                     </div>
+                    <label for="hours" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select start
+                        hour</label>
+                    <div class="mb-2 flex flex-col items-center gap-2 mt-2 p-4">
 
-                </div>
-                <div class="mb-6">
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
-                        address</label>
-                    <input type="email" id="email"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="john.doe@company.com" required />
-                </div>
+                        <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6  text-md gap-2">
+                            <div *ngFor="let hour of hours">
+                                <button type="button" (click)="selectHour(hour)"
+                                    [ngClass]="{'bg-amber-600': selectedHour===hour, 'bg-green-200': selectedHour !==hour } "
+                                    class="bg-green-200 rounded-lg px-2 text-gray-800 relative hover:border hover:border-green-400 w-[60px] h-[26px]">{{hour}}</button>
+                            </div>
+                        </div>
 
-
-
-                <div class="flex items-start mb-6">
-                    <div class="flex items-center h-5">
-                        <input id="remember" type="checkbox" value=""
-                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-                            required />
                     </div>
-                    <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with
-                        the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and
-                            conditions</a>.</label>
-                </div>
-                <button type="submit"
-                    class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-            </form>
+                    <label for="hours" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select end
+                        hour</label>
+                    <div class="mb-6 flex flex-col items-center gap-2 p-4">
+
+                        <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6  text-md gap-2">
+                            <div *ngFor="let hour of hours">
+                                <button type="button" (click)="selectEndHour(hour)"
+                                    [ngClass]="{'bg-amber-600': selectedEndHour===hour, 'bg-green-200': selectedEndHour !==hour } "
+                                    class="bg-green-200 rounded-lg px-2 text-gray-800 relative hover:border hover:border-green-400 w-[60px] h-[26px]">{{hour}}</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
+                            address</label>
+                        <input type="email" id="email" formControlName="email" name="email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="john.doe@company.com" required />
+                            <div *ngIf="submitted && AppointmentForm.controls.email.errors" class="text-red-600">
+                                Dieses Feld ist erforderlich
+                            </div>
+                    </div>
 
 
-        </div>
+                    <button type="submit"
+                        class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                </form>
+
+
+            </div>
+
+        </ng-template>
+
 
     </div>
+
+
+
 
 </div>

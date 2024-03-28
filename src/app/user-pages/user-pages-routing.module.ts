@@ -6,6 +6,7 @@ import { InformationsComponent } from './informations/informations.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminGuardService } from '../services/commons/admin-guard.service';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
+import { FullCalendarComponentClass } from './full-calendar/full-calendar.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AdminGuardService]
-  }
+  },
 
 ];
 

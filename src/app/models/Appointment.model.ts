@@ -4,4 +4,6 @@ export class AppointmentRequest {
     contact: string | undefined | null ;
     age: number | undefined | null ;
     time: string | undefined | null ;
+    endTime: string | undefined | null ;
+    email: string | undefined | null ;
 }

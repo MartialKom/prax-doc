@@ -88,13 +88,45 @@ export class UserService {
           contact: request.contact,
           age: request.age,
           time: request.time ?? '',
+          timeEnd: request.endTime,
+          email: request.email ?? null
         }
       );
 
       return appointment;
     } catch (error: any) {
       console.error('Failed to create appointment:', error.message);
-      return null;
+      return error.message;
+    }
+  }
+
+  async createAdminAppointment(date: any, time: any, timeEnd: any){
+    try {
+      const userData = this.localstorageService.get('user');
+      const userId = userData.$id;
+      const name = userData.name;
+      const email = userData.email;
+
+      const databases = new Databases(client);
+
+      const appointment = await databases.createDocument(
+        environment.databaseId,
+        environment.collectionIdAppointment,
+        ID.unique(),
+        {
+          idUser: userId,
+          date: date,
+          name: name,
+          time: time ?? '',
+          timeEnd: timeEnd,
+          email: email
+        }
+      );
+
+      return appointment;
+    } catch (error: any) {
+      console.error('Failed to create appointment:', error.message);
+      return error.message;
     }
   }
 
@@ -117,4 +149,66 @@ export class UserService {
       return null;
     }
   }
+
+  async getAllAppointments(){
+
+    const databases = new Databases(client);
+
+    const appointments = await databases.listDocuments(
+      environment.databaseId,
+      environment.collectionIdAppointment,
+      [Query.orderAsc('date')]
+    );
+
+    return appointments.documents;
+  }
+
+  async updateEvent(id: string, event: any){
+
+    const databases = new Databases(client);
+
+    const appointment = await databases.updateDocument(
+      environment.databaseId,
+      environment.collectionIdAppointment,
+      id,
+      {
+        date: event.startStr.split("T")[0],
+        time: event.startStr.split("T")[1],
+        timeEnd: event.endStr.split("T")[1]
+      }
+    );
+
+    return appointment;
+
+  }
+
+  async deleteAppointment(id: string){
+    const databases = new Databases(client);
+
+    return await databases.deleteDocument(
+      environment.databaseId,
+      environment.collectionIdAppointment,
+      id
+    );
+  }
+
+  async updateAppointment(id: string, date: any, timeStart: any, timeEnd:any){
+
+    const databases = new Databases(client);
+
+    const appointment = await databases.updateDocument(
+      environment.databaseId,
+      environment.collectionIdAppointment,
+      id,
+      {
+        date: date,
+        time: timeStart,
+        timeEnd: timeEnd
+      }
+    );
+
+    return appointment;
+  }
+
+
 }

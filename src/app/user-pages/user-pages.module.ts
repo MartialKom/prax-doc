@@ -11,6 +11,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppointmentViewComponent } from './appointment-view/appointment-view.component';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { FullCalendarComponentClass } from './full-calendar/full-calendar.component';
+import { DoctorsPageComponent } from './doctors-page/doctors-page.component';
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
     InformationsComponent,
     DashboardComponent,
     AppointmentViewComponent,
-    AppointmentFormComponent
+    AppointmentFormComponent,
+    FullCalendarComponentClass,
+    DoctorsPageComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +34,7 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    FullCalendarModule
   ]
 })
 export class UserPagesModule { }

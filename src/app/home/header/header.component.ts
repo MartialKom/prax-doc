@@ -132,6 +132,8 @@ export class HeaderComponent implements OnInit {
       this.localstorageService.remove('user');
       this.localstorageService.remove('documents');
       this.localstorageService.remove('pdfs');
+      this.localstorageService.remove('Appointments');
+      this.localstorageService.remove('events');
 
       this.router.navigate(['/home']).then((r) => {
         this.loadingOp = false;

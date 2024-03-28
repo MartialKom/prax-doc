@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   imagePercentage: number = 0;
   pdfPercentage: number = 0;
 
+
   constructor(private userService: UserService){}
 
   ngOnInit(): void {
