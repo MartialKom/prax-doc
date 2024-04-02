@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { client, ID, account } from 'src/lib/appwrite';
 import { Databases, Query } from 'appwrite';
 import { AppointmentRequest } from 'src/app/models/Appointment.model';
-import { environment } from 'src/environnements/environment';
+import { environment } from 'src/environments/environment';
 import { DoctorRequest } from 'src/app/models/Doctors.model';
 import { v4 as uuidv4 } from 'uuid';
 import { HolidayRequest } from 'src/app/models/holidays.model';

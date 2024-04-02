@@ -6,7 +6,7 @@ import { LoginRequest } from 'src/app/models/login.model';
 import { RegisterRequest } from 'src/app/models/register.model';
 import { account, ID, client } from 'src/lib/appwrite';
 import { Databases, Query } from 'appwrite';
-import { environment } from 'src/environnements/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
