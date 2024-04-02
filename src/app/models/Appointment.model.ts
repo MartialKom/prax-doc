@@ -6,4 +6,5 @@ export class AppointmentRequest {
     time: string | undefined | null ;
     endTime: string | undefined | null ;
     email: string | undefined | null ;
+    idDoctor: string | undefined | null ;
 }

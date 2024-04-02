@@ -76,20 +76,28 @@ export class FullCalendarComponentClass implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.storage.get('events')) {
+    const userData = this.storage.get('user');
+    const userId = userData.$id;
       this.userService.getAllAppointments().then((response) => {
         if (response) {
           this.appointments = response;
           this.storage.set("Appointments", response);
           this.events = [];
           for (let app of response) {
-            this.events.push({
-              id: app.$id,
-              title: app['name'],
-              start: app['date'].split('T')[0] + 'T' + app['time'],
-              end: app['date'].split('T')[0] + 'T' + app['timeEnd'],
-              allDay: app['allDay'],
-            });
+            var color = "green";
+            if(app['status'] ==="VALIDATED"){
+              if(app['idUser']=== userId ) color = "purple";
+              if((app['idUser'] === app['idDoctor']) && app['idUser'] !== userId) color = "orange";
+              this.events.push({
+                id: app.$id,
+                title: app['name'],
+                start: app['date'].split('T')[0] + 'T' + app['time'],
+                end: app['date'].split('T')[0] + 'T' + app['timeEnd'],
+                allDay: app['allDay'],
+                color: color
+              });
+            }
+
           }
           console.log('Taille events: ' + this.events.length);
           console.log('events: ' + this.events);
@@ -98,11 +106,7 @@ export class FullCalendarComponentClass implements OnInit {
           this.storage.set("events",this.events);
         }
       });
-    } else {
-      this.appointments = this.storage.get("Appointments");
-      this.events = this.storage.get('events');
-      this.calendarOptions.events = this.events;
-    }
+    
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
@@ -114,19 +118,12 @@ export class FullCalendarComponentClass implements OnInit {
     if (title) {
       this.loadingcalendar =true;
 
-      this.userService.createAdminAppointment(selectInfo.startStr.split("T")[0],selectInfo.startStr.split("T")[1],selectInfo.endStr.split("T")[1]).then(
+      this.userService.createAdminAppointment(selectInfo.startStr.split("T")[0],selectInfo.startStr.split("T")[1],selectInfo.endStr.split("T")[1],title).then(
         response => {
           if(response?.$id){
             this.storage.remove("Appointments");
             this.storage.remove("events");
             this.ngOnInit();
-            calendarApi.addEvent({
-              id: createEventId(),
-              title,
-              start: selectInfo.startStr,
-              end: selectInfo.endStr,
-              allDay: selectInfo.allDay,
-            });
             this.loadingcalendar = false;
 
           }else{
@@ -160,7 +157,7 @@ export class FullCalendarComponentClass implements OnInit {
   deleteEvent(){
     if (
       confirm(
-        `Are you sure you want to delete the event '${this.selectedAppointment.title}'`
+        `Are you sure you want to delete the event '${this.selectedAppointment.name}'`
       )
     ) {
       this.hideModal();

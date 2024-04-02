@@ -1,0 +1,27 @@
+<section class="px-2 mx-auto pt-4">
+    <div *ngIf="loadingcalendar"
+        style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
+
+        <div class="flex flex-col justify-center items-center"
+            style="left:45%; top:50%; position: fixed; width: 200px; text-align: center; ">
+            <img style="width: 100px;" src="/assets/load 2.gif" alt="">
+            <div>Loading...</div>
+        </div>
+
+    </div>
+
+    <div class='demo-app'>
+        <div class='demo-app-main'>
+
+            <full-calendar #calendar [options]='calendarOptions'>
+                <ng-template #eventContent let-arg>
+                    <b>{{ arg.timeText }}</b>
+                    <i>{{ arg.event.title }}</i>
+                </ng-template>
+            </full-calendar>
+        </div>
+
+    </div>
+
+
+</section>

@@ -6,5 +6,7 @@ export const environment = {
     collectionIdUser: 'users',
     collectionIdDocument: 'docs',
     collectionIdAppointment: 'appointments',
+    collectionIdDoctors: 'doctors',
+    collectionIdHolidays: 'holidays',
     bucketId: 'praxStorage'
 }

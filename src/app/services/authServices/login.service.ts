@@ -5,8 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginRequest } from 'src/app/models/login.model';
 import { RegisterRequest } from 'src/app/models/register.model';
 import { account, ID, client } from 'src/lib/appwrite';
-import { Databases } from 'appwrite';
-import { environment } from 'src/environments/environment';
+import { Databases, Query } from 'appwrite';
+import { environment } from 'src/environnements/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -22,12 +22,27 @@ export class LoginService {
 
   async login(request: LoginRequest) {
     try {
+      const databases = new Databases(client);
+      
       await account
         .createEmailSession(request.username ?? '', request.password ?? '')
         .then((response) => {
           console.log('Response: ' + response);
         });
-      return await account.get();
+
+      var user = await account.get();
+
+      const users = await databases.listDocuments(
+        environment.databaseId,
+        environment.collectionIdDoctors,
+        [Query.equal('id', user.$id)]
+      );
+
+      if(users.documents.length>0){
+        user.labels.push("doctor");
+      }
+
+      return user;
     } catch (error: any) {
       console.error('Failed to logIn:', error.message);
       return error.message;

@@ -100,7 +100,7 @@ export class HeaderComponent implements OnInit {
             timer: 3000,
           });
           setTimeout(() => {
-            if (response.labels[0] === 'admin')
+            if (response.labels[0] === 'admin' || response.labels[0] === 'doctor')
               this.router.navigate(['/user/dashboard']).then((r) => {
                 window.location.reload();
               });
@@ -195,7 +195,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openProfile() {
-    if(this.userData.labels[0] === 'admin')
+    if(this.userData.labels[0] === 'admin' || this.userData.labels[0] === 'doctor')
     this.router.navigate(['/user/dashboard']).then((r) => {
       window.location.reload();
     });

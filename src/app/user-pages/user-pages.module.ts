@@ -14,7 +14,15 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { FullCalendarComponentClass } from './full-calendar/full-calendar.component';
 import { DoctorsPageComponent } from './doctors-page/doctors-page.component';
-
+import { SideBarDashboardComponent } from './side-bar-dashboard/side-bar-dashboard.component';
+import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
+import { HolidaysWiewComponent } from './holidays-wiew/holidays-wiew.component';
+import { HolidaysCalendarViewComponent } from './holidays-calendar-view/holidays-calendar-view.component';
+import { HolidayViewAdminComponent } from './holiday-view-admin/holiday-view-admin.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +34,12 @@ import { DoctorsPageComponent } from './doctors-page/doctors-page.component';
     AppointmentViewComponent,
     AppointmentFormComponent,
     FullCalendarComponentClass,
-    DoctorsPageComponent
+    DoctorsPageComponent,
+    SideBarDashboardComponent,
+    HomeDashboardComponent,
+    HolidaysWiewComponent,
+    HolidaysCalendarViewComponent,
+    HolidayViewAdminComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +47,11 @@ import { DoctorsPageComponent } from './doctors-page/doctors-page.component';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatListModule,
   ]
 })
 export class UserPagesModule { }

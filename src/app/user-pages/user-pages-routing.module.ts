@@ -7,6 +7,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminGuardService } from '../services/commons/admin-guard.service';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { FullCalendarComponentClass } from './full-calendar/full-calendar.component';
+import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { DoctorsPageComponent } from './doctors-page/doctors-page.component';
+import { HolidaysWiewComponent } from './holidays-wiew/holidays-wiew.component';
+import { HolidayViewAdminComponent } from './holiday-view-admin/holiday-view-admin.component';
 
 const routes: Routes = [
   {
@@ -24,7 +28,14 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AdminGuardService]
+    canActivate: [AdminGuardService],
+    children: [
+      {path:'home', component: HomeDashboardComponent, pathMatch:"full"},
+      {path:'doctors', component: DoctorsPageComponent, pathMatch: "full"},
+      {path:'myHolidays', component: HolidaysWiewComponent, pathMatch: "full"},
+      {path:'allHolidays', component: HolidayViewAdminComponent, pathMatch: "full"}
+
+    ]
   },
 
 ];

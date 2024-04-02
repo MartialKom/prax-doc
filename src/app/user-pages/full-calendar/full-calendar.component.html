@@ -31,16 +31,16 @@
     </div>
     <div class="flex flex-col items-center pb-10">
         <div
-        class="w-10 h-10 bg-white shadow-lg border items-center justify-center flex font-bold rounded-full text-orange-400">
+        class="w-10 h-10 bg-white shadow-lg border items-center justify-center flex font-extralight rounded-full text-orange-400">
         {{selectedAppointment.name.charAt(0).toUpperCase()}} </div>
         <h5 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">{{selectedAppointment.name}}</h5>
         <span class="text-sm text-gray-500 dark:text-gray-400">{{selectedAppointment.contact}}</span>
-        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-            Male, {{selectedAppointment.age+' yr'}}
+        <p class="font-bold text-gray-500 truncate dark:text-gray-400">
+        {{selectedAppointment.age+' yr'}}
         </p>
         <div class="flex mt-4 md:mt-6">
            <!-- <a  class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</a>-->
-            <a (click)="deleteEvent()" class="py-2 px-4 ms-2 text-sm font-medium text-gray-200 focus:outline-none bg-red-700 rounded-lg border border-gray-200 hover:bg-red-800 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Delete</a>
+            <a (click)="deleteEvent()" class="py-2 px-4 ms-2 text-sm font-medium cursor-pointer text-gray-200 focus:outline-none bg-red-700 rounded-lg border border-gray-200 hover:bg-red-800 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Delete</a>
         </div>
     </div>
 </div>

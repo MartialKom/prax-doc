@@ -1,170 +1,96 @@
 
     <div class="flex flex-col w-full">
         <div class="flex flex-row">
-            <div class="flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl active">
-                <span class="text-3xl app-color-blue-1 font-bold">06</span>
+            <div [ngClass]="{'active': !isFailedAppointments}" (click)="showAppointments()" class="cursor-pointer flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl">
+                <span class="text-3xl app-color-blue-1 font-bold">{{appointments.length}}</span>
                 <span class="text-md app-color-blue-1 font-semibold">Queue</span>
             </div>
-            <div class="flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl app-bg-blue-1">
-                <span class="text-3xl text-white font-bold">02</span>
-                <span class="text-md text-white font-semibold">Earlier</span>
-            </div>
-            <div class="flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl app-bg-blue-3">
-                <span class="text-3xl text-white font-bold">05</span>
-                <span class="text-md text-white font-semibold">Wait List</span>
-            </div>
-            <div class="flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl app-bg-blue-4">
-                <span class="text-3xl text-white font-bold">0</span>
-                <span class="text-md text-white font-semibold">No Show</span>
+            <div [ngClass]="{'active': isFailedAppointments}" (click)="showFailed()" class="cursor-pointer flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl ">
+                <span class="text-3xl app-color-red-1 font-bold">{{failedAppointments.length}}</span>
+                <span class="text-md app-color-red-1 font-semibold">Failed</span>
             </div>
         </div>
         <div class="flex flex-row bg-white p-10 relative">
-            <div class="absolute app-bg-yellow-3 text-xs font-semibold px-3 py-0.5 rounded-br-md rounded-tl-md text-white" style="top: 76px;">New</div>
             <table class="w-full">
                 <thead>
                     <tr>
-                        <th></th>
                         <th class="text-left text-xs app-color-black pb-5">PATIENT</th>
                         <th class="text-left text-xs app-color-black pb-5">CONTACT</th>
                         <th class="text-left text-xs app-color-black pb-5">APPOINTMENT</th>
-                        <th class="text-left text-xs app-color-black pb-5">WAITED</th>
-                        <th></th>
-                        <th></th>
+                        <th class="text-left text-xs app-color-black pb-5">DATE</th>
+                        <th class="text-left text-xs app-color-black pb-5">ACTION</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="app-border-1">
+                <tbody *ngIf="!isFailedAppointments">
+                    <tr class="app-border-1" *ngFor="let app of appointments; let i = index">
+          
+                        <td>
+                            <div class="flex flex-row py-3">
+                                <div class="flex flex-col">
+                                    <span class="font-semibold text-sm app-color-black">{{app.name}}</span>
+                                    <span class="font-semibold text-xs app-color-gray-1">{{app.age}} yr</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="font-semibold text-sm app-color-gray-1">{{app.contact}}</span>
+                        </td>
+                        <td>
+                            <span class="font-semibold text-sm app-color-gray-1">{{app.time +'-'+ app.timeEnd}}</span>
+                        </td>
+                        <td>
+                            <div class="app-bg-blue-2 h-8 w-28 font-semibold text-sm flex justify-center items-center app-color-red-1 rounded-md">
+                                {{app.date.split("T")[0]}}
+                            </div>
+                        </td>
+                        <td>
+                            <div (click)="validAppointment(app)">
+                                <svg class="w-6 h-6 text-green-600 cursor-pointer dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M15.03 9.684h3.965c.322 0 .64.08.925.232.286.153.532.374.717.645a2.109 2.109 0 0 1 .242 1.883l-2.36 7.201c-.288.814-.48 1.355-1.884 1.355-2.072 0-4.276-.677-6.157-1.256-.472-.145-.924-.284-1.348-.404h-.115V9.478a25.485 25.485 0 0 0 4.238-5.514 1.8 1.8 0 0 1 .901-.83 1.74 1.74 0 0 1 1.21-.048c.396.13.736.397.96.757.225.36.32.788.269 1.211l-1.562 4.63ZM4.177 10H7v8a2 2 0 1 1-4 0v-6.823C3 10.527 3.527 10 4.176 10Z" clip-rule="evenodd"/>
+                                  </svg>
+                            </div>
+                              
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="isFailedAppointments">
+                    <tr class="app-border-1" *ngFor="let app of failedAppointments">
                         <td>
                             <div class="flex justify-center items-center rounded-md w-8 h-8 app-bg-yellow-2 app-color-yellow-1 text-lg font-semibold">1</div>
                         </td>
                         <td>
                             <div class="flex flex-row py-3">
                                 <div class="flex flex-col">
-                                    <span class="font-semibold text-sm app-color-black">Varun Bose</span>
-                                    <span class="font-semibold text-xs app-color-gray-1">Male, 32 yr</span>
+                                    <span class="font-semibold text-sm app-color-black">{{app.name}}</span>
+                                    <span class="font-semibold text-xs app-color-gray-1">{{app.age}} yr</span>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <span class="font-semibold text-sm app-color-gray-1">9999999999</span>
+                            <span class="font-semibold text-sm app-color-gray-1">{{app.contact}}</span>
                         </td>
                         <td>
-                            <span class="font-semibold text-sm app-color-gray-1">05:10PM</span>
+                            <span class="font-semibold text-sm app-color-gray-1">{{app.time +'-'+ app.timeEnd}}</span>
                         </td>
                         <td>
                             <div class="app-bg-red-2 h-8 w-28 font-semibold text-sm flex justify-center items-center app-color-red-1 rounded-md">
-                                56 Mins
+                                {{app.date.split("T")[0]}}
                             </div>
-                        </td>
-                        <td>
-                            <button class="flex items-center justify-center app-button-shadow w-32 py-2 rounded-3xl">
-                                <svg class="w-6 h-6 app-color-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
-                                <span class="ml-3 font-semibold text-md app-color-gray-1">Vitals</span>
-                            </button>
                         </td>
                         <td>
                             <svg class="w-6 h-6 app-color-blue-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
 
                         </td>
+                        <td>
+                            <div (click)="validAppointment(app)">
+                                <svg class="w-6 h-6 text-green-800 cursor-pointer dark:text-white"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M15.03 9.684h3.965c.322 0 .64.08.925.232.286.153.532.374.717.645a2.109 2.109 0 0 1 .242 1.883l-2.36 7.201c-.288.814-.48 1.355-1.884 1.355-2.072 0-4.276-.677-6.157-1.256-.472-.145-.924-.284-1.348-.404h-.115V9.478a25.485 25.485 0 0 0 4.238-5.514 1.8 1.8 0 0 1 .901-.83 1.74 1.74 0 0 1 1.21-.048c.396.13.736.397.96.757.225.36.32.788.269 1.211l-1.562 4.63ZM4.177 10H7v8a2 2 0 1 1-4 0v-6.823C3 10.527 3.527 10 4.176 10Z" clip-rule="evenodd"/>
+                                  </svg>
+                                  
+                            </div>
+                           
+                        </td>
                     </tr>
-                    <tr class="app-border-1">
-                        <td>
-                            <div class="mr-4 w-8 h-8 rounded-md flex items-center justify-center app-bg-blue-2 app-color-blue-1 text-lg font-semibold">2</div>
-                        </td>
-                        <td>
-                            <div class="flex flex-row items-center py-3">
-                                <div class="flex flex-col">
-                                    <span class="font-semibold text-sm app-color-black">Sufia</span>
-                                    <span class="font-semibold text-xs app-color-gray-1">Female, 28 yr</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="font-semibold text-sm app-color-gray-1">9999999999</span>    
-                        </td>
-                        <td>
-                            <span class="font-semibold text-sm app-color-gray-1">05:10PM</span>
-                        </td>
-                        <td>
-                            <div class="h-8 w-28 font-semibold text-sm app-bg-red-2 flex items-center justify-center app-color-red-1 rounded-md">
-                                56 Mins
-                            </div>
-                        </td>
-                        <td>
-                            <button class="flex items-center justify-center rounded-3xl shadow-md w-32 py-2 app-button-shadow">
-                                <svg class="w-6 h-6 app-color-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
-                                <span class="ml-3 font-semibold text-md app-color-gray-1">Vitals</span>
-                            </button>
-                        </td>
-                        <td>
-                            <svg class="w-6 h-6 app-color-blue-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-                        </td>
-                      </tr>
-                      <tr class="app-border-1">
-                        <td>
-                            <div class="mr-4 w-8 h-8 rounded-md flex items-center justify-center app-bg-yellow-2 app-color-yellow-1 text-lg font-semibold">3</div>
-                        </td>
-                        <td>
-                            <div class="flex flex-row items-center py-3">
-                                <div class="flex flex-col">
-                                    <span class="font-semibold text-sm app-color-black">John Wick</span>
-                                    <span class="font-semibold text-xs app-color-gray-1">Male, 45 yr</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="font-semibold text-sm app-color-gray-1">9999999999</span>    
-                        </td>
-                        <td>
-                            <span class="font-semibold text-sm app-color-gray-1">05:10PM</span>
-                        </td>
-                        <td>
-                            <div class="h-8 w-28 font-semibold text-sm app-bg-blue-2 flex items-center justify-center app-color-blue-1 rounded-md">
-                                Not Arrived
-                            </div>
-                        </td>
-                        <td>
-                            <button class="flex items-center justify-center rounded-3xl shadow-md w-32 py-2 app-button-shadow">
-                                <svg class="w-6 h-6 app-color-blue-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>                                <span class="ml-3 font-semibold text-md app-color-gray-1">Checkin</span>
-                            </button>
-                        </td>
-                        <td>
-                            <svg class="w-6 h-6 app-color-blue-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-                        </td>
-                      </tr>
-                      <tr class="app-border-1">
-                        <td>
-                            <div class="mr-4 w-8 h-8 rounded-md flex items-center justify-center app-bg-blue-2 app-color-blue-1 text-lg font-semibold">4</div>
-                        </td>
-                        <td>
-                            <div class="flex flex-row items-center py-3">
-                                <div class="flex flex-col">
-                                    <span class="font-semibold text-sm app-color-black">Johny Ive</span>
-                                    <span class="font-semibold text-xs app-color-gray-1">Male, 31 yr</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="font-semibold text-sm app-color-gray-1">9999999999</span>    
-                        </td>
-                        <td>
-                            <span class="font-semibold text-sm app-color-gray-1">05:10PM</span>
-                        </td>
-                        <td>
-                            <div class="h-8 w-28 font-semibold text-sm app-bg-blue-2 flex items-center justify-center app-color-blue-1 rounded-md">
-                                Not Arrived
-                            </div>
-                        </td>
-                        <td>
-                            <button class="flex items-center justify-center rounded-3xl shadow-md w-32 py-2 app-button-shadow">
-                                <svg class="w-6 h-6 app-color-blue-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>                                
-                                <span class="ml-3 font-semibold text-md app-color-gray-1">Checkin</span>
-                            </button>
-                        </td>
-                        <td>
-                            <svg class="w-6 h-6 app-color-blue-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-                        </td>
-                      </tr>
                 </tbody>
             </table>
         </div>

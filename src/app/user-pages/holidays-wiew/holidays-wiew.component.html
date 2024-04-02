@@ -1,0 +1,80 @@
+<div class="p-4 sm:ml-64">
+
+    <div *ngIf="loadingHolidays"
+        style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
+
+        <div class="flex flex-col justify-center items-center"
+            style="left:45%; top:50%; position: fixed; width: 200px; text-align: center; ">
+            <img style="width: 100px;" src="/assets/load 2.gif" alt="">
+            <div>Loading...</div>
+        </div>
+
+    </div>
+
+
+    <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md mt-6">
+        <div class="flex justify-between mb-4 items-start">
+            <div class="font-medium text-amber-600">All my holidays request</div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full min-w-[540px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                data-tab-for="order" data-page="active">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Start Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            End Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let holiday of holidays"
+                        class="bg-white font-light border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                        <th scope="row"
+                            class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                            <div class="text-base font-light">{{holiday.date.split("T")[0]}}</div>
+                        </th>
+                        <td class="px-6 py-4">
+                           <div class="text-base text-gray-900 "> {{holiday.dateEnd.split("T")[0]}} </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <div [ngClass]="{'bg-green-500': holiday.status === 'VALIDATED', 'bg-orange-300': holiday.status ==='WAITING', 'bg-red-600': holiday.status ==='REJECTED' }" class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> {{holiday.status}}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 uppercase">
+                            <a (click)="deleteHoliday(holiday.$id)" class="cursor-pointer font-medium text-red-600  hover:underline">delete
+                                </a>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+        <div class="bg-white border px-10 border-gray-100 shadow-md shadow-black/5 p-6 rounded-md lg:col-span-2">
+            <app-holidays-calendar-view></app-holidays-calendar-view>
+        </div>
+
+    
+
+
+</div>
+

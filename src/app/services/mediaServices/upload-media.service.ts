@@ -3,7 +3,7 @@ import { LocalStorageService } from '../commons/local-storage.service';
 import { MakeRequestService } from '../commons/make-request.service';
 import { client, ID } from 'src/lib/appwrite';
 import { Databases, Query, Storage } from 'appwrite';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environnements/environment';
 
 @Injectable({
   providedIn: 'root',

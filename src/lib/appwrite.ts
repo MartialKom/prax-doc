@@ -1,5 +1,5 @@
 import { Client, Account} from 'appwrite';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environnements/environment';
 
 export const client = new Client();
 

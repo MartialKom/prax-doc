@@ -14,7 +14,7 @@
 
     <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
         <div class="flex justify-between mb-4 items-start">
-            <div class="font-medium">All Appointments</div>
+            <div class="font-medium text-amber-600">All Appointments</div>
 
             <button (click)="openModal(Appointmentmodal)" class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
                 Add Appointment
@@ -47,7 +47,7 @@
 
                         <th scope="row"
                             class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                            <div class="text-base font-semibold">{{appointment.date.split("T")[0]}}</div>
+                            <div class="text-base font-light">{{appointment.date.split("T")[0]}}</div>
                         </th>
                         <td class="px-6 py-4">
                             {{appointment.time}} - {{appointment.timeEnd}}
@@ -58,8 +58,8 @@
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit
-                                appointment</a>
+                            <a (click)="deleteAppointment(appointment.$id)" class="font-medium cursor-pointer uppercase text-red-600  hover:underline">delete
+                                </a>
                         </td>
                     </tr>
 
@@ -119,7 +119,7 @@
                         </div>
                         <div>
                             <label for="phone"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
+                                class="block text-sm font-medium text-gray-900 dark:text-white">Phone
                                 number</label>
                             <input type="text" id="phone" formControlName="phone" name="phone"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -128,8 +128,24 @@
                                     Dieses Feld ist erforderlich
                                 </div>
                         </div>
+                            <mat-form-field class="mt-2 w-full" >
+                                <mat-label class="text-black">Select a doctor</mat-label>
+                                <mat-select formControlName="doctor">
+                                <mat-option *ngFor="let doc of doctors" [value]="doc.id">
+                                    <mat-list-item >
+                                        <div matListItemTitle class="font-medium">Dr {{doc.name}}</div>
+                                        <div matListItemLine class="text-gray-400 font-light">-{{doc.speciality}}-</div>
+                                      </mat-list-item>
+                                </mat-option>
+                                </mat-select>
+                                <div *ngIf="submitted && AppointmentForm.controls.doctor.errors" class="text-red-600">
+                                    Dieses Feld ist erforderlich
+                                </div>
+                          </mat-form-field>
+
+                 
                         <div>
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                            <label class="block text-sm font-medium text-gray-900 dark:text-white">Start
                                 date</label>
                             <input type="date" id="startDate" formControlName="startDate" name="startDate"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -139,9 +155,9 @@
                                 </div>
                         </div>
                     </div>
-                    <label for="hours" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select start
+                    <label for="hours" class="block  text-sm font-medium text-gray-900 dark:text-white">Select start
                         hour</label>
-                    <div class="mb-2 flex flex-col items-center gap-2 mt-2 p-4">
+                    <div class="mb-2 flex flex-col items-center gap-2 p-4">
 
                         <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6  text-md gap-2">
                             <div *ngFor="let hour of hours">

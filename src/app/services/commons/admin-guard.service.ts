@@ -26,7 +26,7 @@ export class AdminGuardService implements CanActivate {
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
     const user = this.storageService.get('user');
-    if (user && user.labels[0] === 'admin') {
+    if (user && (user.labels[0] === 'admin' || user.labels[0] === 'doctor' )) {
       return true;
     } else {
       this.router.navigate(['/home']).then((r) => {

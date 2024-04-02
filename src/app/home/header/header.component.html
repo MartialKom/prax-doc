@@ -1,4 +1,4 @@
-<nav class="bg-transparent right-0 left-0 border-0 shadow-lg z-50 top-0 w-full fixed">
+<nav class="bg-opacity-70 bg-white shadow-sm right-0 left-0 border-0  z-50 top-0 w-full fixed">
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
             <div class="flex flex-row justify-between  w-auto items-center">
@@ -27,7 +27,7 @@
                     </button>
 
                         <div data-popover-target="popover-user-profile" *ngIf="isAuth" class="user-avatar cursor-pointer">
-                            <div (click)="openProfile()"  class="avatar-circle shadow-lg border text-orange-400">{{ userInitial }}</div>
+                            <div (click)="openProfile()"  class="avatar-circle shadow-sm border text-orange-400">{{ userInitial }}</div>
                         </div>   
                 </div>
             </div>
