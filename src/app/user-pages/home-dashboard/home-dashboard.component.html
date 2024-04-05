@@ -1,16 +1,16 @@
 <div *ngIf="loadingUsers"
-style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
+    style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
 
-<div class="flex flex-col justify-center items-center"
-    style="left:45%; top:50%; position: fixed; width: 200px; text-align: center; ">
-    <img style="width: 100px;" src="/assets/load 2.gif" alt="">
-    <div>Loading...</div>
+    <div class="flex flex-col justify-center items-center"
+        style="left:45%; top:50%; position: fixed; width: 200px; text-align: center; ">
+        <img style="width: 100px;" src="/assets/load 2.gif" alt="">
+        <div>Loading...</div>
+    </div>
+
 </div>
 
-</div>
-
-<main class="w-full md:w-[calc(100%-256px)] pt-[45px] mx-auto md:ml-64 bg-gray-50 min-h-screen transition-all main">
-    <div class="p-6">
+<section class="w-full md:w-[calc(100%-220px)] ml-40 pt-[45px] mx-auto bg-gray-50 min-h-screen transition-all  ">
+    <div class="p-2">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
             <div *ngIf="!isDoctor" class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                 <div class="">
@@ -36,8 +36,7 @@ style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; wi
                             <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                         </div>
                     </div>
-                    <span
-                        class="text-sm font-medium text-gray-600 ml-4">{{veriedUserPercentage+"%"}}</span>
+                    <span class="text-sm font-medium text-gray-600 ml-4">{{veriedUserPercentage+"%"}}</span>
                 </div>
             </div>
 
@@ -65,18 +64,20 @@ style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; wi
                             <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                         </div>
                     </div>
-                    <span
-                        class="text-sm font-medium text-gray-600 ml-4">{{myPatientsPercentage+"%"}}</span>
+                    <span class="text-sm font-medium text-gray-600 ml-4">{{myPatientsPercentage+"%"}}</span>
                 </div>
             </div>
 
 
             <div *ngIf="!isDoctor" class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                 <div class="">
-                    <svg class="w-12 h-12 text-amber-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M3 6a2 2 0 0 1 2-2h5.532a2 2 0 0 1 1.536.72l1.9 2.28H3V6Zm0 3v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9H3Z" clip-rule="evenodd"/>
-                      </svg>
-                      
+                    <svg class="w-12 h-12 text-amber-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M3 6a2 2 0 0 1 2-2h5.532a2 2 0 0 1 1.536.72l1.9 2.28H3V6Zm0 3v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9H3Z"
+                            clip-rule="evenodd" />
+                    </svg>
+
 
                 </div>
                 <hr class="w-full h-4">
@@ -89,23 +90,19 @@ style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; wi
                 </div>
                 <div class="flex items-center mb-3">
                     <div class="w-[80%] bg-gray-100 rounded-full h-4">
-                        <div class="h-full bg-amber-500 rounded-full p-1"
-                            [style]=' "width: "+imagePercentage+"%;"'>
+                        <div class="h-full bg-amber-500 rounded-full p-1" [style]=' "width: "+imagePercentage+"%;"'>
                             <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                         </div>
                     </div>
-                    <span
-                        class="text-sm font-light text-gray-600 ml-4">{{imagePercentage+"% images"}}</span>
+                    <span class="text-sm font-light text-gray-600 ml-4">{{imagePercentage+"% images"}}</span>
                 </div>
                 <div class="flex items-center">
                     <div class="w-[80%] bg-gray-100 rounded-full h-4">
-                        <div class="h-full bg-amber-500 rounded-full p-1"
-                            [style]=' "width: "+pdfPercentage+"%;"'>
+                        <div class="h-full bg-amber-500 rounded-full p-1" [style]=' "width: "+pdfPercentage+"%;"'>
                             <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                         </div>
                     </div>
-                    <span
-                        class="text-sm font-medium text-gray-600 ml-4">{{pdfPercentage+"% PDF"}}</span>
+                    <span class="text-sm font-medium text-gray-600 ml-4">{{pdfPercentage+"% PDF"}}</span>
                 </div>
             </div>
         </div>
@@ -115,7 +112,9 @@ style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; wi
                     <div class="font-medium">All Patients</div>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full min-w-[540px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" data-tab-for="order" data-page="active">
+                    <table
+                        class="w-full min-w-[540px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                        data-tab-for="order" data-page="active">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
@@ -132,24 +131,28 @@ style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; wi
 
                         <tbody *ngIf="!isDoctor">
 
-                            <tr *ngFor="let user of userData" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr *ngFor="let user of userData"
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                    <div class="w-10 h-10 bg-white shadow-lg border items-center justify-center flex font-bold rounded-full text-orange-400"> {{user.name.charAt(0).toUpperCase()}} </div>
+                                <th scope="row"
+                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div
+                                        class="w-10 h-10 bg-white shadow-lg border items-center justify-center flex font-bold rounded-full text-orange-400">
+                                        {{user.name.charAt(0).toUpperCase()}} </div>
                                     <div class="ps-3">
                                         <div class="text-base font-semibold">{{user.name}}</div>
                                         <div class="font-normal text-gray-500"> {{user.email}} </div>
-                                    </div>  
+                                    </div>
                                 </th>
                                 <td class="px-6 py-4">
                                     Patient
                                 </td>
                                 <td class="px-6 py-4">
                                     <div *ngIf="user.isVerified" class="flex items-center">
-                                        <div  class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Active
+                                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Active
                                     </div>
                                     <div *ngIf="!user.isVerified" class="flex items-center">
-                                        <div  class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inactive
+                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inactive
                                     </div>
                                 </td>
                             </tr>
@@ -158,24 +161,28 @@ style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; wi
 
                         <tbody *ngIf="isDoctor">
 
-                            <tr *ngFor="let user of myUserData" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr *ngFor="let user of myUserData"
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                    <div class="w-10 h-10 bg-white shadow-lg border items-center justify-center flex font-bold rounded-full text-orange-400"> {{user.name.charAt(0).toUpperCase()}} </div>
+                                <th scope="row"
+                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div
+                                        class="w-10 h-10 bg-white shadow-lg border items-center justify-center flex font-bold rounded-full text-orange-400">
+                                        {{user.name.charAt(0).toUpperCase()}} </div>
                                     <div class="ps-3">
                                         <div class="text-base font-semibold">{{user.name}}</div>
                                         <div class="font-normal text-gray-500"> {{user.email}} </div>
-                                    </div>  
+                                    </div>
                                 </th>
                                 <td class="px-6 py-4">
                                     Patient
                                 </td>
                                 <td class="px-6 py-4">
                                     <div *ngIf="user.isVerified" class="flex items-center">
-                                        <div  class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Active
+                                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Active
                                     </div>
                                     <div *ngIf="!user.isVerified" class="flex items-center">
-                                        <div  class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inactive
+                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inactive
                                     </div>
                                 </td>
                             </tr>
@@ -184,7 +191,7 @@ style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; wi
 
 
                     </table>
-                     
+
                 </div>
             </div>
 
@@ -426,4 +433,4 @@ style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; wi
             </div>
         </div>
     </div>
-</main>
+</section>

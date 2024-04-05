@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/commons/local-storage.service';
 
 @Component({
@@ -9,16 +10,34 @@ import { LocalStorageService } from 'src/app/services/commons/local-storage.serv
 export class SideBarDashboardComponent implements OnInit {
 
   isDoctor: boolean = false;
-  constructor(private localstorageService: LocalStorageService){}
+  isFrontEnd: boolean = false;
+  navHidden: boolean = false;
+
+  constructor(private localstorageService: LocalStorageService, private router: Router){
+    this.router.events.subscribe(event => {
+      if (event) {
+        this.isFrontEnd = this.router.url === '/user/dashboard/frontEnd';
+        this.navHidden = this.router.url === '/user/dashboard/frontEnd';
+      }
+    });
+  }
+  
 
   ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event) {
+        this.isFrontEnd = this.router.url === '/user/dashboard/frontEnd';
+        this.navHidden = this.router.url === '/user/dashboard/frontEnd';
+      }
+    });
     const userData = this.localstorageService.get('user');
     if(userData.labels[0]==='doctor')this.isDoctor=true;
   }
 
-  isHiden: boolean = true;
 
   toggleview(){
-    this.isHiden = !this.isHiden;
+    this.navHidden = !this.navHidden;
   }
+
+
 }

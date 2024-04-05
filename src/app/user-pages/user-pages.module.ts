@@ -24,6 +24,7 @@ import { HolidaysWiewComponent } from './holidays-wiew/holidays-wiew.component';
 import { HolidaysCalendarViewComponent } from './holidays-calendar-view/holidays-calendar-view.component';
 import { HolidayViewAdminComponent } from './holiday-view-admin/holiday-view-admin.component';
 
+
 @NgModule({
   declarations: [
     MediaComponent,
@@ -39,7 +40,7 @@ import { HolidayViewAdminComponent } from './holiday-view-admin/holiday-view-adm
     HomeDashboardComponent,
     HolidaysWiewComponent,
     HolidaysCalendarViewComponent,
-    HolidayViewAdminComponent
+    HolidayViewAdminComponent,
   ],
   imports: [
     CommonModule,

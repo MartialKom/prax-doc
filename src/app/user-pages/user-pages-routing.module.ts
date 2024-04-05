@@ -11,6 +11,7 @@ import { HomeDashboardComponent } from './home-dashboard/home-dashboard.componen
 import { DoctorsPageComponent } from './doctors-page/doctors-page.component';
 import { HolidaysWiewComponent } from './holidays-wiew/holidays-wiew.component';
 import { HolidayViewAdminComponent } from './holiday-view-admin/holiday-view-admin.component';
+import { IndexComponent } from '../home/index/index.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,8 @@ const routes: Routes = [
       {path:'home', component: HomeDashboardComponent, pathMatch:"full"},
       {path:'doctors', component: DoctorsPageComponent, pathMatch: "full"},
       {path:'myHolidays', component: HolidaysWiewComponent, pathMatch: "full"},
-      {path:'allHolidays', component: HolidayViewAdminComponent, pathMatch: "full"}
+      {path:'allHolidays', component: HolidayViewAdminComponent, pathMatch: "full"},
+      {path: 'frontEnd', component: IndexComponent, pathMatch:"full"}
 
     ]
   },
