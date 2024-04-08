@@ -45,4 +45,92 @@ export class FrontEndService {
 
     return hero;
   }
+
+  async updateCardText(data: any, id: any){
+    const databases = new Databases(client);
+
+    const cards = await databases.updateDocument(
+      environment.databaseId,
+      environment.collectionIdFrontEnd,
+      id,
+      {
+        'infoCard1-Title': data[0].title,
+        'infoCard2-Title': data[1].title,
+        'infoCard3-Title': data[2].title,
+        'infoCard4-Title': data[3].title,
+        'infoCard1-Text': data[0].text, 
+        'infoCard2-Text': data[1].text, 
+        'infoCard3-Text': data[2].text, 
+        'infoCard4-Text': data[3].text 
+      }
+    );
+
+    return cards;
+  }
+ async updateAboutText(data: any, id: any){
+    const databases = new Databases(client);
+
+    const about = await databases.updateDocument(
+      environment.databaseId,
+      environment.collectionIdFrontEnd,
+      id,
+      {
+        'about-indice': data.aboutIndice,
+        'about-header': data.aboutTitle,
+        'about-text': data.aboutText,
+        'about-text2': data.aboutText2
+      }
+    );
+
+    return about;
+  }
+
+  async updateServiceText(data: any, id: any){
+    const databases = new Databases(client);
+
+    const service = await databases.updateDocument(
+      environment.databaseId,
+      environment.collectionIdFrontEnd,
+      id,
+      {
+        'service-text': data.serviceText,
+        'service-title': data.serviceTitle,
+      }
+    );
+
+    return service;
+  }
+
+
+  async updateTeamText(data: any, id: any){
+    const databases = new Databases(client);
+
+    const service = await databases.updateDocument(
+      environment.databaseId,
+      environment.collectionIdFrontEnd,
+      id,
+      {
+        'team-text': data.teamText,
+        'team-title': data.teamTitle,
+      }
+    );
+
+    return service;
+  }
+
+  async updateAboutImg(data: any, id: any){
+    const databases = new Databases(client);
+
+    const about = await databases.updateDocument(
+      environment.databaseId,
+      environment.collectionIdFrontEnd,
+      id,
+      {
+        'about-img': data
+      }
+    );
+
+    return about;
+  }
+
 }

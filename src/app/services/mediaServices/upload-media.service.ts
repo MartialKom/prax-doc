@@ -30,8 +30,12 @@ export class UploadMediaService {
     var url: URL;
 
     if (file?.type.split('/')[1] != 'pdf')
-      url = storage.getFilePreview('praxStorage', fileUploaded.$id);
-    else url = storage.getFileView('praxStorage', fileUploaded.$id);
+      url = storage.getFilePreview(environment.bucketId, fileUploaded.$id);
+    else url = storage.getFileView(environment.bucketId, fileUploaded.$id);
+
+    var isAdmin = false;
+
+    if(userData.labels[0] === "admin") isAdmin = true;
 
     try {
       const document = await databases.createDocument(
@@ -42,6 +46,7 @@ export class UploadMediaService {
           url: url.toString(),
           idUtilisateur: userId,
           type: file?.type.split('/')[1],
+          isAdmin: isAdmin
         }
       );
 

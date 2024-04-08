@@ -1,6 +1,18 @@
-<div class="bg-[#f8f9fa] bg-opacity-100 pb-10 ">
+
+<div *ngIf="isLoadingCard"
+  style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
+
+  <div class="flex flex-col justify-center items-center"
+    style="left:45%; top:50%; position: fixed; width: 200px; text-align: center; ">
+    <img style="width: 100px;" src="/assets/load 2.gif" alt="">
+    <div>Loading...</div>
+  </div>
+
+</div>
+
+<div class="bg-[#f8f9fa] bg-opacity-100 pb-10 " (click)="openModal(CardModal)" [ngClass]="{'border cursor-pointer hover:bg-gray-400':isFrontEnd}">
     <div class=" mx-auto px-4">
-      <div class="flex flex-wrap mx-auto  lg:flex-row justify-around items-center w-full">
+      <div class="flex flex-wrap mx-auto  lg:flex-row justify-around items-center w-full" >
   
         <div class="lg:w-1/5 md:w-1/2 w-full sm:mt-5">
           <div class=" bg-white shadow-lg border-0  rounded py-5 px-6 ">
@@ -8,10 +20,9 @@
               <mat-icon>account_circle</mat-icon>
             </span>
             <div class="py-2">
-              <h3>Sonographie</h3>
+              <h3>{{updateInfoCard[0].title}}</h3>
               <p class=" text-[#8492a6] h-[90px] overflow-hidden  ">
-                (Abdomen, Harnwege, Schädel, Säuglingshüften):
-                Montag, Dienstag, Donnerstag, Freitag 14.00 - 15.00 Uhr(nur nach vorheriger Terminvereinbarung)
+                {{updateInfoCard[0].text}}
               
             </p>
             </div>
@@ -24,11 +35,8 @@
               <mat-icon>account_circle</mat-icon>
             </span>
             <div class="py-2">
-              <h3>Praxiszeiten</h3>
-              <p class="para text-[#8492a6] h-[90px] overflow-hidden">Montag - Freitag
-                08.30 - 12.00 Uhr
-                Montag, Dienstag und Donnerstag
-                15.00 - 17.00 Uhrund nach Terminvereinbarung</p>
+              <h3>{{updateInfoCard[1].title}}</h3>
+              <p class="para text-[#8492a6] h-[90px] overflow-hidden">{{updateInfoCard[1].text}}</p>
             </div>
           </div>
         </div>
@@ -40,8 +48,8 @@
               <mat-icon>account_circle</mat-icon>
             </span>
             <div class="py-2 ">
-              <h3>Telefonsprechstunde</h3>
-              <p class="text-gray-400 h-[90px] overflow-hidden">bitte melden Sie sich per Email und wir rufen Sie schnellstmöglich zurück</p>
+              <h3>{{updateInfoCard[2].title}}</h3>
+              <p class="text-gray-400 h-[90px] overflow-hidden">{{updateInfoCard[2].text}} </p>
             </div>
           </div>
         </div>
@@ -52,8 +60,8 @@
               <mat-icon>account_circle</mat-icon>
             </span>
             <div class="py-2">
-              <h3>Impfsprechstunde</h3>
-              <p class="para text-[#8492a6] overflow-hidden h-[90px]">Dienstag , Donnerstag 08.30 - 09.30 u. 15.30 - 16.30 Uhr (nur nach vorheriger Terminvereinbarung)</p>
+              <h3>{{updateInfoCard[3].title}}</h3>
+              <p class="para text-[#8492a6] overflow-hidden h-[90px]">{{updateInfoCard[3].text}}</p>
             </div>
           </div>
         </div>
@@ -63,3 +71,94 @@
     </div>
   </div>
   
+  <ng-template #CardModal id="HeroModal" tabindex="-1" aria-hidden="true"
+class="transition duration-75 hidden overflow-y-scroll overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+let-modal>
+
+<div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
+    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Update Card
+        </h3>
+        <button type="menu"
+            class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            (click)="hideModal()">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+            <span class="sr-only">Close modal</span>
+        </button>
+    </div>
+
+    <form (submit)="updateText()">
+
+      <div class="grid gap-6  mb-6 md:grid-cols-2">
+        <div>
+          <label for="title1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title 1</label>
+          <input type="text" id="title1" name="title1" [(ngModel)]="updateInfoCard[0].title"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             required />
+        </div>
+        <div>
+          <label for="text1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Text 1</label>
+          <textarea type="text" id="text1" name="text1" [(ngModel)]="updateInfoCard[0].text"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required > </textarea>
+        </div>
+        <div>
+          <label for="title2" class="block text-sm font-medium text-gray-900 dark:text-white">Title 2
+          </label>
+          <input type="text" id="title2" [(ngModel)]="updateInfoCard[1].title" name="title2"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-900 dark:text-white">Text 2
+          </label>
+          <textarea type="text" id="text2" name="text2" [(ngModel)]="updateInfoCard[1].text"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required > </textarea>
+        </div>
+
+        <div>
+          <label for="title3" class="block text-sm font-medium text-gray-900 dark:text-white">Title 3
+          </label>
+          <input type="text" id="title3" [(ngModel)]="updateInfoCard[2].title" name="title2"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-900 dark:text-white">Text 3
+          </label>
+          <textarea type="text" id="text3" name="text3" [(ngModel)]="updateInfoCard[2].text"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required > </textarea>
+        </div>
+
+        <div>
+          <label for="title4" class="block text-sm font-medium text-gray-900 dark:text-white">Title 4
+          </label>
+          <input type="text" id="title2" [(ngModel)]="updateInfoCard[3].title" name="title2"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-900 dark:text-white">Text 4
+          </label>
+          <textarea type="text" id="text3" name="text3" [(ngModel)]="updateInfoCard[3].text"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required > </textarea>
+        </div>
+
+
+      </div>          
+          <button type="submit"
+              class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+      </form>
+
+
+</div>
+
+</ng-template>

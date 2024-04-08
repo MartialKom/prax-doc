@@ -134,6 +134,7 @@ export class HeaderComponent implements OnInit {
       this.localstorageService.remove('pdfs');
       this.localstorageService.remove('Appointments');
       this.localstorageService.remove('events');
+      this.localstorageService.remove('text');
 
       this.router.navigate(['/home']).then((r) => {
         this.loadingOp = false;
@@ -196,7 +197,7 @@ export class HeaderComponent implements OnInit {
 
   openProfile() {
     if(this.userData.labels[0] === 'admin' || this.userData.labels[0] === 'doctor')
-    this.router.navigate(['/user/dashboard']).then((r) => {
+    this.router.navigate(['/user/dashboard/home']).then((r) => {
       window.location.reload();
     });
     else

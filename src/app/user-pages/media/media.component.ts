@@ -24,6 +24,8 @@ export class MediaComponent implements OnInit {
   isImageLoad: boolean[] = [];
   loadingpdf: boolean = false;
 
+  isAdmin: boolean = false;
+
   constructor(
     private uploadService: UploadMediaService,
     private localstorageService: LocalStorageService,
@@ -33,6 +35,10 @@ export class MediaComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingFile = true;
+    
+    const userData = this.localstorageService.get('user');
+    if(userData.labels[0] === "admin") this.isAdmin = true;
+
     if (this.localstorageService.get('documents')) {
       this.documents = this.localstorageService.get('documents');
       this.loadingFile = false;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/commons/local-storage.service';
 import { FrontEndService } from 'src/app/services/frontEnd-service/front-end.service';
 
 @Component({
@@ -12,6 +13,23 @@ export class HeroComponent implements OnInit {
 
 
   heroText: any;
+  isLoadingHero: boolean = false;
+  initialHero = {
+    heroIndice: "",
+    heroHeading1: "",
+    heroHeading2: "",
+    heroHeading3: "",
+    heroHeadingText: "",
+  }
+  updateHero = {
+    heroIndice: "",
+    heroHeading1: "",
+    heroHeading2: "",
+    heroHeading3: "",
+    heroHeadingText: "",
+  }
+
+  isFrontEnd: boolean = false;
   
   openModal(content: any): void {
     if(this.isFrontEnd){
@@ -29,27 +47,10 @@ hideModal() {
   this.modalService.closeAll();
 }
 
-  isLoadingHero: boolean = false;
-  initialHero = {
-    heroIndice: "",
-    heroHeading1: "",
-    heroHeading2: "",
-    heroHeading3: "",
-    heroHeadingText: "",
-  }
-  updateHero = {
-    heroIndice: "",
-    heroHeading1: "",
-    heroHeading2: "",
-    heroHeading3: "",
-    heroHeadingText: "",
-  }
 
-  
 
-  isFrontEnd: boolean = false;
-
-  constructor(private router: Router, private frontEndService: FrontEndService, private modalService: MatDialog){
+  constructor(private router: Router, private frontEndService: FrontEndService, private modalService: MatDialog,
+    private storageService: LocalStorageService){
     this.router.events.subscribe(event => {
       if (event) {
         this.isFrontEnd = this.router.url === '/user/dashboard/frontEnd';
@@ -63,6 +64,7 @@ hideModal() {
     this.frontEndService.getHeroText().then(
       (response) =>{
         if(response[0].$id){
+          this.storageService.set("text", response[0]);
           this.heroText = response[0];
           this.initialHero.heroIndice = this.heroText['hero-indice'];
           this.initialHero.heroHeading1 = this.heroText['hero-heading1'];

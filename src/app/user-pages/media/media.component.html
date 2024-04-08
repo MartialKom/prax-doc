@@ -74,7 +74,7 @@
                     (click)="importPdf()" aria-current="page" class="inline-block cursor-pointer p-4 rounded-t-lg ">My
                     Pdf files</a>
             </li>
-            <li class="me-2">
+            <li class="me-2" *ngIf="!isAdmin">
                 <a [ngClass]="{ 'text-orange-400 bg-gray-100 ': isAdminFiles, 'hover:text-gray-600 hover:bg-gray-50 ': !isAdminFiles }"
                     aria-current="page" class="inline-block cursor-pointer p-4 rounded-t-lg ">Admin files</a>
             </li>
