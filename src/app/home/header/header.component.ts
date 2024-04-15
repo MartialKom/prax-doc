@@ -38,6 +38,8 @@ export class HeaderComponent implements OnInit {
   });
 
   userInitial: any;
+  isMobileMenuOpen: boolean = false;
+
 
   constructor(
     private modalService: MatDialog,
@@ -56,6 +58,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  toogleMenu(){
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
   formatDate(date: string): string {
     return this.formatDateService.format(date);
   }

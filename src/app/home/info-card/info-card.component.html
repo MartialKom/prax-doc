@@ -10,66 +10,62 @@
 
 </div>
 
-<div class="bg-[#f8f9fa] bg-opacity-100 pb-10 " (click)="openModal(CardModal)" [ngClass]="{'border cursor-pointer hover:bg-gray-400':isFrontEnd}">
-    <div class=" mx-auto px-4">
-      <div class="flex flex-wrap mx-auto  lg:flex-row justify-around items-center w-full" >
-  
-        <div class="lg:w-1/5 md:w-1/2 w-full sm:mt-5">
-          <div class=" bg-white shadow-lg border-0  rounded py-5 px-6 ">
-            <span class=" text-orange-500 ">
-              <mat-icon>account_circle</mat-icon>
-            </span>
-            <div class="py-2">
-              <h3>{{updateInfoCard[0].title}}</h3>
-              <p class=" text-[#8492a6] h-[90px] overflow-hidden  ">
-                {{updateInfoCard[0].text}}
-              
-            </p>
-            </div>
+<div data-aos="fade-up" data-aos-duration="2000" class="bg-[#f8f9fa] bg-opacity-100 pb-10 w-full" (click)="openModal(CardModal)" [ngClass]="{'border cursor-pointer hover:bg-gray-400': isFrontEnd}">
+  <div class="mx-auto px-4">
+    <div class="flex flex-wrap mx-auto w-full lg:flex-row md:space-x-1 md:w-full sm:w-full justify-around items-center">
+
+      <div data-aos="fade-right" data-aos-duration="2000" class="lg:w-1/5 md:w-1/2 w-full sm:w-full sm:mt-5 pt-5">
+        <div class="card bg-white transition duration-500 ease-in-out hover:text-white hover:bg-[#f7961c] shadow-lg border-0 rounded px-6 py-5">
+          <span class="text-orange-500">
+            <mat-icon>account_circle</mat-icon>
+          </span>
+          <div class="py-2">
+            <h3>{{updateInfoCard[0].title}}</h3>
+            <p class="subtext text-[#8492a6] h-[90px] overflow-hidden">{{updateInfoCard[0].text}}</p>
           </div>
         </div>
-  
-        <div class="lg:w-1/5 md:w-1/2 mt-0 sm:mt-5 pt-0 w-full">
-          <div class=" bg-white shadow-lg border-0 rounded px-6 py-5 ">
-            <span class="h1 text-orange-500 ">
-              <mat-icon>account_circle</mat-icon>
-            </span>
-            <div class="py-2">
-              <h3>{{updateInfoCard[1].title}}</h3>
-              <p class="para text-[#8492a6] h-[90px] overflow-hidden">{{updateInfoCard[1].text}}</p>
-            </div>
-          </div>
-        </div>
-  
-        <div class="lg:w-1/5 md:w-1/2 mt-0 sm:mt-5 pt-0 w-full ">
-          <div
-            class=" bg-white transition duration-500 ease-in-out hover:text-white hover:bg-[#f7961c] shadow-lg border-0 rounded px-6 py-5 ">
-            <span class="text-orange-500">
-              <mat-icon>account_circle</mat-icon>
-            </span>
-            <div class="py-2 ">
-              <h3>{{updateInfoCard[2].title}}</h3>
-              <p class="text-gray-400 h-[90px] overflow-hidden">{{updateInfoCard[2].text}} </p>
-            </div>
-          </div>
-        </div>
-  
-        <div class="lg:w-1/5 md:w-1/2 mt-0 sm:mt-5 pt-0 w-full">
-          <div class=" bg-white shadow-lg border-0 rounded px-6 py-5 ">
-            <span class="h1 text-orange-500 ">
-              <mat-icon>account_circle</mat-icon>
-            </span>
-            <div class="py-2">
-              <h3>{{updateInfoCard[3].title}}</h3>
-              <p class="para text-[#8492a6] overflow-hidden h-[90px]">{{updateInfoCard[3].text}}</p>
-            </div>
-          </div>
-        </div>
-  
-  
       </div>
+
+      <div data-aos="flip-left" data-aos-duration="2000" class="lg:w-1/5 md:w-1/2  sm:w-full sm:mt-5 pt-5">
+        <div class="card bg-white transition duration-500 ease-in-out hover:text-white hover:bg-[#f7961c] shadow-lg border-0 rounded px-6 py-5">
+          <span class="h1 text-orange-500">
+            <mat-icon>account_circle</mat-icon>
+          </span>
+          <div class="py-2">
+            <h3>{{updateInfoCard[1].title}}</h3>
+            <p class="subtext text-[#8492a6] h-[90px] overflow-hidden">{{updateInfoCard[1].text}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-aos="flip-left" data-aos-duration="2000" class="lg:w-1/5 md:w-1/2  sm:w-full sm:mt-5 pt-5">
+        <div class="card bg-white transition duration-500 ease-in-out hover:text-white hover:bg-[#f7961c] shadow-lg border-0 rounded px-6 py-5">
+          <span class="text-orange-500">
+            <mat-icon>account_circle</mat-icon>
+          </span>
+          <div class="py-2">
+            <h3>{{updateInfoCard[2].title}}</h3>
+            <p class="subtext text-gray-400 h-[90px] overflow-hidden">{{updateInfoCard[2].text}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-aos="fade-left" data-aos-duration="2000" class="lg:w-1/5 md:w-1/2 sm:w-full sm:mt-5 pt-5">
+        <div class="card bg-white transition duration-500 ease-in-out hover:text-white hover:bg-[#f7961c] shadow-lg border-0 rounded px-6 py-5">
+          <span class="h1 text-orange-500">
+            <mat-icon>account_circle</mat-icon>
+          </span>
+          <div class="py-2">
+            <h3>{{updateInfoCard[3].title}}</h3>
+            <p class="subtext text-[#8492a6] overflow-hidden h-[90px]">{{updateInfoCard[3].text}}</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
+
   
   <ng-template #CardModal id="HeroModal" tabindex="-1" aria-hidden="true"
 class="transition duration-75 hidden overflow-y-scroll overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"

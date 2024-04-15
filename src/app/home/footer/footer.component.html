@@ -1,28 +1,27 @@
 <footer class="bg-[#212f40] relative text-[#adb5bd] mx-auto px-4">
     <div class=" container mx-auto px-4 py-5">
-        <div class="container">
-            <div class="flex flex-wrap mx-auto w-full lg:flex-row items-center">
-                <div class="md:w-[58%]">
-                    <div>
-                        <div class="flex">
-                            <i class="uil uil-stethoscope-alt display-4 text-white title-dark"></i>
-                            <div class="flex-1 md:ms-4 ms-3">
-                                <h4 class="font-bold text-white mb-1">Get a free medical</h4>
-                                <p class="text-gray-400 mb-0">Lorem ipsum dolor sit, amet conse</p>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--end col-->
 
-                <div class="md:w-[41%] mt-4 sm:mt-0">
-                    <div class="md:text-end ms-5 sm:ms-0">
-                        <button class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
-                            Book an appointment
-                          </button>
+        <div class="flex flex-wrap mx-auto w-full lg:flex-row items-center">
+            <div class="md:w-[58%] mb-4 md:mb-0">
+                <div class="flex items-center">
+                    <i class="uil uil-stethoscope-alt display-4 text-white title-dark"></i>
+                    <div class="flex-1 ms-4 ">
+                        <h4 [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                            (click)="openModal('title1',modal)" class="font-bold text-white mb-1">{{footer.title1}}</h4>
+                        <p [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                            (click)="openModal('subtitle1',modal)" class="text-gray-400 mb-0">{{footer.subtitle1}}</p>
                     </div>
-                </div><!--end col-->
-            </div><!--end row-->
-        </div><!--end container-->
+                </div>
+            </div><!--end col-->
+
+            <div class="md:w-[41%] md:text-end">
+                <div class="md:text-end ms-5 sm:ms-0">
+                    <button class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
+                        Book an appointment
+                    </button>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
     </div><!--end div-->
 
     <div class="container mx-auto px-4">
@@ -30,58 +29,105 @@
             <div class="w-full">
                 <div class="footer-py-60 footer-border">
                     <div class="flex flex-wrap mx-auto w-full lg:flex-row ">
-                        <div class="lg:w-[33%] w-full mb-0 md:mb-4 pb-0 md:pb-0">
-                            <a href="#" class="logo-footer">
+                        <div class="lg:w-[33%] w-full mb-0 md:mb-0 pb-0 md:pb-0">
+                            <a class="logo-footer">
                                 <img src="assets/images/logo-light.png" height="24" alt="">
                             </a>
-                            <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
-                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="linkedin" class="fea icon-sm fea-social"></i></a></li>
-                            </ul><!--end icon-->
                         </div><!--end col-->
-                        
+
                         <div class="lg:w-[16%] md:w-[33%] w-full pt-4 sm:mt-0  sm:pt-0">
-                            <h5 class="footer-head">Company</h5>
+                            <h2 class="footer-head" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                (click)="openModal('section1',modal)">{{footer.section1}}</h2>
                             <ul class="list-unstyled footer-list mt-4">
-                                <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> About us</a></li>
-                                <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Services</a></li>
-                                <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Team</a></li>
-                                <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Login</a></li>
+                                <li>
+                                    <div *ngIf="isFrontEnd"
+                                        [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                        (click)="openModal('text1Section1',modal)">- {{footer.text1Section1}}</div>
+                                    <a *ngIf="!isFrontEnd" href="javascript:void(0)" class="text-foot text-lg"> -
+                                        {{footer.text1Section1}}</a>
+                                </li>
+                                <li>
+                                    <div *ngIf="isFrontEnd"
+                                        [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                        (click)="openModal('text2Section1',modal)">- {{footer.text2Section1}}</div>
+                                    <a *ngIf="!isFrontEnd" href="javascript:void(0)" class="text-foot text-lg"> -
+                                        {{footer.text2Section1}}</a>
+                                </li>
+                                <li>
+                                    <div *ngIf="isFrontEnd"
+                                        [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                        (click)="openModal('text3Section1',modal)">- {{footer.text3Section1}}</div>
+                                    <a *ngIf="!isFrontEnd" href="javascript:void(0)" class="text-foot text-lg"> -
+                                        {{footer.text3Section1}}</a>
+                                </li>
+                                <li>
+                                    <div *ngIf="isFrontEnd"
+                                        [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                        (click)="openModal('text4Section1',modal)">- {{footer.text4Section1}}</div>
+                                    <a *ngIf="!isFrontEnd" href="javascript:void(0)" class="text-foot text-lg"> -
+                                        {{footer.text4Section1}}</a>
+                                </li>
                             </ul>
                         </div><!--end col-->
-                        
+
                         <div class="lg:w-[25%] md:w-[33%] w-full mt-4 sm:mt-0 pt-2 sm:pt-0">
-                            <h5 class="footer-head">Usefull Links</h5>
+                            <h2 class="footer-head" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                (click)="openModal('section2',modal)">{{footer.section2}}</h2>
                             <ul class="list-unstyled footer-list mt-4">
-                                <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Terms of Services</a></li>
-                                <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Privacy Policy</a></li>
-                                <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Documentation</a></li>
-                                <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Changelog</a></li>
-                                <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Components</a></li>
+                                <li>
+                                    <div *ngIf="isFrontEnd"
+                                        [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                        (click)="openModal('text1Section2',modal)">- {{footer.text1Section2}}</div>
+                                    <a *ngIf="!isFrontEnd" href="javascript:void(0)"
+                                        class="text-foot text-lg">{{footer.text1Section2}}</a>
+                                </li>
+                                <li>
+                                    <div *ngIf="isFrontEnd"
+                                        [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                        (click)="openModal('text2Section2',modal)">- {{footer.text2Section2}}</div>
+                                    <a *ngIf="!isFrontEnd" href="javascript:void(0)"
+                                        class="text-foot text-lg">{{footer.text2Section2}}</a>
+
+                                </li>
+                                <li>
+                                    <div *ngIf="isFrontEnd"
+                                        [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                        (click)="openModal('text3Section2',modal)">- {{footer.text3Section2}}</div>
+                                    <a *ngIf="!isFrontEnd" href="javascript:void(0)"
+                                        class="text-foot text-lg">{{footer.text3Section2}}</a>
+                                </li>
+                                <li>
+                                    <div *ngIf="isFrontEnd"
+                                        [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                        (click)="openModal('text4Section2',modal)">- {{footer.text4Section2}}</div>
+                                    <a *ngIf="!isFrontEnd" href="javascript:void(0)"
+                                        class="text-foot text-lg">{{footer.text4Section2}}</a>
+                                </li>
                             </ul>
                         </div><!--end col-->
-    
+
                         <div class="lg:w-[25%] md:w-[33%] w-full mt-4 sm:mt-0 pt-2 sm:pt-0">
-                            <h5 class="footer-head">Newsletter</h5>
-                            <p class="mt-4">Sign up and receive the latest tips via email.</p>
+                            <h2 class="footer-head">Newsletter</h2>
+                            <p class="mt-4" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
+                                (click)="openModal('newsSubtitle',modal)">{{footer.newsSubtitle}}</p>
                             <form>
-                                <div class="flex flex-wrap mx-auto w-full lg:flex-row ">
+                                <div class="flex flex-wrap mx-auto w-full lg:flex-row md:flex-col justify-between ">
                                     <div class="lg:w-full">
-                                        <div class="foot-subscribe mb-3">
-                                            <label class="form-label">Write your email <span class="text-danger">*</span></label>
+                                        <div class="foot-subscribe">
+                                            <label class="form-label">Write your email <span
+                                                    class="text-danger">*</span></label>
                                             <div class="form-icon position-relative">
                                                 <i data-feather="mail" class="fea icon-sm icons"></i>
-                                                <input type="email" name="email" id="emailsubscribe" class="form-control ps-5 rounded" placeholder="Your email : " required>
+                                                <input type="email" name="email" id="emailsubscribe"
+                                                    class="form-control ps-5 rounded" placeholder="Your email">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="lg:w-full">
-                                        <div class="grid">
+                                    <div class="lg:w-full mt-6">
+                                        <div>
                                             <button class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
-                                               Subscribe
-                                              </button>
+                                                Subscribe
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -93,25 +139,67 @@
         </div><!--end row-->
     </div><!--end container-->
 
-    <div class="footer-py-30 footer-bar">
-        <div class="container text-center">
-            <div class="row items-center">
-                <div class="sm:w-[50%]">
-                    <div class="sm:text-start">
-                        <p class="mb-0">Design by 2KM.</p>
-                    </div>
-                </div><!--end col-->
-
-                <div class="sm:w-[50%] mt-4 sm:mt-0 pt-2 sm:pt-0">
-                    <ul class="list-unstyled sm:text-end mb-0">
-                        <li class="list-inline-item"><a href="javascript:void(0)"><img src="assets/images/payments/american-ex.png" class="avatar avatar-ex-sm" title="American Express" alt=""></a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)"><img src="assets/images/payments/discover.png" class="avatar avatar-ex-sm" title="Discover" alt=""></a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)"><img src="assets/images/payments/master-card.png" class="avatar avatar-ex-sm" title="Master Card" alt=""></a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)"><img src="assets/images/payments/paypal.png" class="avatar avatar-ex-sm" title="Paypal" alt=""></a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)"><img src="assets/images/payments/visa.png" class="avatar avatar-ex-sm" title="Visa" alt=""></a></li>
-                    </ul>
-                </div><!--end col-->
-            </div><!--end row-->
-        </div><!--end container-->
+    <div class="container mx-auto px-4">
+        <div class="footer-py-30 footer-bar">
+            <div class="container text-center">
+                <div class="row items-center">
+                    <div class="sm:w-[50%]">
+                        <div class="sm:text-start">
+                            <p class="mb-0">Design by 2KM.</p>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end container-->
+        </div>
     </div>
+
+
+    <ng-template #modal id="modal" tabindex="-1" aria-hidden="true"
+        class="transition duration-75 hidden overflow-y-scroll overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+        let-modal>
+
+        <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Update Text
+                </h3>
+                <button type="button"
+                    class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    (click)="hideModal()">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+
+
+            <form (ngSubmit)="changeText()">
+
+                <div class="grid gap-6  mb-6 md:grid-cols-2">
+                    <div>
+                        <label for="name"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Text</label>
+                        <input type="text" id="name" name="name" [(ngModel)]="selectedValue"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required />
+                    </div>
+                </div>
+
+                <div class="mb-2 flex flex-col items-center gap-2 p-4">
+
+                </div>
+
+                <button type="submit"
+                    class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </form>
+
+
+        </div>
+
+    </ng-template>
+
+
 </footer>

@@ -7,8 +7,8 @@
     height: 35rem;
     -webkit-transform: rotate(78.75deg);
             transform: rotate(78.75deg);
-    background: -webkit-gradient(linear, right top, left top, from(rgba(22, 163, 74, 0.3)), to(transparent));
-    background: linear-gradient(90deg, rgba(22, 163, 74, 0.3), transparent);
+    background: -webkit-gradient(linear, right top, left top, from(rgba(167, 102, 22, 0.3)), to(transparent));
+    background: linear-gradient(90deg, rgba(163, 109, 22, 0.3), transparent);
     z-index: 1;
   }
   @media (min-width: 769px) and (max-width: 1024px) {
@@ -102,16 +102,9 @@
     color: #ffffff !important;
   }
   .bg-half-170 {
-    padding: 170px 0;
-    background-size: cover !important;
-    -ms-flex-item-align: center;
-        align-self: center;
-    position: relative !important;
-    background-position: center center;
+    padding: 120px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  @media (max-width: 767px) {
- .bg-half-170{
-      padding: 150px 0;
-      height: auto;
-    }
-  }
+ 

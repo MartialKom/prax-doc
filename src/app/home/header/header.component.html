@@ -2,11 +2,20 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
             <div class="flex flex-row justify-between  w-auto items-center">
-                <div class="flex-shrink-0">
+                <div class="flex-shrink-0 hidden lg:block">
                     <a href="#" class="text-[#212529] font-bold">Logo</a>
                 </div>
-                <div class="hidden md:block">
-                    <div class="md:ml-20 flex items-baseline space-x-10">
+
+                <div class="lg:hidden pl-[70px]">
+                    <!-- Bouton du menu déroulant -->
+                    <button (click)="toogleMenu()" type="button" class="text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="md:ml-20 flex items-center space-x-10">
                         <a routerLink="/home" routerLinkActive="text-orange-400" class="text-[#212529] hover:text-[#f7961c]">Home</a>
                         <a href="#" class="text-[#212529] hover:text-[#f7961c]">praxisräume</a>
                         <a href="#" class="text-[#212529] hover:text-[#f7961c]">praxisspektrum</a>
@@ -16,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden md:block">
+            <div class="">
                 <div class="ml-4 flex items-center md:ml-6">
                     <button  *ngIf="!isAuth" class=" bg-white shadow-lg border hover:bg-[#f7961c] hover:text-white text-[#f7961c] font-bold w-[40px] h-[40px] rounded-[50%]"
                         (click)="openModal(login)">
@@ -31,6 +40,17 @@
                         </div>   
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div *ngIf="isMobileMenuOpen" class="lg:hidden bg-white shadow-md">
+        <div class="px-2 py-3 space-y-1">
+            <a routerLink="/home" routerLinkActive="text-orange-400" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Home</a>
+            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">praxisräume</a>
+            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">praxisspektrum</a>
+            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">unser-team</a>
+            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Hilgreiche Tel & Links</a>
+            <a *ngIf="isAuth" routerLink="/user/media" routerLinkActive="text-orange-400" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Meine Dokumente</a>
         </div>
     </div>
 </nav>

@@ -9,5 +9,10 @@ export const environment = {
     collectionIdDoctors: 'doctors',
     collectionIdHolidays: 'holidays',
     collectionIdFrontEnd: 'frontEnd',
+    collectionIdSerices: 'services',
+    collectionIdTeam: 'team',
+    collectionIdLink: 'links',
+    collectionIdTitleLink: 'titleLinks',
+    collectionIdFooter: 'footer',
     bucketId: 'praxStorage'
 }

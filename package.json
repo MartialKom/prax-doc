@@ -28,6 +28,8 @@
     "@fullcalendar/timegrid": "^6.1.11",
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "@popperjs/core": "^2.11.6",
+    "@types/aos": "^3.0.7",
+    "aos": "^2.3.4",
     "appwrite": "^13.0.2",
     "bootstrap": "^5.2.3",
     "flowbite": "^2.3.0",

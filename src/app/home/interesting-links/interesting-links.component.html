@@ -7,34 +7,46 @@
         <div class="border-[1px] rounded shadow p-4 bg-white">
           <div class="flex flex-wrap mx-auto mt-10 pb-[70px] lg:flex-row justify-around items-center w-full">
   
-            <div class="w-[25%]">
+            <div class="w-full sm:w-1/2 md:w-1/2 lg:w-[25%] mt-4 pt-2 ">
                 <div class="counter-box text-center">
                     <button class="border-[#f7961c] hover:bg-[#f7961c] hover:text-white border bg-transparent text-[#f7961c] font-bold py-2 px-4 rounded">
-                       <a>Cargo Human Care</a> 
+                      <div *ngIf="isFrontEnd" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openTitleModal(0, LinkTitlemodal)">
+                        <u>{{allTitle[0].name}}</u>
+                      </div> 
+                      <a *ngIf="!isFrontEnd">{{allTitle[0].name}}</a> 
                       </button>
                   </div>
             </div>
   
-            <div class="w-[25%] mt-4 pt-2 sm:mt-0 sm:pt-0">
+            <div class="w-full sm:w-1/2 md:w-1/2  lg:w-[25%] mt-4 pt-2">
               <div class="counter-box text-center">
                 <button class="border-[#f7961c] hover:bg-[#f7961c] hover:text-white border bg-transparent text-[#f7961c] font-bold py-2 px-4 rounded">
-                   <a>Giftnotruf</a> 
+                  <div *ngIf="isFrontEnd" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openTitleModal(1, LinkTitlemodal)">
+                    <u>{{allTitle[1].name}}</u>
+                  </div> 
+                  <a *ngIf="!isFrontEnd">{{allTitle[1].name}}</a> 
                   </button>
               </div><!--end counter box-->
             </div>
   
-            <div class="w-[25%] mt-4 pt-2 sm:mt-0 sm:pt-0">
+            <div class="w-full sm:w-1/2 md:w-1/2 lg:w-[25%] mt-4 pt-2  sm:pt-2">
                 <div class="counter-box text-center">
                     <button class="border-[#f7961c] hover:bg-[#f7961c] hover:text-white border bg-transparent text-[#f7961c] font-bold py-2 px-4 rounded">
-                       <a>Kinderärzte im Netz</a> 
+                      <div *ngIf="isFrontEnd" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openTitleModal(2, LinkTitlemodal)">
+                        <u>{{allTitle[2].name}}</u>
+                      </div> 
+                      <a *ngIf="!isFrontEnd">{{allTitle[2].name}}</a> 
                       </button>
                   </div><!--end counter box-->
             </div>
 
-            <div class="w-[25%] mt-4 pt-2 sm:mt-0 sm:pt-0">
+            <div class="w-full sm:w-1/2 md:w-1/2  lg:w-[25%] mt-4 pt-2 sm:pt-2">
                 <div class="counter-box text-center">
                     <button class="border-[#f7961c] hover:bg-[#f7961c] hover:text-white border bg-transparent text-[#f7961c] font-bold py-2 px-4 rounded">
-                       <a>Humanitäre Organisationen</a> 
+                      <div *ngIf="isFrontEnd" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openTitleModal(3, LinkTitlemodal)">
+                        <u>{{allTitle[3].name}}</u>
+                      </div> 
+                      <a *ngIf="!isFrontEnd">{{allTitle[3].name}}</a> 
                       </button>
                   </div><!--end counter box-->
             </div>
@@ -42,46 +54,56 @@
           </div>
         </div>
   
-        <div class="flex flex-row mx-auto lg:flex-row md:flex-col justify-around justify-items-end w-full">
+        <div class="flex flex-row mx-auto lg:flex-row justify-around justify-items-end w-full">
 
-            <div class="w-[25%] sm:mt-0 sm:pt-0">
+            <div class="w-full sm:w-1/2 md:w-1/4 lg:w-[25%] mt-4 pt-2 sm:mt-0 sm:pt-0">
                 <div class="counter-box text-center">
                     <ul class="text-white">
-                        <li class="mt-1"><a href="#"><u>Film über den Einsatz in Nairobi</u></a></li>
+                        <li class="mt-1" *ngFor="let link of allFirstLink">
+                          <div *ngIf="isFrontEnd" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openLinkModal(link,Linkmodal)">
+                            <u>{{link.name}}</u>
+                          </div>
+                          <a *ngIf="!isFrontEnd" href={{link.link}}><u>{{link.name}}</u></a>
+                        </li>
                     </ul>
                   </div><!--end counter box-->
             </div>
 
-            <div class="w-[25%]  sm:mt-0 sm:pt-0">
+            <div class="w-full sm:w-1/2 md:w-1/4 lg:w-[25%] mt-4 pt-2 sm:mt-0 sm:pt-0">
                 <div class="counter-box text-center">
                     <ul class="text-white ">
-                        <li class="mt-1 "><a href="#"><u>Giftige Pflanzen</u></a></li>
-                        <li class="mt-1"><a href="#"><u> Erziehungsfragen</u></a></li>
-                        <li class="mt-1"><a href="#"><u>Informationen rund ums Impfen</u></a></li>
-                        <li class="mt-1"><a href="#"><u>Rund-ums-baby.de</u></a></li>
-                        <li class="mt-1"><a href="#"><u>Kindergesundheit.de</u></a></li>
+                        <li class="mt-1" *ngFor="let link of allSecondLink">
+                          <div *ngIf="isFrontEnd" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openLinkModal(link,Linkmodal)">
+                            <u>{{link.name}}</u>
+                          </div>
+                          <a *ngIf="!isFrontEnd" href={{link.link}}><u>{{link.name}}</u></a>
+                        </li>
                     </ul>
                   </div><!--end counter box-->
             </div>
 
-            <div class="w-[25%] sm:mt-0 sm:pt-0">
+            <div class="w-full sm:w-1/2 md:w-1/4 lg:w-[25%] mt-4 pt-2 sm:mt-0 sm:pt-0">
                 <div class="counter-box text-center">
                     <ul class="text-white">
-                        <li class="mt-1"><a href="#"><u>Aknetherapie</u></a></li>
-                        <li class="mt-1"><a href="#"><u> Selbsthilfegruppen</u></a></li>
-                        <li class="mt-1"><a href="#"><u>Reisemedizin</u></a></li>
-                        <li class="mt-1"><a href="#"><u>Brandverletzungen</u></a></li>
-                        <li class="mt-1"><a href="#"><u>Kindersicherheit</u></a></li>
-                        <li class="mt-1"><a href="#"><u>Bundeszentrale für gesundheitliche Aufklärung</u></a></li>
+                      <li class="mt-1" *ngFor="let link of allThirdLink">
+                        <div *ngIf="isFrontEnd" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openLinkModal(link,Linkmodal)">
+                          <u>{{link.name}}</u>
+                        </div>
+                        <a *ngIf="!isFrontEnd" href={{link.link}}><u>{{link.name}}</u></a>
+                      </li>
                     </ul>
                   </div><!--end counter box-->
             </div>
 
-            <div class="w-[25%] sm:mt-0 sm:pt-0">
+            <div class="w-full sm:w-1/2 md:w-1/4 lg:w-[25%] mt-4 pt-2 sm:mt-0 sm:pt-0">
                 <div class="counter-box text-center">
                     <ul class="text-white">
-                        <li class="mt-1"><a href="#"><u>Cargo Human Care e.V.</u></a></li>
-                        <li class="mt-1"><a href="#"><u> social-bag.com</u></a></li>
+                      <li class="mt-1" *ngFor="let link of allFouthLink">
+                        <div *ngIf="isFrontEnd" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openLinkModal(link,Linkmodal)">
+                          <u>{{link.name}}</u>
+                        </div>
+                        <a *ngIf="!isFrontEnd" href={{link.link}}><u>{{link.name}}</u></a>
+                      </li>
                     </ul>
                   </div><!--end counter box-->
             </div>
@@ -91,10 +113,114 @@
   
       </div>
       <div
-        class="absolute bottom-8 right-0 left-0 h-[55.6%] bg-[#f7961c] bg-gradient-to-b from-opacity-25 to-transparent ">
+        class="absolute bottom-8 right-0 left-0 h-[55.6%] bg-[#f7961c] bg-gradient-to-b from-opacity-25 to-transparent">
       </div>
   
   
     </div>
   
+
+    <ng-template #Linkmodal id="Linkmodal" tabindex="-1" aria-hidden="true"
+    class="transition duration-75 hidden overflow-y-scroll overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    let-modal>
+
+    <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Update Link
+            </h3>
+            <button type="button"
+                class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                (click)="hideModal()">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+        </div>
+
+
+        <form (ngSubmit)="changeLink()">
+
+            <div class="grid gap-6  mb-6 md:grid-cols-2">
+                <div>
+                    <label for="name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Text</label>
+                    <input type="text" id="name"  name="name" [(ngModel)]="selectedLink.name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="John" required />
+                </div>
+            </div>
+
+            <div class="mb-2 flex flex-col items-center gap-2 p-4">
+
+            </div>
+            <div class="mb-6">
+                <label for="link" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link
+                    </label>
+                <input type="url" id="url" name="url" [(ngModel)]="selectedLink.link"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required />
+            </div>
+
+
+            <button type="submit"
+                class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        </form>
+
+
+    </div>
+
+</ng-template>
+
+
+<ng-template #LinkTitlemodal id="Linkmodal" tabindex="-1" aria-hidden="true"
+class="transition duration-75 hidden overflow-y-scroll overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+let-modal>
+
+<div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
+    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Update Link
+        </h3>
+        <button type="button"
+            class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            (click)="hideModal()">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+            <span class="sr-only">Close modal</span>
+        </button>
+    </div>
+
+
+    <form (ngSubmit)="changeLink()">
+
+        <div class="grid gap-6  mb-6 md:grid-cols-2">
+            <div>
+                <label for="name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                <input type="text" id="name"  name="name" [(ngModel)]="selectedTitleLink.name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required />
+            </div>
+        </div>
+
+        <div class="mb-2 flex flex-col items-center gap-2 p-4">
+
+        </div>
+
+        <button type="submit"
+            class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    </form>
+
+
+</div>
+
+</ng-template>
+
   </section>

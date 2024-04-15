@@ -15,6 +15,16 @@ export class TeamComponent implements OnInit {
   loadingTeam: boolean = false;
   teamText: any;
 
+  documents: any = [];
+
+
+  selectedImage: any = "";
+  selectedImageUrl: any = null;
+
+  allTeam : any[] = [];
+  allUpdateTeam: any[] = [];
+  selectedTeam: any;
+
   initialTeam = {
     teamTitle : "",
     teamText : ""
@@ -31,9 +41,19 @@ export class TeamComponent implements OnInit {
   ngOnInit(): void {
     this.loadingTeam = true;
 
+    this.documents = this.storageService.get('documents');
     this.teamText = this.storageService.get("text");
 
     const text = this.teamText;
+
+    this.frontEndService.getTeam().then(
+      (response) => {
+        if (response){
+          this.allTeam = response;
+          this.allUpdateTeam = response;
+        }
+      }
+    )
 
     if(text){
       this.initialTeam.teamText = text["team-text"];
@@ -93,6 +113,17 @@ export class TeamComponent implements OnInit {
     }
 
 
+    imgSelect(id: any, url: any){
+      if(id === this.selectedImage ) {
+        this.selectedImage = "";
+        this.selectedImageUrl = "";
+      }else{
+        this.selectedImage = id;
+        this.selectedImageUrl = url;
+      }
+      console.log(this.selectedImage);
+    }
+
     updateText(){
       this.loadingTeam = true;
       this.frontEndService.updateTeamText(this.updateTeam,this.teamText.$id).then(
@@ -105,5 +136,27 @@ export class TeamComponent implements OnInit {
       )
     }
 
+    openUpdateTeamModal(index: any, content: any){
+
+      if(this.isFrontEnd){
+        this.selectedTeam = this.allUpdateTeam[index];
+        const dialogRef = this.modalService.open(content);
+      }
+
+    }
+
+    updateTeamValue(){
+      this.loadingTeam = true;
+      const idDoc = this.selectedTeam.$id;
+
+      this.frontEndService.updateTeam(this.selectedTeam, idDoc, this.selectedImageUrl).then(
+        (response)=> {
+          if (response){
+            location.reload()
+          }else this.loadingTeam =false
+        }
+      )
+
+    }
 
 }

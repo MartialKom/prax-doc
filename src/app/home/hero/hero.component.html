@@ -81,35 +81,33 @@ let-modal>
 
 
 
-<section class="bg-half-170 table w-full pt-4 home-wrapper overflow-hidden">
+<div class="bg-half-170 w-full pt-4 home-wrapper overflow-hidden  ">
 
-  <div class="container mx-auto px-4">
-    <div class="flex flex-wrap mx-auto mt-10 items-start lg:flex lg:flex-row sm:flex-col sm:mt-5">
-
-      <div class=" col-lg-6 col-md-6 lg:w-1/2 pt-2" (click)="openModal(HeroModal)" [ngClass]="{'border cursor-pointer hover:bg-gray-400':isFrontEnd}">
+  <div class="mx-auto w-[75%]">
+    <div class="flex flex-wrap mx-auto w-full mt-10 items-start justify-around lg:flex lg:flex-row sm:flex-col md:flex-row sm:mt-5">
+  
+      <div data-aos="fade-right" data-aos-duration="3000" class="lg:w-1/2 pt-2" (click)="openModal(HeroModal)" [ngClass]="{'border cursor-pointer hover:bg-gray-400':isFrontEnd}">
         <div class="leading-7">
-          <span
-            class="badge rounded-lg bg-orange-500 bg-opacity-50 border border-orange-500 border-opacity-10 text-orange-500"><b>{{updateHero.heroIndice}}</b></span>
-          <h4 class="heading pt-3"> {{updateHero.heroHeading1}} <span class="text-orange-500">{{updateHero.heroHeading2}}</span>
+          <span class="badge rounded-lg bg-orange-500 bg-opacity-50 border border-orange-500 border-opacity-10 text-orange-500"><b>{{updateHero.heroIndice}}</b></span>
+          <h4 class="heading pt-3 mb-2"> {{updateHero.heroHeading1}} <span class="text-orange-500">{{updateHero.heroHeading2}}</span>
             <br><br>{{updateHero.heroHeading3}}</h4>
           <p class="text-lg max-w-lg text-muted mb-0"> {{updateHero.heroHeadingText}} </p>
           <div class="mt-5">
-            <a href="javascript:void(0)" class="rounded-sm btn-soft-primary mt-2 px-3"><strong>Einen Termin
-                buchen</strong></a>
+            <a href="javascript:void(0)" class="rounded-sm btn-soft-primary mt-2 px-3"><strong>Einen Termin buchen</strong></a>
           </div>
-
         </div>
       </div>
-
-      <div class="col-lg-6 col-md-6 mt-4 pt-2 sm:mt-0 sm:pt-0 lg:w-1/2">
-        <div class="m-auto lg:m-4 ">
-          <img src="assets/doctors-cuate.svg" class="max-w-full h-auto" alt="">
+  
+      <div data-aos="fade-down-left" data-aos-duration="3000" class="mt-4 sm:w-1/2 pt-2 sm:mt-0 sm:pt-0 lg:w-1/2">
+        <div class="lg:m-4">
+          <img src="assets/doctors-cuate.svg" class="max-w-full h-auto flex flex-wrap items-center " alt="">
         </div>
       </div>
-
+  
     </div>
   </div>
-</section>
+  
+</div>
 
 
 

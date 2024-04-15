@@ -13,6 +13,12 @@ export class ServiceSectionComponent implements OnInit {
 
   services:boolean[] = [true, false, false, false];
 
+  documents: any = [];
+
+
+  selectedImage: any = "";
+  selectedImageUrl: any = "";
+
   loadingService : boolean = false;
   serviceText: any;
 
@@ -25,6 +31,11 @@ export class ServiceSectionComponent implements OnInit {
     serviceTitle : "",
     serviceText : ""
   }
+
+  allServices: any[] = [];
+  allUpdateServices: any[] = [];
+  selectedServiceId = "";
+  selectedService: any;
 
   isFrontEnd: boolean = false;
 
@@ -39,6 +50,22 @@ export class ServiceSectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService = true;
+
+    this.documents = this.storageService.get('documents');
+
+    this.frontEndService.getServices().then(
+      (response)=>{
+        if(response){
+          this.allServices = response;
+          this.allUpdateServices = response;
+          this.selectedServiceId = this.allServices[0].$id;
+          this.selectedService = this.allServices[0];
+        }
+      }
+    )
+
+    
+
 
     this.serviceText = this.storageService.get("text");
 
@@ -90,11 +117,13 @@ export class ServiceSectionComponent implements OnInit {
     this.updateService.serviceTitle = this.initialService.serviceTitle
 
     this.modalService.closeAll();
+
   }
 
-  afficher(name:any){
-    const card = this.el.nativeElement.querySelector('#'+name);
-    card.style.display = 'block';
+  afficher(id: any, service: any){
+    this.selectedServiceId = id;
+    this.selectedService = service;
+    
   }
 
   updateText(){
@@ -107,5 +136,28 @@ export class ServiceSectionComponent implements OnInit {
         } else this.loadingService = false;
       }
     )
+  }
+
+  updateAService(){
+
+    this.loadingService = true;
+    this.frontEndService.updateService(this.selectedService, this.selectedImageUrl, this.selectedServiceId).then(
+      (response) => {
+        if(response.$id){
+          location.reload();
+        } else this.loadingService = false;
+      }
+    )
+  }
+
+  imgSelect(id: any, url: any){
+    if(id === this.selectedImage ) {
+      this.selectedImage = "";
+      this.selectedImageUrl = "";
+    }else{
+      this.selectedImage = id;
+      this.selectedImageUrl = url;
+    }
+    console.log(this.selectedImage);
   }
 }
