@@ -25,7 +25,7 @@
                 <div class="flex justify-between mb-6">
                     <div>
                         <div class="text-2xl font-semibold mb-1">{{userVerified}}</div>
-                        <div class="text-sm font-medium text-gray-400">Active users</div>
+                        <div class="text-sm font-medium text-gray-400">Aktive Nutzer</div>
                     </div>
 
                 </div>
@@ -53,7 +53,7 @@
                 <div class="flex justify-between mb-6">
                     <div>
                         <div class="text-2xl font-semibold mb-1">{{myUserData.length}}</div>
-                        <div class="text-sm font-medium text-gray-400">All my patients</div>
+                        <div class="text-sm font-medium text-gray-400">Alle meine Patienten</div>
                     </div>
 
                 </div>
@@ -84,7 +84,7 @@
                 <div class="flex justify-between mb-6">
                     <div>
                         <div class="text-2xl font-semibold mb-1">{{totalDocs}}</div>
-                        <div class="text-sm font-medium text-gray-400">Documents</div>
+                        <div class="text-sm font-medium text-gray-400">Dokumente</div>
                     </div>
 
                 </div>
@@ -109,7 +109,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                 <div class="flex justify-between mb-4 items-start">
-                    <div class="font-medium">All Patients</div>
+                    <div class="font-medium">Alle Patienten</div>
                 </div>
                 <div class="overflow-x-auto">
                     <table
@@ -149,10 +149,10 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div *ngIf="user.isVerified" class="flex items-center">
-                                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Active
+                                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Aktiv
                                     </div>
                                     <div *ngIf="!user.isVerified" class="flex items-center">
-                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inactive
+                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inaktiv
                                     </div>
                                 </td>
                             </tr>
@@ -179,10 +179,10 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div *ngIf="user.isVerified" class="flex items-center">
-                                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Active
+                                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Aktiv
                                     </div>
                                     <div *ngIf="!user.isVerified" class="flex items-center">
-                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inactive
+                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inaktiv
                                     </div>
                                 </td>
                             </tr>

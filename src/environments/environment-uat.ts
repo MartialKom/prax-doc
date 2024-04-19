@@ -14,5 +14,6 @@ export const environment = {
     collectionIdLink: 'links',
     collectionIdTitleLink: 'titleLinks',
     collectionIdFooter: 'footer',
+    collectionIdNonUserApp:'nonUserAppointments',
     bucketId: 'praxStorage'
 }

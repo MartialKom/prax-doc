@@ -15,7 +15,7 @@
 <div class="container mx-auto px-4 pt-3">
   <div class="flex flex-col lg:flex-row mx-auto px-4 mt-5 justify-between items-center">
 
-    <div class="w-full lg:w-2/5" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openModal(imageModal)" (click)="openModal(imageModal)">
+    <div data-aos="fade-up" data-aos-duration="3000"  class="w-full lg:w-2/5" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openModal(imageModal)" (click)="openModal(imageModal)">
       <div class="relative">
         <img *ngIf="!imgAbout" src="assets/about.jpg" class="rounded h-auto max-w-full mx-auto block shadow" alt="">
         <img *ngIf="imgAbout" src="{{imgAbout}}" class="rounded h-auto max-w-full mx-auto block shadow" alt="">
@@ -24,10 +24,13 @@
 
     <div class="w-full ml-10 lg:w-3/5 mt-4 lg:mt-0 pt-2 sm:pt-0"  [ngClass]="{'border  cursor-pointer hover:bg-gray-400 ':isFrontEnd}" (click)="openModal(aboutModal)">
       <div class="ml-3">
-        <span class="badge rounded-lg bg-orange-500 bg-opacity-50 border border-orange-500 border-opacity-10 text-orange-500">
+        <span data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="300"
+        data-aos-offset="0" class="badge rounded-lg bg-orange-500 bg-opacity-50 border border-orange-500 border-opacity-10 text-orange-500">
           <b>{{updateAbout.aboutIndice}}</b>
         </span>
-        <h4 class="text-3xl tracking-0.5px md:text-2xl mt-3 mb-4">
+        <h4 data-aos="zoom-out-up" data-aos-duration="2500" class="text-3xl tracking-0.5px md:text-2xl mt-3 mb-4">
           <span *ngFor="let word of header; let i = index">
             <span [ngClass]="{
                 'text-orange-500': isSecondWord(i) || isLastWord(i)
@@ -37,12 +40,12 @@
             <span *ngIf="i !== header.length - 1">&nbsp;</span>
           </span>
         </h4>
-        <p data-aos="fade-right" data-aos-duration="2000" class="text-#8492a6  text-[18px]">{{updateAbout.aboutText}}</p>
-        <p class="text-[#8492a6] text-[18px]  mb-0">{{updateAbout.aboutText2}}</p>
+        <p data-aos="zoom-in-left" data-aos-duration="3000" class="text-#8492a6  text-[18px]">{{updateAbout.aboutText}}</p>
+        <p data-aos="zoom-in-left" data-aos-duration="2000" class="text-[#8492a6] text-[18px]  mb-0">{{updateAbout.aboutText2}}</p>
 
         <div class="mt-4">
           <button class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
-            Learn More
+            Mehr erfahren
           </button>
         </div>
       </div>
@@ -60,7 +63,7 @@
     <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
       <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-          Update About section
+          Abschnitt "Über" aktualisieren
         </h3>
         <button type="menu"
           class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -77,13 +80,13 @@
 
         <div class="grid gap-6  mb-6 md:grid-cols-2">
           <div>
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Abput indice</label>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Über indice</label>
             <input type="text" id="indice" name="indice" [(ngModel)]="updateAbout.aboutIndice"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required />
           </div>
           <div>
-            <label for="text1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+            <label for="text1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titel</label>
             <input type="text" id="text1" name="text1" [(ngModel)]="updateAbout.aboutTitle"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required />
@@ -106,7 +109,7 @@
         </div>
 
         <button type="submit"
-          class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+          class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Einreichen</button>
       </form>
 
 
@@ -120,7 +123,7 @@
   let-modal>
   <div class="px-4 mt-5 mx-auto mb-6">
     <h3 class="text-xl font-semibold text-amber-700 dark:text-white">
-      Update About section image
+      Bild im Abschnitt Über aktualisieren
     </h3>
   </div>
 
@@ -135,7 +138,7 @@
       </div>
       <div *ngIf="selectedImageUrl" >
         <button  (click)="updateImg()"
-        class="mt-6 mb-6 text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change</button>  
+        class="mt-6 mb-6 text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ändern Sie</button>  
       </div>
     
     </div>

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/commons/local-storage.service';
 import { FrontEndService } from 'src/app/services/frontEnd-service/front-end.service';
+import { UserService } from 'src/app/services/user-services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-hero',
@@ -29,15 +32,32 @@ export class HeroComponent implements OnInit {
     heroHeadingText: "",
   }
 
+  appointmentForm = new FormGroup({
+    name: new FormControl(null, Validators.required),
+    phone: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.email]),
+  });
+
+  submitted: boolean = false;
+
   isFrontEnd: boolean = false;
   
   openModal(content: any): void {
     if(this.isFrontEnd){
       const dialogRef = this.modalService.open(content);
     }
-   
   }
 
+  openAppointmentModal(content: any): void {
+    if(!this.isFrontEnd){
+      const dialogRef = this.modalService.open(content);
+    }
+  }
+
+  hideAppointment(){
+    this.modalService.closeAll();
+  }
+  
 hideModal() {
   this.updateHero.heroIndice = this.heroText['hero-indice'];
   this.updateHero.heroHeading1 = this.heroText['hero-heading1'];
@@ -50,7 +70,7 @@ hideModal() {
 
 
   constructor(private router: Router, private frontEndService: FrontEndService, private modalService: MatDialog,
-    private storageService: LocalStorageService){
+    private storageService: LocalStorageService, private userService: UserService){
     this.router.events.subscribe(event => {
       if (event) {
         this.isFrontEnd = this.router.url === '/user/dashboard/frontEnd';
@@ -100,5 +120,39 @@ hideModal() {
     )
   }
 
+  createAppointment(){
+
+    this.submitted = true;
+    if (!this.appointmentForm.valid) {
+      return;
+    }
+    this.isLoadingHero = true;
+    const name = this.appointmentForm.get('name')?.value;
+    const phone = this.appointmentForm.get('phone')?.value;
+    const mail = this.appointmentForm.get('email')?.value;
+
+    this.userService.createNonUserAppointment(name, phone, mail).then((response)=>{
+      if(response.$id){
+        this.hideAppointment();
+        this.isLoadingHero = false;
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Gesendete Anfrage',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        this.isLoadingHero = false;
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Ein Fehler ist aufgetreten',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+    })
+  }
 
 }

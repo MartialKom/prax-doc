@@ -1,4 +1,4 @@
-<main class="w-full md:w-[calc(100%-220px)] ml-40 pt-[45px]  bg-gray-50 min-h-screen transition-all  ">
+<section class="w-[calc(100%-220px)] pt-[45px] ml-[150px] bg-gray-50 min-h-screen transition-all   ">
 
     <div *ngIf="loadingDoctors"
         style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
@@ -11,9 +11,9 @@
 
     </div>
 
-    <div class="p-6">
+    <div class="p-6 ">
 
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
             <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                 <div class="">
                     <svg class="w-12 h-12 text-amber-600 dark:text-white" aria-hidden="true"
@@ -27,7 +27,7 @@
                 <div class="flex justify-between mb-6">
                     <div>
                         <div class="text-2xl font-semibold mb-1">{{avalaibleDoctors}}</div>
-                        <div class="text-sm font-medium text-gray-400">Available doctors</div>
+                        <div class="text-sm font-medium text-gray-400">Verfügbare Ärzte</div>
                     </div>
 
                 </div>
@@ -52,7 +52,7 @@
                 <div class="flex justify-between mb-6">
                     <div>
                         <div class="text-2xl font-semibold mb-1">{{unavalaibleDoctors}}</div>
-                        <div class="text-sm font-medium text-gray-400">Unavalaible doctors</div>
+                        <div class="text-sm font-medium text-gray-400">Unvermeidliche Ärzte</div>
                     </div>
 
                 </div>
@@ -80,7 +80,7 @@
                 <div class="flex justify-between mb-6">
                     <div>
                         <div class="text-2xl font-semibold mb-1">{{totalDoctors}}</div>
-                        <div class="text-sm font-medium text-gray-400">Total Doctors</div>
+                        <div class="text-sm font-medium text-gray-400">Ärzte insgesamt</div>
                     </div>
 
                 </div>
@@ -90,7 +90,7 @@
                             <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                         </div>
                     </div>
-                    <span class="text-sm font-medium text-gray-600 ml-4">{{availablePercentage}}% Avalaible</span>
+                    <span class="text-sm font-medium text-gray-600 ml-4">{{availablePercentage}}% Zulässig</span>
                 </div>
                 <div class="flex items-center">
                     <div class="w-[80%] bg-gray-100 rounded-full h-4">
@@ -98,7 +98,7 @@
                             <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                         </div>
                     </div>
-                    <span class="text-sm font-medium text-gray-600 ml-4">{{unavailablePercentage+"%"}} Unavailable</span>
+                    <span class="text-sm font-medium text-gray-600 ml-4">{{unavailablePercentage+"%"}} Nicht verfügbar</span>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
     <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
         <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Add Doctor
+                Arzt hinzufügen
             </h3>
             <button type="menu"
                 class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -143,7 +143,7 @@
                 </div>
                 <div>
                     <label for="speciality"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Speciality</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Spezialität</label>
                     <input type="text" id="age" formControlName="speciality" name="speciality"
                         class="px-4 py-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Paediatrics" required />
@@ -153,8 +153,7 @@
                 </div>
                 <div>
                     <label for="phone"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
-                        number</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rufnummer</label>
                     <input type="text" id="phone" formControlName="contact" name="contact"
                         class="px-4 py-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="123-45-678" required />
@@ -164,8 +163,7 @@
                 </div>
             </div>
             <div class="mb-6">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
-                    address</label>
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-Mail Adresse</label>
                 <input type="email" id="email" formControlName="email" name="email"
                     class="px-4 py-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="john.doe@company.com" required />
@@ -175,7 +173,7 @@
             </div>
 
             <button type="submit"
-                class="px-4 py-2 text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                class="px-4 py-2 text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Einreichen</button>
         </form>
 
 
@@ -263,15 +261,15 @@ let-modal>
 
 </ng-template>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class=" overflow-x-auto shadow-md sm:rounded-lg  p-6 ">
         <div class="px-8 py-2">
             <button (click)="openModal(DoctorModal)" class="bg-[#f7961c] block text-white border font-bold py-2 px-4 rounded" type="button">
-                Add Doctors
+                Ärzte hinzufügen
             </button>
         </div>
         
         <div
-            class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-1 bg-white">
+            class="  flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-1 bg-white">
             <div *ngIf="doctorSelected.length>0" class="px-8 py-2">
                 <!-- <button [matMenuTriggerFor]="menu"
                     class=" w-full inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2 "
@@ -292,7 +290,7 @@ let-modal>
                 </mat-menu> -->
 
                 <button (click)="delete()"  class="w-full inline-flex items-center text-gray-300 bg-red-700 border  focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2"  >
-                    Delete
+                    Löschen
                 </button>
             </div>
 
@@ -302,7 +300,7 @@ let-modal>
                     placeholder="Search" required />
             </div>
         </div>
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <table class="w-full  text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="p-4">
@@ -322,10 +320,10 @@ let-modal>
                         Status
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Contact
+                        Kontakt
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Action
+                        Aktion
                     </th>
                 </tr>
             </thead>
@@ -354,17 +352,17 @@ let-modal>
                     </td>
                     <td class="px-6 py-4">
                         <div *ngIf="doc.available" class="flex items-center">
-                            <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Available
+                            <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Verfügbar
                         </div>
                         <div *ngIf="!doc.available" class="flex items-center">
-                            <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Unavailable
+                            <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Nicht verfügbar
                         </div>
                     </td>
                     <td class="px-6 py-4">
                         {{doc.contact}}
                     </td>
                     <td class="px-6 py-4">
-                        <a (click)="OpenModalDoctorUpdate(DoctorModalUpdate, doc)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">Edit user</a>
+                        <a (click)="OpenModalDoctorUpdate(DoctorModalUpdate, doc)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">Benutzer bearbeiten</a>
                     </td>
                 </tr>
 
@@ -395,17 +393,17 @@ let-modal>
                 </td>
                 <td class="px-6 py-4">
                     <div *ngIf="doc.available" class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Available
+                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Verfügbar
                     </div>
                     <div *ngIf="!doc.available" class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Unavailable
+                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Nicht verfügbar
                     </div>
                 </td>
                 <td class="px-6 py-4">
                     {{doc.contact}}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">bearbeiten</a>
                 </td>
             </tr>
 
@@ -415,4 +413,4 @@ let-modal>
 
 
 
-</main>
+</section>

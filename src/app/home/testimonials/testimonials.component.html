@@ -15,7 +15,7 @@
     <div class="flex flex-col mx-auto mt-5 lg:flex-row justify-start items-center w-full"
         [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}" (click)="openModal(testimonialModal)">
         <div class="w-full lg:w-2/5">
-            <div>
+            <div data-aos="fade-up" data-aos-duration="3000" >
                 <h3 class="text-[#f7961c] text-[28px]">{{updateTestimonials.testimonialsTitle}}</h3>
                 <p class="text-[#8492a6] mb-0 text-[18px]">{{updateTestimonials.testimonialsText}}</p>
             </div>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="flex flex-wrap justify-center gap-8 mt-6 lg:gap-4 group">
-        <div class="bg-white/10 duration-500 p-8 border shadow-lg cursor-pointer group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 rounded-xl mix-blend-luminosity max-w-xs w-full lg:w-[calc(33.333% - 2rem)]"
+        <div  data-aos="flip-left" data-aos-duration="3000" class="bg-white/10 duration-500 p-8 border shadow-lg cursor-pointer group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 rounded-xl mix-blend-luminosity max-w-xs w-full lg:w-[calc(33.333% - 2rem)]"
             [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
             (click)="openModalTestimonial(testimonialUpdateModal, 1)">
             <img src={{updateTestimonial1.testimonialImage1}} class="h-20 w-20 mx-auto rounded-[50%] max-w-full shadow">
@@ -31,10 +31,10 @@
             <p class="text-sm leading-7 my-3 font-light opacity-50">{{updateTestimonial1['testimonial1-text']}}
             </p>
             <button class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
-                Get in touch
+                Kontakt aufnehmen
             </button>
         </div>
-        <div class="bg-white/10 border shadow-lg  duration-500 p-8 cursor-pointer group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 rounded-xl mix-blend-luminosity max-w-xs w-full lg:w-[calc(33.333% - 2rem)]"
+        <div  data-aos="flip-left" data-aos-duration="3000" class="bg-white/10 border shadow-lg  duration-500 p-8 cursor-pointer group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 rounded-xl mix-blend-luminosity max-w-xs w-full lg:w-[calc(33.333% - 2rem)]"
             [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
             (click)="openModalTestimonial(testimonialUpdateModal, 2)">
             <img class="h-20 w-20 mx-auto rounded-[50%] max-w-full shadow" src={{updateTestimonial2.testimonialImage2}}>
@@ -42,10 +42,10 @@
             <p class="text-sm leading-7 my-3 font-light opacity-50">{{updateTestimonial2['testimonial2-text']}}
             </p>
             <button class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
-                Get in touch
+                Kontakt aufnehmen
             </button>
         </div>
-        <div class="bg-white/10 border shadow-lg  duration-500 p-8 cursor-pointer group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 rounded-xl mix-blend-luminosity max-w-xs w-full lg:w-[calc(33.333% - 2rem)]"
+        <div  data-aos="flip-left" data-aos-duration="3000" class="bg-white/10 border shadow-lg  duration-500 p-8 cursor-pointer group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 rounded-xl mix-blend-luminosity max-w-xs w-full lg:w-[calc(33.333% - 2rem)]"
             [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
             (click)="openModalTestimonial(testimonialUpdateModal, 3)">
             <img src={{updateTestimonial3.testimonialImage3}} class="h-20 w-20 mx-auto rounded-[50%] max-w-full shadow">
@@ -53,7 +53,7 @@
             <p class="text-sm leading-7 my-3 font-light opacity-50">{{updateTestimonial3['testimonial3-text']}}
             </p>
             <button class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
-                Get in touch
+                Kontakt aufnehmen
             </button>
         </div>
     </div>
@@ -65,7 +65,7 @@
         <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Update Testimonial section
+                    Abschnitt Testimonials aktualisieren
                 </h3>
                 <button type="menu"
                     class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -84,16 +84,14 @@
                 <div class="grid gap-6  mb-6 md:grid-cols-2">
                     <div>
                         <label for="name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Testimonial
-                            Title</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Zeugnis Titel</label>
                         <input type="text" id="title" name="title" [(ngModel)]="updateTestimonials.testimonialsTitle"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
                     </div>
                     <div>
                         <label for="text1"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Testimonial
-                            text</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Testimonial-Text</label>
                         <textarea type="text" id="text1" name="text1" [(ngModel)]="updateTestimonials.testimonialsText"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required> </textarea>
@@ -101,7 +99,7 @@
                 </div>
 
                 <button type="submit"
-                    class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Einreichen</button>
             </form>
 
 
@@ -117,7 +115,7 @@
         <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Update a testimonial
+                    Ein Zeugnis aktualisieren
                 </h3>
                 <button type="menu"
                     class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -143,8 +141,7 @@
                     </div>
                     <div>
                         <label for="text1"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Testimonial
-                            text</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Testimonial-Text</label>
                         <textarea type="text" id="text1" name="text1" [(ngModel)]="testimonialToUpdate.text"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required> </textarea>
@@ -153,7 +150,7 @@
 
                 <div class="px-4 mt-5 mx-auto mb-6">
                     <h3 class="text-xl font-semibold text-amber-700 dark:text-white">
-                        Update testimonial image
+                        Zeugnisbild aktualisieren
                     </h3>
                 </div>
 
@@ -172,7 +169,7 @@
                 </div>
 
                 <button type="submit"
-                    class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Einreichen</button>
             </form>
 
 

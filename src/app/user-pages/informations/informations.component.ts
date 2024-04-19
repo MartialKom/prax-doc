@@ -152,18 +152,4 @@ export class InformationsComponent implements OnInit {
     );
   }
 
-  async toLogOut() {
-    this.loadingOut = true;
-    await this.loginservice.logout();
-    setTimeout(() => {
-      this.localstorageService.remove('user');
-      this.localstorageService.remove('documents');
-      this.localstorageService.remove('pdfs');
-
-      this.router.navigate(['/home']).then((r) => {
-        this.loadingOut = false;
-        window.location.reload();
-      });
-    }, 3000);
-  }
 }

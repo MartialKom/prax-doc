@@ -1,4 +1,4 @@
-<section class=" pt-10 py-28 relative">
+<section id="team" class="pt-10 py-28 relative">
 
   <div *ngIf="loadingTeam"
     style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
@@ -12,7 +12,7 @@
   </div>
 
   <div class="container mx-auto px-4">
-    <div class="flex flex-col mx-auto mt-5 lg:flex-row justify-start items-center w-full ">
+    <div data-aos="fade-up" data-aos-duration="3000" class="flex flex-col mx-auto mt-5 lg:flex-row justify-start items-center w-full ">
       <div class="w-full lg:w-2/5" [ngClass]="{'border-4 cursor-pointer hover:bg-gray-400':isFrontEnd}"
         (click)="openModal(teamModal)">
         <div>
@@ -23,9 +23,9 @@
     </div>
 
 
-    <div class="flex flex-wrap mx-auto mt-5 lg:flex-row sm:flex-col md:flex-row justify-center lg:justify-between items-center w-full ">
+    <div data-aos="fade-up" data-aos-duration="1000" class="flex flex-wrap mx-auto mt-5 lg:flex-row sm:flex-col md:flex-row justify-center lg:justify-between items-center w-full ">
 
-      <div *ngFor="let team of allUpdateTeam; let i = index" class="lg:w-1/5 md:w-1/2 mt-4 md:mt-5 pt-4 px-3" 
+      <div *ngFor="let team of allUpdateTeam; let i = index" data-aos="flip-left" data-aos-duration="3000" class="lg:w-1/5 md:w-1/2 mt-4 md:mt-5 pt-4 px-3" 
       [ngClass]="{'border-4 cursor-pointer ':isFrontEnd}" (click)="openUpdateTeamModal(i, teamUpdateModal)">
 
         <div class="text-center max-w-sm bg-white shadow-lg border-0 overflow-hidden relative rounded p-4">
@@ -55,7 +55,7 @@
     <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
       <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-          Update Team section
+          Abschnitt Team aktualisieren
         </h3>
         <button type="menu"
           class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -72,7 +72,7 @@
 
         <div class="grid gap-6  mb-6 md:grid-cols-2">
           <div>
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Team Title</label>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Team-Titel</label>
             <input type="text" id="title" name="title" [(ngModel)]="updateTeam.teamTitle"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required />
@@ -102,7 +102,7 @@
   <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
       <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Update a select user :  {{selectedTeam.name}}
+            Ausgewählten Benutzer aktualisieren :  {{selectedTeam.name}}
           </h3>
           <button type="menu"
               class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -128,7 +128,7 @@
               </div>
               <div>
                   <label for="text1"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">speciality
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Spezialität
                       </label>
                   <textarea type="text" id="text1" name="text1" [(ngModel)]="selectedTeam.speciality"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -138,7 +138,7 @@
 
           <div class="px-4 mt-5 mx-auto mb-6">
               <h3 class="text-xl font-semibold text-amber-700 dark:text-white">
-                  Update User image
+                Benutzerbild aktualisieren
               </h3>
           </div>
 
@@ -157,7 +157,7 @@
           </div>
 
           <button type="submit"
-              class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+              class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Einreichen</button>
       </form>
 
 

@@ -106,7 +106,7 @@ export class HeaderComponent implements OnInit {
           });
           setTimeout(() => {
             if (response.labels[0] === 'admin' || response.labels[0] === 'doctor')
-              this.router.navigate(['/user/dashboard']).then((r) => {
+              this.router.navigate(['/user/dashboard/home']).then((r) => {
                 window.location.reload();
               });
             else
@@ -118,7 +118,7 @@ export class HeaderComponent implements OnInit {
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: response,
+            title: "Falsche E-Mail oder falsches Passwort",
             showConfirmButton: false,
             timer: 3000,
           });
@@ -189,7 +189,7 @@ export class HeaderComponent implements OnInit {
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: response,
+            title: "Ein Fehler tritt auf",
             showConfirmButton: false,
             timer: 3000,
           });

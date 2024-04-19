@@ -33,10 +33,10 @@ export class HolidayViewAdminComponent implements OnInit {
 
   changeStatus(id: any, status: string){
 
-    var text = "Are you sure you want to modify this holiday request ? ";
+    var text = "Sind Sie sicher, dass Sie diesen Urlaubsantrag ändern möchten ? ";
 
-    if(status === 'VALIDATED') text = "Are you sure you want to validate this holiday request ? ";
-    if(status === 'REJECTED') text = "Are you sure you want to reject this holiday request ? ";
+    if(status === 'VALIDATED') text = "Sind Sie sicher, dass Sie diesen Urlaubsantrag validieren möchten ? ";
+    if(status === 'REJECTED') text = "Sind Sie sicher, dass Sie diesen Urlaubsantrag ablehnen wollen ? ";
     if (
       confirm(
         text

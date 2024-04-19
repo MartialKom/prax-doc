@@ -1,13 +1,27 @@
+<div *ngIf="apointmentLoad"
+  style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
+
+  <div class="flex flex-col justify-center items-center"
+    style="left:45%; top:50%; position: fixed; width: 200px; text-align: center; ">
+    <img style="width: 100px;" src="/assets/load 2.gif" alt="">
+    <div>Loading...</div>
+  </div>
+
+</div>
 
     <div class="flex flex-col w-full">
         <div class="flex flex-row">
-            <div [ngClass]="{'active': !isFailedAppointments}" (click)="showAppointments()" class="cursor-pointer flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl">
+            <div [ngClass]="{'active': !isFailedAppointments && !isNonUser}" (click)="showAppointments()" class="cursor-pointer flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl">
                 <span class="text-3xl app-color-blue-1 font-bold">{{appointments.length}}</span>
-                <span class="text-md app-color-blue-1 font-semibold">Queue</span>
+                <span class="text-md app-color-blue-1 font-semibold">Warteschlange</span>
+            </div>
+            <div [ngClass]="{'active': isNonUser}" (click)="showNonUser()" class="cursor-pointer flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl ">
+                <span class="text-3xl app-color-yellow-1 font-bold">{{nonUsersAppointments.length}}</span>
+                <span class="text-md app-color-yellow-1 font-semibold">Nicht-Nutzer</span>
             </div>
             <div [ngClass]="{'active': isFailedAppointments}" (click)="showFailed()" class="cursor-pointer flex flex-col w-40 bg-white pl-5 py-3 mr-3 rounded-tl-2xl rounded-tr-2xl ">
                 <span class="text-3xl app-color-red-1 font-bold">{{failedAppointments.length}}</span>
-                <span class="text-md app-color-red-1 font-semibold">Failed</span>
+                <span class="text-md app-color-red-1 font-semibold">Gescheitert</span>
             </div>
         </div>
         <div class="flex flex-row bg-white p-10 relative">
@@ -15,13 +29,13 @@
                 <thead>
                     <tr>
                         <th class="text-left text-xs app-color-black pb-5">PATIENT</th>
-                        <th class="text-left text-xs app-color-black pb-5">CONTACT</th>
-                        <th class="text-left text-xs app-color-black pb-5">APPOINTMENT</th>
-                        <th class="text-left text-xs app-color-black pb-5">DATE</th>
-                        <th class="text-left text-xs app-color-black pb-5">ACTION</th>
+                        <th class="text-left text-xs app-color-black pb-5">KONTAKT</th>
+                        <th class="text-left text-xs app-color-black pb-5">ANMELDUNG</th>
+                        <th class="text-left text-xs app-color-black pb-5">DATUM</th>
+                        <th class="text-left text-xs app-color-black pb-5">AKTION</th>
                     </tr>
                 </thead>
-                <tbody *ngIf="!isFailedAppointments">
+                <tbody *ngIf="!isFailedAppointments && !isNonUser">
                     <tr class="app-border-1" *ngFor="let app of appointments; let i = index">
           
                         <td>
@@ -83,7 +97,36 @@
                         </td>
                         <td>
                             <div (click)="validAppointment(app)">
-                                <svg class="w-6 h-6 text-green-800 cursor-pointer dark:text-white"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-6 h-6 text-green-600 cursor-pointer dark:text-white"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M15.03 9.684h3.965c.322 0 .64.08.925.232.286.153.532.374.717.645a2.109 2.109 0 0 1 .242 1.883l-2.36 7.201c-.288.814-.48 1.355-1.884 1.355-2.072 0-4.276-.677-6.157-1.256-.472-.145-.924-.284-1.348-.404h-.115V9.478a25.485 25.485 0 0 0 4.238-5.514 1.8 1.8 0 0 1 .901-.83 1.74 1.74 0 0 1 1.21-.048c.396.13.736.397.96.757.225.36.32.788.269 1.211l-1.562 4.63ZM4.177 10H7v8a2 2 0 1 1-4 0v-6.823C3 10.527 3.527 10 4.176 10Z" clip-rule="evenodd"/>
+                                  </svg>
+                                  
+                            </div>
+                           
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="isNonUser">
+                    <tr class="app-border-1" *ngFor="let app of nonUsersAppointments">
+                        <td>
+                                    <span class="font-semibold text-sm app-color-black">{{app.name}}</span>
+                        </td>
+                        <td>
+                            <span class="font-semibold text-sm app-color-gray-1">{{app.phone}}</span>
+                        </td>
+                        <td>
+                            <span class="font-semibold text-sm app-color-gray-1"> --- </span>
+                        </td>
+                        <td>
+                               ---
+                        </td>
+                        <td>
+                            <svg class="w-6 h-6 app-color-blue-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+
+                        </td>
+                        <td>
+                            <div (click)="validNonUserAppointment(app)">
+                                <svg class="w-6 h-6 text-green-600 cursor-pointer dark:text-white"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" d="M15.03 9.684h3.965c.322 0 .64.08.925.232.286.153.532.374.717.645a2.109 2.109 0 0 1 .242 1.883l-2.36 7.201c-.288.814-.48 1.355-1.884 1.355-2.072 0-4.276-.677-6.157-1.256-.472-.145-.924-.284-1.348-.404h-.115V9.478a25.485 25.485 0 0 0 4.238-5.514 1.8 1.8 0 0 1 .901-.83 1.74 1.74 0 0 1 1.21-.048c.396.13.736.397.96.757.225.36.32.788.269 1.211l-1.562 4.63ZM4.177 10H7v8a2 2 0 1 1-4 0v-6.823C3 10.527 3.527 10 4.176 10Z" clip-rule="evenodd"/>
                                   </svg>
                                   

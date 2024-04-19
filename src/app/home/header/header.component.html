@@ -17,10 +17,10 @@
                 <div class="hidden lg:block">
                     <div class="md:ml-20 flex items-center space-x-10">
                         <a routerLink="/home" routerLinkActive="text-orange-400" class="text-[#212529] hover:text-[#f7961c]">Home</a>
-                        <a href="#" class="text-[#212529] hover:text-[#f7961c]">praxisräume</a>
-                        <a href="#" class="text-[#212529] hover:text-[#f7961c]">praxisspektrum</a>
-                        <a href="#" class="text-[#212529] hover:text-[#f7961c]">unser-team</a>
-                        <a href="#" class="text-[#212529] hover:text-[#f7961c]">Hilgreiche Tel & Links</a>
+                        <a  class="text-[#212529] hover:text-[#f7961c]">praxisräume</a>
+                        <a  class="text-[#212529] hover:text-[#f7961c]">praxisspektrum</a>
+                        <a href="home#team" class="text-[#212529] hover:text-[#f7961c]">unser-team</a>
+                        <a href="home#links" class="text-[#212529] hover:text-[#f7961c]">Links</a>
                         <a *ngIf="isAuth" routerLink="/user/media" routerLinkActive="text-orange-400" class="text-[#212529] cursor-pointer hover:text-[#f7961c]">Meine Dokumente</a>
                     </div>
                 </div>
@@ -126,8 +126,7 @@
                   </div>
 
                 <button type="submit"
-                    class="w-full bg-[#f7961c] hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Sign
-                    Up
+                    class="w-full bg-[#f7961c] hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Anmeldung
                 </button>
             </form>
         </div>

@@ -154,7 +154,7 @@ export class UserService {
     }
   }
 
-  async createAdminAppointment(date: any, time: any, timeEnd: any, title: any) {
+  async createAdminAppointment(date: any, time: any, timeEnd: any, title: any, contact:any) {
     try {
       const userData = this.localstorageService.get('user');
       const userId = userData.$id;
@@ -178,6 +178,7 @@ export class UserService {
           timeEnd: timeEnd,
           email: email,
           status: 'VALIDATED',
+          contact: contact,
           idDoctor: idDoctor
         }
       );
@@ -231,6 +232,50 @@ export class UserService {
     return appointments.documents;
   }
 
+  async getAllNonUserAppointment(){
+    const databases = new Databases(client);
+
+    const appointments = await databases.listDocuments(
+      environment.databaseId,
+      environment.collectionIdNonUserApp,
+      [Query.equal("isValidate", false)]
+    );
+
+    return appointments.documents;
+  }
+
+  async ValidateNonUserAppointment(id: any){
+    const databases = new Databases(client);
+
+    const app = await databases.updateDocument(
+      environment.databaseId,
+      environment.collectionIdNonUserApp,
+      id,
+      {
+        "isValidate" : true
+      }
+    );
+
+    return app;
+  }
+
+  async createNonUserAppointment(name:any, phone:any, mail:any){
+    const databases = new Databases(client);
+
+    const app = await databases.createDocument(
+      environment.databaseId,
+      environment.collectionIdNonUserApp,
+      ID.unique(),
+      {
+        name: name,
+        phone: phone,
+        email: mail
+      }
+    );
+
+    return app;
+  }
+  
   async getAllWaitingAppointments() {
     const databases = new Databases(client);
 

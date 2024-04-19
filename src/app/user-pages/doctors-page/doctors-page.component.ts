@@ -135,7 +135,7 @@ export class DoctorsPageComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: response,
+          title: "Es ist ein Fehler aufgetreten, bitte überprüfen Sie alle Informationen",
           showConfirmButton: false,
           timer: 3000,
         });

@@ -114,7 +114,7 @@ export class AppointmentFormComponent implements OnInit {
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: response,
+            title: "Ein Fehler tritt auf",
             showConfirmButton: false,
             timer: 3000,
           });

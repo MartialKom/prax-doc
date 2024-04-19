@@ -110,7 +110,7 @@ export class FullCalendarComponentClass implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Please enter a new title for your event');
+    const title = prompt('Bitte geben Sie einen Titel für Ihre Veranstaltung ein');
     const calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); 
@@ -118,7 +118,7 @@ export class FullCalendarComponentClass implements OnInit {
     if (title) {
       this.loadingcalendar =true;
 
-      this.userService.createAdminAppointment(selectInfo.startStr.split("T")[0],selectInfo.startStr.split("T")[1],selectInfo.endStr.split("T")[1],title).then(
+      this.userService.createAdminAppointment(selectInfo.startStr.split("T")[0],selectInfo.startStr.split("T")[1],selectInfo.endStr.split("T")[1],title,null).then(
         response => {
           if(response?.$id){
             this.storage.remove("Appointments");
@@ -131,7 +131,7 @@ export class FullCalendarComponentClass implements OnInit {
             Swal.fire({
               position: 'center',
               icon: 'error',
-              title: response,
+              title: "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später noch einmal",
               showConfirmButton: false,
               timer: 3000,
             });
@@ -140,6 +140,7 @@ export class FullCalendarComponentClass implements OnInit {
       )
     }
   }
+
 
   handleEventClick(clickInfo: EventClickArg) {
 
@@ -157,7 +158,7 @@ export class FullCalendarComponentClass implements OnInit {
   deleteEvent(){
     if (
       confirm(
-        `Are you sure you want to delete the event '${this.selectedAppointment.name}'`
+        `Sind Sie sicher, dass Sie das Ereignis löschen möchten? '${this.selectedAppointment.name}'`
       )
     ) {
       this.hideModal();
@@ -178,7 +179,7 @@ export class FullCalendarComponentClass implements OnInit {
   handleUpdate(events: EventChangeArg) {
     if (
       confirm(
-        'Are you sure you want to update the event ' + events.event.title
+        'Sind Sie sicher, dass Sie das Ereignis aktualisieren möchten ' + events.event.title
       )
     ) {
       this.loadingcalendar = true;

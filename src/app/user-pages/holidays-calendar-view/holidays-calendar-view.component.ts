@@ -93,7 +93,7 @@ export class HolidaysCalendarViewComponent implements OnInit {
 
     if(
       confirm(
-        'Are you sure you want to create the holiday ? '
+        'Sind Sie sicher, dass Sie den Urlaub gestalten wollen ? '
       )
     ){
       this.loadingcalendar = true;
@@ -117,7 +117,7 @@ export class HolidaysCalendarViewComponent implements OnInit {
   handleUpdate(events: EventChangeArg){
     if (
       confirm(
-        'Are you sure you want to update the event ' + events.event.title
+        'Sind Sie sicher, dass Sie das Ereignis aktualisieren möchten ' + events.event.title
       )
     ) {
       this.loadingcalendar = true;

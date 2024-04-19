@@ -24,8 +24,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                     </svg>
-                    <p class="mb-1 md:mb-2 text-xs md:text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to
-                            upload</span> or drag and drop</p>
+                    <p class="mb-1 md:mb-2 text-xs md:text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Zum Hochladen klicken</span> oder ziehen und ablegen</p>
                     <p class="text-2xs md:text-xs text-gray-500 dark:text-gray-400">PDF, SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                 </div>
                 <input  type="file" class="block" (change)="onFileSelected($event)"/>
@@ -36,7 +35,7 @@
 
         <div *ngIf="file" class="mt-4">
             <button (click)="uploadFile()" type="button" [disabled]="myloading"
-                class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Upload</button>
+                class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Hochladen</button>
         </div>
 
         <div *ngIf="myloading" class="text-center mt-4">
@@ -66,17 +65,15 @@
             class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
             <li class="me-2">
                 <a [ngClass]="{ 'text-orange-400 bg-gray-100 ': isImage, 'hover:text-gray-600 hover:bg-gray-50 ': !isImage }"
-                    (click)="getImage()" aria-current="page" class="inline-block cursor-pointer p-4 rounded-t-lg ">My
-                    Images</a>
+                    (click)="getImage()" aria-current="page" class="inline-block cursor-pointer p-4 rounded-t-lg ">Meine Bilder</a>
             </li>
             <li class="me-2">
                 <a [ngClass]="{ 'text-orange-400 bg-gray-100 ': isPdf, 'hover:text-gray-600 hover:bg-gray-50 ': !isPdf }"
-                    (click)="importPdf()" aria-current="page" class="inline-block cursor-pointer p-4 rounded-t-lg ">My
-                    Pdf files</a>
+                    (click)="importPdf()" aria-current="page" class="inline-block cursor-pointer p-4 rounded-t-lg ">Meine Pdf-Dateien</a>
             </li>
             <li class="me-2" *ngIf="!isAdmin">
                 <a [ngClass]="{ 'text-orange-400 bg-gray-100 ': isAdminFiles, 'hover:text-gray-600 hover:bg-gray-50 ': !isAdminFiles }"
-                    aria-current="page" class="inline-block cursor-pointer p-4 rounded-t-lg ">Admin files</a>
+                    aria-current="page" class="inline-block cursor-pointer p-4 rounded-t-lg ">Verwaltungs-Dateien</a>
             </li>
         </ul>
 

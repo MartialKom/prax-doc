@@ -14,10 +14,10 @@
 
     <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
         <div class="flex justify-between mb-4 items-start">
-            <div class="font-medium text-amber-600">All Appointments</div>
+            <div class="font-medium text-amber-600">Alle Verabredungen</div>
 
             <button (click)="openModal(Appointmentmodal)" class="bg-[#f7961c] text-white font-bold py-2 px-4 rounded">
-                Add Appointment
+                Termin hinzufügen
             </button>
         </div>
         <div class="overflow-x-auto">
@@ -26,16 +26,16 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Date
+                            Datum
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Time
+                            Zeit
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Status
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Aktion
                         </th>
                     </tr>
                 </thead>
@@ -58,7 +58,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <a (click)="deleteAppointment(appointment.$id)" class="font-medium cursor-pointer uppercase text-red-600  hover:underline">delete
+                            <a (click)="deleteAppointment(appointment.$id)" class="font-medium cursor-pointer uppercase text-red-600  hover:underline">löschen
                                 </a>
                         </td>
                     </tr>
@@ -79,7 +79,7 @@
             <div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Add Appointment
+                        Termin hinzufügen
                     </h3>
                     <button type="button"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -109,7 +109,7 @@
                         </div>
                         <div>
                             <label for="company"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your age</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ihr Alter</label>
                             <input type="number" id="age" formControlName="age" name="age"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required />
@@ -119,8 +119,7 @@
                         </div>
                         <div>
                             <label for="phone"
-                                class="block text-sm font-medium text-gray-900 dark:text-white">Phone
-                                number</label>
+                                class="block text-sm font-medium text-gray-900 dark:text-white">Rufnummer</label>
                             <input type="text" id="phone" formControlName="phone" name="phone"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="123-45-678" required />
@@ -129,7 +128,7 @@
                                 </div>
                         </div>
                             <mat-form-field class="mt-2 w-full" >
-                                <mat-label class="text-black">Select a doctor</mat-label>
+                                <mat-label class="text-black">Wählen Sie einen Arzt</mat-label>
                                 <mat-select formControlName="doctor">
                                 <mat-option *ngFor="let doc of doctors" [value]="doc.id">
                                     <mat-list-item >
@@ -145,8 +144,7 @@
 
                  
                         <div>
-                            <label class="block text-sm font-medium text-gray-900 dark:text-white">Start
-                                date</label>
+                            <label class="block text-sm font-medium text-gray-900 dark:text-white">Datum des Beginns</label>
                             <input type="date" id="startDate" formControlName="startDate" name="startDate"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required />
@@ -155,8 +153,7 @@
                                 </div>
                         </div>
                     </div>
-                    <label for="hours" class="block  text-sm font-medium text-gray-900 dark:text-white">Select start
-                        hour</label>
+                    <label for="hours" class="block  text-sm font-medium text-gray-900 dark:text-white">Startstunde wählen</label>
                     <div class="mb-2 flex flex-col items-center gap-2 p-4">
 
                         <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6  text-md gap-2">
@@ -168,8 +165,7 @@
                         </div>
 
                     </div>
-                    <label for="hours" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select end
-                        hour</label>
+                    <label for="hours" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Endstunde wählen</label>
                     <div class="mb-6 flex flex-col items-center gap-2 p-4">
 
                         <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6  text-md gap-2">
@@ -182,8 +178,7 @@
 
                     </div>
                     <div class="mb-6">
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
-                            address</label>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-Mail Adresse</label>
                         <input type="email" id="email" formControlName="email" name="email"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="john.doe@company.com" required />
@@ -194,7 +189,7 @@
 
 
                     <button type="submit"
-                        class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Einreichen</button>
                 </form>
 
 
