@@ -1,27 +1,86 @@
 # PraxDoc
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
+# Prax-doc Application
 
-## Development server
+This README provides the necessary instructions to run and deploy the Prax-doc application.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Requirements
 
-## Code scaffolding
+### Node.js
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Install Node.js 18.19.1: [Download Page](https://nodejs.org/en/download/)
 
-## Build
+### Angular CLI
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Once you have Node.js installed, the `npm` command is now available.
+- Install Angular CLI version 16.2.12 with the following command:
 
-## Running unit tests
+**npm install -g @angular/cli**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Clone the Project
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Clone the project from the repository: `Prax-doc`
 
-## Further help
+## Running the Application
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To run the application, follow these steps:
+
+1. Open a terminal in the directory of the project.
+2. Install all dependencies with the following command:
+  ```
+  npm install
+  ```
+3. Start the server with:
+  ```
+  ng serve
+  ```
+4. The application will start on port `4300`.
+
+## Deploying the Application with Docker
+
+### Requirements
+
+- Install Docker: [Installation documentation](https://docs.docker.com/get-docker/)
+
+### Building the Docker Image
+
+1. In the directory of the project, you will find a file named `Dockerfile`.
+2. Open a terminal in the directory of the project and execute the following command to construct a build for the application:
+  ```
+  docker build -t prax-doc:V1 .
+  ```
+ - `V1` represents the tag of the build.
+ - `prax-doc` represents the name of the build.
+
+### Running the Docker Container
+
+To start the application, open a terminal anywhere and execute the following command:
+
+**docker run -d --name prax-doc -p 8000:4300 prax-doc:V1**
+
+- `prax-doc` is the name of the container.
+- `8000` is the port of the application on your computer.
+- `4300` is the real port of the application.
+- `prax-doc:V1` is the build that you want to start.
+
+### Stopping and Starting Docker Containers
+
+- To stop a container, use the following command:
+    ```
+    docker stop container_name
+    ```
+  - In this case, the container name is `prax-doc`.
+
+- To start a container, use the following command:
+    ```
+    docker start container_name
+    ```
+
+## Environment Configuration
+
+In the source directory of the project (`src/environments`), there are two environment files:
+- One for UAT.
+- One for local.
+
+These files contain all the Appwrite IDs and parameters for the application.
