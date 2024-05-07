@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user-services/user.service';
+import { Table } from 'primeng/table';
+
 
 @Component({
   selector: 'app-holiday-view-admin',
@@ -11,13 +13,35 @@ export class HolidayViewAdminComponent implements OnInit {
 
   holidays: any[] = [];
   loadingHolidays: boolean = false;
+  statuses!: any[];
 
 
   constructor(private userService: UserService){}
 
+  getSeverity(status: string) {
+    switch (status) {
+        case 'REJECTED':
+            return 'danger';
+
+        case 'VALIDATED':
+            return 'success';
+
+        case 'WAITING':
+            return 'warning';
+        default:
+          return undefined;
+    }
+}
+
   ngOnInit(): void {
     
     this.loadingHolidays = true;
+    
+    this.statuses = [
+      { label: 'REJECTED', value: 'REJECTED' },
+      { label: 'VALIDATED', value: 'VALIDATED' },
+      { label: 'WAITING', value: 'WAITING' }
+  ];
 
     this.userService.getAllHolidays().then(
       (response)=>{
@@ -30,6 +54,10 @@ export class HolidayViewAdminComponent implements OnInit {
     );
 
   }
+
+  clear(table: Table) {
+    table.clear();
+}
 
   changeStatus(id: any, status: string){
 

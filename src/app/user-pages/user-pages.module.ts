@@ -23,6 +23,10 @@ import {MatListModule} from '@angular/material/list';
 import { HolidaysWiewComponent } from './holidays-wiew/holidays-wiew.component';
 import { HolidaysCalendarViewComponent } from './holidays-calendar-view/holidays-calendar-view.component';
 import { HolidayViewAdminComponent } from './holiday-view-admin/holiday-view-admin.component';
+import { ContactComponent } from './contact/contact.component';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -41,9 +45,13 @@ import { HolidayViewAdminComponent } from './holiday-view-admin/holiday-view-adm
     HolidaysWiewComponent,
     HolidaysCalendarViewComponent,
     HolidayViewAdminComponent,
+    ContactComponent,
   ],
   imports: [
     CommonModule,
+    TableModule,
+    DropdownModule,
+    TagModule,
     UserPagesRoutingModule,
     FormsModule,
     ReactiveFormsModule,

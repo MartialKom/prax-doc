@@ -1,8 +1,8 @@
 export const environment = {
     production: false,
-    endpoint: 'http://207.180.206.20:8090/v1',
-    projectId: '65fcabc3666b0d5e1bf2',
-    databaseId: 'praxDB',
+    endpoint: 'https://cloud.appwrite.io/v1',
+    projectId: '6625177c31b5930630fe',
+    databaseId: '663a2fa2000c900d3aea',
     collectionIdUser: 'users',
     collectionIdDocument: 'docs',
     collectionIdAppointment: 'appointments',
@@ -15,5 +15,6 @@ export const environment = {
     collectionIdTitleLink: 'titleLinks',
     collectionIdFooter: 'footer',
     collectionIdNonUserApp:'nonUserAppointments',
+    collectionIdContact: 'contactUs',
     bucketId: 'praxStorage'
 }

@@ -51,9 +51,9 @@ export class HomeDashboardComponent implements OnInit {
           const percentage = (this.userVerified / this.totalUsers) * 100;
           const mypercentage = (this.myUserData.length / this.totalUsers) * 100;
 
-          if (mypercentage) this.myPatientsPercentage = mypercentage;
+          if (mypercentage) this.myPatientsPercentage = Math.floor(mypercentage);
 
-          if (percentage) this.veriedUserPercentage = percentage;
+          if (percentage) this.veriedUserPercentage = Math.floor(percentage);
         }
       });
       if (userData.labels[0] === 'doctor') {
@@ -87,11 +87,11 @@ export class HomeDashboardComponent implements OnInit {
 
             const percent = (this.totalImg / this.totalDocs) * 100;
 
-            if (percent) this.imagePercentage = percent;
+            if (percent) this.imagePercentage = Math.floor(percent);
 
             const percentPdf = (this.totalPdf / this.totalDocs) * 100;
 
-            if (percentPdf) this.pdfPercentage = percentPdf;
+            if (percentPdf) this.pdfPercentage = Math.floor(percentPdf);
           }
           this.loadingUsers = false;
         });

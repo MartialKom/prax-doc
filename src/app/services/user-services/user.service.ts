@@ -459,4 +459,56 @@ export class UserService {
       id
     );
   }
+
+  async createContactUs(comment: any, name: any, email:any){
+    const databases = new Databases(client);
+
+    return await databases.createDocument(
+      environment.databaseId,
+      environment.collectionIdContact,
+      ID.unique(),
+      {
+        comment: comment,
+        name: name,
+        email: email
+      }
+    )
+  }
+
+  async getContact(){
+
+    const databases = new Databases(client);
+
+    const contacts = await databases.listDocuments(
+      environment.databaseId,
+      environment.collectionIdContact,
+      [Query.orderAsc('read')]
+    );
+
+    return contacts.documents;
+
+  }
+
+  async deleteContact(id: string){
+    const databases = new Databases(client);
+
+    return await databases.deleteDocument(
+      environment.databaseId,
+      environment.collectionIdContact,
+      id
+    );
+  }
+
+  async updateContactStatus(id: string){
+    const databases = new Databases(client);
+
+    return await databases.updateDocument(
+      environment.databaseId,
+      environment.collectionIdContact,
+      id,
+      {
+        read : true
+      }
+    )
+  }
 }

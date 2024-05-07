@@ -25,7 +25,7 @@ export class AppointmentViewComponent implements OnInit {
     this.userService.getAllAppointments().then((response) => {
       if (response) {
         for (let app of response) {
-          if (app['date'] > today && app['status'] === 'WAITING')
+          if (app['date'] < today.toISOString() && app['status'] === 'WAITING')
             this.failedAppointments.push(app);
           else if (app['status'] === 'WAITING') {
             this.appointments.push(app);

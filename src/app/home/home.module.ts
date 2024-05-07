@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MakeRequestService } from '../services/commons/make-request.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatInputModule } from "@angular/material/input";
 
 
 
@@ -30,7 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     InterestingLinksComponent,
     TeamComponent,
     TestimonialsComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+		MatInputModule,
     NgbModule
   ],
   providers: [

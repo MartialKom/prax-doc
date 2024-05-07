@@ -9,10 +9,11 @@
 
 </div>
 
-<section class="w-full md:w-[calc(100%-220px)] ml-40 pt-[45px] mx-auto bg-gray-50 min-h-screen transition-all  ">
+<section class="w-full md:w-[calc(100%-220px)] ml-[220px] pt-[60px] mx-auto bg-gray-50 min-h-screen transition-all  ">
     <div class="p-2">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 justify-around">
-            <div *ngIf="!isDoctor" class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
+        <div class="w-[98%] grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 ml-5 justify-around">
+            <div *ngIf="!isDoctor"
+                class="w-[95%] bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                 <div class="">
                     <svg class="w-12 h-12 text-amber-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         width="34" height="34" fill="none" viewBox="0 0 24 24">
@@ -68,8 +69,8 @@
                 </div>
             </div>
 
-
-            <div *ngIf="!isDoctor" class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
+            <div *ngIf="!isDoctor"
+                class="w-full bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                 <div class="">
                     <svg class="w-12 h-12 text-amber-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -94,20 +95,48 @@
                             <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                         </div>
                     </div>
-                    <span class="text-sm font-light text-gray-600 ml-4">{{imagePercentage+"% images"}}</span>
+                    <span class="text-sm font-medium text-gray-600 ml-4">{{imagePercentage+"% images"}}</span>
                 </div>
                 <div class="flex items-center">
                     <div class="w-[80%] bg-gray-100 rounded-full h-4">
-                        <div class="h-full bg-amber-500 rounded-full p-1" [style]=' "width: "+pdfPercentage+"%;"'>
+                        <div class="h-full bg-amber-500 rounded-full p-1" [style]=' "width: "+ pdfPercentage+"%;"'>
                             <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
                         </div>
                     </div>
                     <span class="text-sm font-medium text-gray-600 ml-4">{{pdfPercentage+"% PDF"}}</span>
                 </div>
             </div>
+
+            <!--<div class="doctor-profile">
+                <div class="flex flex-row space-x-7">
+                    <div>
+                        <img src="doctor-photo.jpg" height="85" width="85" alt="Photo du docteur">
+                    </div>
+                  <div class="flex flex-col ">
+                  <h2>Smith Wright</h2>
+                  <p>Clinical Doctor</p>
+                  </div>
+                </div>
+                <div class="stats">
+                  <div class="stat flex flex-col">
+                    <span class="value">1202</span>
+                    <span class="label">Patient</span>
+                  </div>
+                  <div class="stat flex flex-col">
+                    <span class="value">29 yrs</span>
+                    <span class="label">Doc age</span>
+                  </div>
+                  <div class="stat flex flex-col">
+                    <span class="value">2259</span>
+                    <span class="label">Points</span>
+                  </div>
+                </div>
+                <button class="view-profile">View Profile</button>
+              </div>-->
+
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
+        <div class="w-[98%] grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 ml-5 justify-around">
+            <!--<div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                 <div class="flex justify-between mb-4 items-start">
                     <div class="font-medium">Alle Patienten</div>
                 </div>
@@ -193,9 +222,75 @@
                     </table>
 
                 </div>
+            </div>-->
+
+
+            <div class="main rounded-md w-[95%] ">
+                <div class="banner bg-amber-600 rounded-sm  w-[90%] ">
+                    <div class="p-2 ">
+
+                        <h2 class="mt-5 font-medium mb-2">Liste der Patienten</h2>
+                        <p>
+                            Klicken Sie auf die Schaltfläche unten, um eine Liste aller Patienten im System anzuzeigen.
+                        </p>
+                    </div>
+                </div>
+                <div class="card w-[95%] rounded-md shadow-md" style="margin-top: 127px;">
+                    <div
+                        class="bg-white border-none w-full flex flex-row justify-around dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                        <div class=" w-[50%] flex items-center  py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                            <div
+                                class="w-10 h-10 bg-white shadow-lg border items-center justify-center flex font-bold rounded-full text-orange-400">
+                                {{userData[0].name.charAt(0).toUpperCase()}} </div>
+                            <div class="ps-3">
+                                <div class="text-base font-semibold">{{userData[0].name}}</div>
+                                <div class="font-normal text-gray-500"> {{userData[0].email}} </div>
+                            </div>
+                        </div>
+                        <div class="px-6 py-4 text-gray-600">
+                            Patient
+                        </div>
+                        <div class="px-6 py-4">
+                            <div *ngIf="userData[0].isVerified" class="flex items-center text-black">
+                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Aktiv
+                            </div>
+                            <div *ngIf="!userData[0].isVerified" class="flex items-center text-black">
+                                <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inaktiv
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card w-[95%] rounded-md shadow-md">
+                    <div
+                        class="bg-white border-none w-full flex flex-row justify-around dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                        <div class="flex items-center w-[50%] py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                            <div
+                                class="w-10 h-10 bg-white shadow-lg border items-center justify-center flex font-bold rounded-full text-orange-400">
+                                {{userData[1].name.charAt(0).toUpperCase()}} </div>
+                            <div class="ps-3">
+                                <div class="text-base font-semibold">{{userData[1].name}}</div>
+                                <div class="font-normal text-gray-500"> {{userData[1].email}} </div>
+                            </div>
+                        </div>
+                        <div class="px-6 py-4 text-gray-600">
+                            Patient
+                        </div>
+                        <div class="px-6 py-4">
+                            <div *ngIf="userData[1].isVerified" class="flex items-center text-black">
+                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Aktiv
+                            </div>
+                            <div *ngIf="!userData[1].isVerified" class="flex items-center text-black">
+                                <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Inaktiv
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="end bg-[#b57323] text-white font-bold py-2 px-4 rounded">
+                    Alle Patienten ansehen
+                </button>
             </div>
-
-
 
             <div class="bg-white border overflow-x-auto border-gray-100 shadow-md shadow-black/5 w-full rounded-md">
                 <app-appointment-view></app-appointment-view>

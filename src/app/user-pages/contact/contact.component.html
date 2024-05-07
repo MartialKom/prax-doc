@@ -1,0 +1,172 @@
+<section class="w-[calc(100%-220px)] ml-[220px] pt-[45px] bg-gray-50 min-h-screen transition-all   ">
+    <div class="w-[98%] ml-5 overflow-x-auto shadow-md sm:rounded-lg  p-6 ">
+        <div
+            class="  flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-1 bg-white">
+            <div *ngIf="contactSelected.length>0" class="px-8 py-2">
+                <button (click)="delete()"
+                    class="w-full inline-flex items-center text-gray-300 bg-red-700 border  focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2">
+                    Löschen
+                </button>
+            </div>
+
+        </div>
+        <p-table class="px-2" #dt2 [value]="contactData" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]"
+            [loading]="loadingContact" [paginator]="true" [globalFilterFields]="['name', 'email']"
+            [tableStyle]="{ 'min-width': '75rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name" style="width:25%">
+                        Name <p-sortIcon field="date" />
+                    </th>
+                    <th pSortableColumn="email" style="width:25%">
+                        email <p-sortIcon field="dateEnd" />
+                    </th>
+                    <th style="width:22%">
+                        Status
+                    </th>
+                    <th style="width:22%">
+                        Aktion
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <p-columnFilter field="name" placeholder="Search by name">
+                        </p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter field="email" placeholder="Search by email">
+                        </p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter field="read" matchMode="equals" [showMenu]="false">
+                            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
+                                    placeholder="Select One" [showClear]="true">
+                                    <ng-template let-option pTemplate="item">
+                                        <p-tag [value]="option.label" [severity]="getSeverity(option.label)" />
+                                    </ng-template>
+                                </p-dropdown>
+                            </ng-template>
+                        </p-columnFilter>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template class="px-3" pTemplate="body" let-doc>
+                <tr
+                    class="bg-white cursor-pointer border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+
+                        {{doc.name}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{doc.email}}
+                    </td>
+                    <td class="px-6 py-4">
+                        <div *ngIf="doc.read" class="flex items-center">
+                            <p-tag value="Gelesen" severity="success" />
+                        </div>
+                        <div *ngIf="!doc.read" class="flex items-center">
+                            <p-tag value="Ungelesen" severity="danger" />
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 flex flex-row space-x-2">
+                        <div class="flex items-center">
+                            <input type="checkbox" [checked]="getSelectedStatus(doc)" (change)="toogleSelection(doc)"
+                                class="w-4 h-4 text-blue-600 bg-amber-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                        </div>
+                        <div (click)="select(doc, contact)">
+                            <svg class="w-6 h-6 text-green-600 cursor-pointer dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M15.03 9.684h3.965c.322 0 .64.08.925.232.286.153.532.374.717.645a2.109 2.109 0 0 1 .242 1.883l-2.36 7.201c-.288.814-.48 1.355-1.884 1.355-2.072 0-4.276-.677-6.157-1.256-.472-.145-.924-.284-1.348-.404h-.115V9.478a25.485 25.485 0 0 0 4.238-5.514 1.8 1.8 0 0 1 .901-.83 1.74 1.74 0 0 1 1.21-.048c.396.13.736.397.96.757.225.36.32.788.269 1.211l-1.562 4.63ZM4.177 10H7v8a2 2 0 1 1-4 0v-6.823C3 10.527 3.527 10 4.176 10Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <!-- <table class="w-full  text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            email
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Aktion
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let doc of contactData" (click)="select(doc, contact)"
+                        class="bg-white cursor-pointer border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                        <td class="w-4 p-4">
+                            <div class="flex items-center">
+                                <input type="checkbox" [checked]="getSelectedStatus(doc)"
+                                    (change)="toogleSelection(doc)"
+                                    class="w-4 h-4 text-blue-600 bg-amber-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                            </div>
+                        </td>
+                        <th scope="row"
+                            class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+
+                            {{doc.name}}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{doc.email}}
+                        </td>
+                        <td class="px-6 py-4">
+                            <div *ngIf="doc.read" class="flex items-center">
+                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Gelesen
+                            </div>
+                            <div *ngIf="!doc.read" class="flex items-center">
+                                <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Ungelesen
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>-->
+    </div>
+
+    <ng-template id="contact" #contact let-modal>
+        <div
+            class="w-auto px-10 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex justify-end px-4 pt-4">
+
+            </div>
+            <div class="flex flex-col items-center pb-10">
+                <div
+                    class="w-10 h-10 bg-white shadow-lg border items-center justify-center flex font-extralight rounded-full text-orange-400">
+                    {{selectedContact.name.charAt(0).toUpperCase()}} </div>
+                <h5 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">{{selectedContact.email}}</h5>
+                <p class="font-bold text-gray-500  dark:text-gray-400 mt-5 px-6">
+                    {{selectedContact.comment}}
+                </p>
+                <div class="flex mt-4 md:mt-6">
+                    <!-- <a  class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</a>-->
+                    <a (click)="read(selectedContact.$id)"
+                        class="py-2 px-4 ms-2 text-sm font-medium cursor-pointer text-gray-200 focus:outline-none bg-green-700 rounded-lg border border-gray-200 hover:bg-green-800 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Als
+                        gelesen markieren</a>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+</section>

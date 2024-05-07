@@ -7,6 +7,7 @@ import { RegisterRequest } from 'src/app/models/register.model';
 import { LoginService } from 'src/app/services/authServices/login.service';
 import { FormatDateService } from 'src/app/services/commons/format-date.service';
 import { LocalStorageService } from 'src/app/services/commons/local-storage.service';
+import { UserService } from 'src/app/services/user-services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,6 +23,12 @@ export class HeaderComponent implements OnInit {
   errormsg = false;
   errorMessage: any;
   userData: any;
+
+  contactForm = new FormGroup({
+    name: new FormControl(null, Validators.required),
+    comment: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.email]),
+  });
 
   loginRequest: LoginRequest | undefined;
   registerRequest: RegisterRequest | undefined;
@@ -40,12 +47,12 @@ export class HeaderComponent implements OnInit {
   userInitial: any;
   isMobileMenuOpen: boolean = false;
 
-
   constructor(
     private modalService: MatDialog,
     private loginservice: LoginService,
     private localstorageService: LocalStorageService,
     private formatDateService: FormatDateService,
+    private userService: UserService,
     private router: Router
   ) {}
 
@@ -58,7 +65,52 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  toogleMenu(){
+  openContactModal(content: any): void {
+    const dialogRef = this.modalService.open(content);
+  }
+
+  hideContact() {
+    this.modalService.closeAll();
+  }
+
+  createContact(){
+    this.submitted = true;
+    if(!this.contactForm.valid){
+      return;
+    }
+    this.hideContact();
+
+    this.loadingOp = true;
+
+    const name = this.contactForm.get('name')!.value;
+    const comment  = this.contactForm.get('comment')!.value;
+    const email = this.contactForm.get('email')!.value;
+
+    this.userService.createContactUs(comment, name,email).then(
+      (response) => {
+        this.loadingOp = false;
+        if(response['name']){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Nachricht erfolgreich gesendet',
+            showConfirmButton: false,
+            timer: 3000,
+          })
+        } else {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Ein Fehler ist aufgetreten',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      }
+    )
+  }
+
+  toogleMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
   formatDate(date: string): string {
@@ -105,7 +157,10 @@ export class HeaderComponent implements OnInit {
             timer: 3000,
           });
           setTimeout(() => {
-            if (response.labels[0] === 'admin' || response.labels[0] === 'doctor')
+            if (
+              response.labels[0] === 'admin' ||
+              response.labels[0] === 'doctor'
+            )
               this.router.navigate(['/user/dashboard/home']).then((r) => {
                 window.location.reload();
               });
@@ -118,7 +173,7 @@ export class HeaderComponent implements OnInit {
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: "Falsche E-Mail oder falsches Passwort",
+            title: 'Falsche E-Mail oder falsches Passwort',
             showConfirmButton: false,
             timer: 3000,
           });
@@ -189,7 +244,7 @@ export class HeaderComponent implements OnInit {
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: "Ein Fehler tritt auf",
+            title: 'Ein Fehler tritt auf',
             showConfirmButton: false,
             timer: 3000,
           });
@@ -201,13 +256,16 @@ export class HeaderComponent implements OnInit {
   }
 
   openProfile() {
-    if(this.userData.labels[0] === 'admin' || this.userData.labels[0] === 'doctor')
-    this.router.navigate(['/user/dashboard/home']).then((r) => {
-      window.location.reload();
-    });
+    if (
+      this.userData.labels[0] === 'admin' ||
+      this.userData.labels[0] === 'doctor'
+    )
+      this.router.navigate(['/user/dashboard/home']).then((r) => {
+        window.location.reload();
+      });
     else
-    this.router.navigate(['/user/profile/info']).then((r) => {
-      window.location.reload();
-    });
+      this.router.navigate(['/user/profile/info']).then((r) => {
+        window.location.reload();
+      });
   }
 }

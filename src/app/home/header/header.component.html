@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
             <div class="flex flex-row justify-between  w-auto items-center">
-                <div class="flex-shrink-0 hidden lg:block">
+                <div class="flex-shrink-0 hidden lg:block lg:ml-[90px]">
                     <a href="#" class="text-[#212529] font-bold">Logo</a>
                 </div>
 
@@ -15,10 +15,9 @@
                     </button>
                 </div>
                 <div class="hidden lg:block">
-                    <div class="md:ml-20 flex items-center space-x-10">
+                    <div class="md:ml-40 flex items-center space-x-10">
                         <a routerLink="/home" routerLinkActive="text-orange-400" class="text-[#212529] hover:text-[#f7961c]">Home</a>
-                        <a  class="text-[#212529] hover:text-[#f7961c]">praxisräume</a>
-                        <a  class="text-[#212529] hover:text-[#f7961c]">praxisspektrum</a>
+                        <a (click)="openContactModal(ContactModal)" class="text-[#212529] hover:text-[#f7961c] cursor-pointer">Kontaktieren Sie uns</a>
                         <a href="home#team" class="text-[#212529] hover:text-[#f7961c]">unser-team</a>
                         <a href="home#links" class="text-[#212529] hover:text-[#f7961c]">Links</a>
                         <a *ngIf="isAuth" routerLink="/user/media" routerLinkActive="text-orange-400" class="text-[#212529] cursor-pointer hover:text-[#f7961c]">Meine Dokumente</a>
@@ -211,3 +210,34 @@
     </div>
     <div data-popper-arrow></div>
 </div>
+
+<ng-template  #ContactModal id="ContactModal" tabindex="-1" aria-hidden="true" let-modal class="transition duration-75 hidden overflow-y-scroll overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <span (click)="hideContact()" class=" cursor-pointer mb-6 text-[26px] mr-5  font-bold float-right text-[#aaa]">&times;</span>
+    <div class="p-6">
+        <h3 class="font-extrabold mb-4"> Kontaktieren Sie uns</h3>
+      <form [formGroup]="contactForm" (submit)="createContact()" class="space-y-4 mt-5">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Ihr Name</label>
+          <input type="text" formControlName="name" id="name" name="name" class="mt-1 focus:ring-amber-600  focus:border-amber-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          <div *ngIf="submitted && contactForm.controls.name.errors" class="text-red-600">
+            Dieses Feld ist erforderlich
+        </div>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Ihre Email</label>
+          <input type="email" id="email" name="email" formControlName="email" class="mt-1 focus:ring-amber-600  focus:border-amber-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+        <div>
+          <label for="telephone" class="block text-sm font-medium text-gray-700">Ihr Kommentar</label>
+          <textarea  id="comment" name="comment" formControlName="comment" class="mt-1 focus:ring-amber-600  focus:border-amber-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+          <div *ngIf="submitted && contactForm.controls.comment.errors" class="text-red-600">
+            Dieses Feld ist erforderlich
+        </div>
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Um einen Termin bitten</button>
+        </div>
+      </form>
+    </div>
+    
+  </ng-template>

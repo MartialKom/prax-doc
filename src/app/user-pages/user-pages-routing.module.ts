@@ -12,6 +12,7 @@ import { DoctorsPageComponent } from './doctors-page/doctors-page.component';
 import { HolidaysWiewComponent } from './holidays-wiew/holidays-wiew.component';
 import { HolidayViewAdminComponent } from './holiday-view-admin/holiday-view-admin.component';
 import { IndexComponent } from '../home/index/index.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
       {path:'doctors', component: DoctorsPageComponent, pathMatch: "full"},
       {path:'myHolidays', component: HolidaysWiewComponent, pathMatch: "full"},
       {path:'allHolidays', component: HolidayViewAdminComponent, pathMatch: "full"},
+      {path: 'contact', component: ContactComponent, pathMatch: "full"},
       {path: 'frontEnd', component: IndexComponent, pathMatch:"full"}
 
     ]
