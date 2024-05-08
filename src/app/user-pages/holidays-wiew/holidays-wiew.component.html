@@ -17,52 +17,78 @@
             <div class="font-medium text-amber-600">Alle meine Urlaubsanträge</div>
         </div>
         <div class="overflow-x-auto">
-            <table class="w-full min-w-[540px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                data-tab-for="order" data-page="active">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Datum des Beginns
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Enddatum
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Aktion
-                        </th>
-                    </tr>
-                </thead>
 
-                <tbody>
+            <p-table class="px-2" #dt2 [value]="holidays" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]"
+            [loading]="loadingHolidays" [paginator]="true" [globalFilterFields]="['status']"
+            [tableStyle]="{ 'min-width': '75rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="date" style="width:25%">
+                       Beginns  <p-sortIcon field="date" />
+                    </th>
+                    <th pSortableColumn="dateEnd" style="width:25%">
+                        Enddatum <p-sortIcon field="dateEnd" />
+                    </th>
+                    <th style="width:22%">
+                        Status
+                    </th>
+                    <th style="width:22%">
+                        Aktion
+                    </th>
+                </tr>
+                <tr>
+                    <th>
 
-                    <tr *ngFor="let holiday of holidays"
-                        class="bg-white font-light border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    </th>
 
-                        <th scope="row"
-                            class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                            <div class="text-base font-light">{{holiday.date.split("T")[0]}}</div>
-                        </th>
-                        <td class="px-6 py-4">
-                           <div class="text-base text-gray-900 "> {{holiday.dateEnd.split("T")[0]}} </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div [ngClass]="{'bg-green-500': holiday.status === 'VALIDATED', 'bg-orange-300': holiday.status ==='WAITING', 'bg-red-600': holiday.status ==='REJECTED' }" class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> {{holiday.status}}
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 uppercase">
-                            <a (click)="deleteHoliday(holiday.$id)" class="cursor-pointer font-medium text-red-600  hover:underline">delete
-                                </a>
-                        </td>
-                    </tr>
+                    <th>
 
-                </tbody>
+                    </th>
+                    <th>
+                        <p-columnFilter class="mb-5" field="status" matchMode="equals" [showMenu]="false">
+                            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
+                                    placeholder="Select One" [showClear]="true">
+                                    <ng-template let-option pTemplate="item">
+                                        <p-tag [value]="option.value" [severity]="getSeverity(option.label)" />
+                                    </ng-template>
+                                </p-dropdown>
+                            </ng-template>
+                        </p-columnFilter>
+                    </th>
+                    <th>
 
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template class="px-3" pTemplate="body" let-holiday>
+                <tr
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-            </table>
+                    <td
+                        class="px-6 py-4">
+                        <div class="text-base font-light">{{holiday.date.split("T")[0]}}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="text-base text-gray-900 font-light"> {{holiday.dateEnd.split("T")[0]}} </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <p-tag [value]="holiday.status" [severity]="getSeverity(holiday.status)" />
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div (click)="deleteHoliday(holiday.$id)">
+                        <svg class="w-6 h-6 text-red-600  dark:text-white cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
+                          </svg>
+                        </div>
+                          
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
 
         </div>
 
