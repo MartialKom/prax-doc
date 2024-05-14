@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<div *ngIf="loadingOp"
+    style="position:fixed; background-color:rgba(255,255,255,0.7); top:0; left:0; width:100vw; height:100vh; z-index: 99999999;">
+
+    <div class="flex flex-col justify-center items-center"
+        style="left:45%; top:50%; position: fixed; width: 200px; text-align: center; ">
+        <img style="width: 100px;" src="/assets/load 2.gif" alt="">
+        <div>Loading...</div>
+    </div>
+
+</div>
+
+<body class="antialiased bg-[#f9f8f7]">
+    <div class="flex w-full min-h-screen justify-center items-center">
+        <div
+            class="flex flex-col md:flex-row justify-between  md:space-x-8 space-y-6 md:space-y-0 bg-[#fcf8f5] w-full max-w-6xl p-8 sm:p-12 rounded-xl shadow-lg text-white overflow-hidden">
+            <div class="flex flex-col space-y-8 justify-between">
+                <div>
+                    <h1 class="font-bold text-4xl tracking-wide text-[#1a130c]"> Kontaktieren Sie uns</h1>
+                    <p class="pt-2 text-[#eec28e] text-sm">
+                    </p>
+                </div>
+                <div class="flex flex-col space-y-6 text-[#1a130c]">
+                    <div class="inline-flex space-x-2 items-center">
+                        <i class="pi pi-phone text-xl text-amber-600"></i>
+                        <span>+1 555-555-5555</span>
+                    </div>
+                    <div class="inline-flex space-x-2 items-center">
+                        <i class="pi pi-envelope text-xl text-amber-600"></i>
+                        <span>contact@gmail.com</span>
+                    </div>
+                    <div class="inline-flex space-x-2 items-center">
+                        <i class="pi pi-map-marker text-xl text-amber-600"></i>
+                        <span>123 N High Rd, Marsha VT</span>
+                    </div>
+                </div>
+                <div class="flex space-x-4 text-lg">
+                    <div>
+                        <a href="#">
+                            <i class="pi pi-facebook text-cyan-700"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <i class="pi pi-linkedin text-cyan-700"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="relative">
+                    <div class="absolute w-40 h-40 bg-amber-600 rounded-full -right-28 -top-28"></div>
+                    <div class="absolute w-40 h-40 bg-amber-600 rounded-full -left-28 -bottom-16"></div>
+                    <div class="relative z-10 bg-[#f9f8f7] rounded-xl shadow-lg p-8 text-gray-600 md:w-full">
+                        <form [formGroup]="contactForm" (submit)="createContact()" class="flex flex-col space-y-4">
+                            <div>
+                                <label for="" class="text-sm">Ihr Name</label>
+                                <input type="text" placeholder="Ihr Name" type="text" formControlName="name" id="name" name="name"
+                                    class="ring-1 ring-gray-300 w-full rounded-md px-4 py-2 mt-2 outline-none focus:ring-2 focus:ring-teal-300" />
+                                    <div *ngIf="submitted && contactForm.controls.name.errors" class="text-red-600">
+                                        Dieses Feld ist erforderlich
+                                    </div>
+                            </div>
+                            <div>
+                                <label for="" class="text-sm">Ihre Email</label>
+                                <input type="email" id="email" name="email" formControlName="email" placeholder="Email Address"
+                                    class="ring-1 ring-gray-300 w-full rounded-md px-4 py-2 mt-2 outline-none focus:ring-2 focus:ring-teal-300" />
+                            </div>
+                            <div>
+                                <label for="" class="text-sm">Ihr Kommentar</label>
+                                <textarea placeholder="Message" rows="4" id="comment" name="comment" formControlName="comment"
+                                    class="ring-1 ring-gray-300 w-full rounded-md px-4 py-2 mt-2 outline-none focus:ring-2 focus:ring-teal-300"></textarea>
+                                    <div *ngIf="submitted && contactForm.controls.comment.errors" class="text-red-600">
+                                        Dieses Feld ist erforderlich
+                                    </div>
+                                </div>
+                            <button
+                                class="inline-block self-center bg-cyan-700 text-white font-bold rounded-lg px-6 py-2 uppercase text-sm">
+                                Um einen Termin bitten
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</body>
+
+</html>

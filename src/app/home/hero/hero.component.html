@@ -14,7 +14,7 @@
 class="transition duration-75 hidden overflow-y-scroll overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
 let-modal>
 
-<div class="relative p-4 overflow-y-scroll w-auto bg-white rounded-lg shadow dark:bg-gray-700">
+<div class="relative p-4 overflow-y-scroll w-full bg-white rounded-lg shadow dark:bg-gray-700">
     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
           Abschnitt aktualisieren
@@ -33,24 +33,24 @@ let-modal>
 
     <form (submit)="updateText()">
 
-      <div class="grid gap-6  mb-6 md:grid-cols-2">
+      <div class="grid md:grid-rows-4">
         <div>
           <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Überschriften-Index</label>
           <input type="text" id="indice" name="indice" [(ngModel)]="updateHero.heroIndice"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
              required />
         </div>
         <div>
           <label for="text1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Text 1</label>
           <input type="text" id="text1" name="text1" [(ngModel)]="updateHero.heroHeading1"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required />
         </div>
         <div>
           <label for="text2" class="block text-sm font-medium text-gray-900 dark:text-white">Text 2
           </label>
           <input type="text" id="text2" [(ngModel)]="updateHero.heroHeading2" name="text2"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required />
         </div>
 
@@ -58,20 +58,21 @@ let-modal>
           <label class="block text-sm font-medium text-gray-900 dark:text-white">Text 3
           </label>
           <input type="text" id="text3" name="text3" [(ngModel)]="updateHero.heroHeading3"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required />
         </div>
+        <div class="w-full">
+          <label for="email" class="blocktext-sm font-medium text-gray-900 dark:text-white">Beschreibung Text
+          </label>
+          <textarea id="description" name="description" [(ngModel)]="updateHero.heroHeadingText"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 h-24 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          </textarea>
+            </div>
       </div>
-      <div class="mb-6">
-        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Beschreibung Text
-        </label>
-        <textarea id="description" name="description" [(ngModel)]="updateHero.heroHeadingText"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        </textarea>
-          </div>
+
           
           <button type="submit"
-              class="text-white bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Einreichen</button>
+              class="text-white mt-2 bg-amber-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Einreichen</button>
       </form>
 
 

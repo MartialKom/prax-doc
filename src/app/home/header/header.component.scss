@@ -13,3 +13,11 @@
     font-size: 20px; /* Taille de la lettre */
     font-weight: bold;
   }
+
+  .hover-content {
+    display: none;
+  }
+
+  .hover-trigger:hover + .hover-content {
+    display: inline-block;
+  }

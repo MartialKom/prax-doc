@@ -78,7 +78,7 @@
 
       <form (submit)="updateText()">
 
-        <div class="grid gap-6  mb-6 md:grid-cols-2">
+        <div class="grid mb-2 md:grid-rows-2">
           <div>
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Über indice</label>
             <input type="text" id="indice" name="indice" [(ngModel)]="updateAbout.aboutIndice"
@@ -95,7 +95,7 @@
             <label for="text2" class="block text-sm font-medium text-gray-900 dark:text-white">Text 1
             </label>
             <textarea type="text" id="text2" [(ngModel)]="updateAbout.aboutText" name="text2"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="bg-gray-50 h-24 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required> </textarea>
           </div>
 
@@ -103,7 +103,7 @@
             <label class="block text-sm font-medium text-gray-900 dark:text-white">Text 2
             </label>
             <textarea type="text" id="text2" name="text2" [(ngModel)]="updateAbout.aboutText2"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="bg-gray-50 border h-24 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required> </textarea>
           </div>
         </div>

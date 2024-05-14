@@ -2,9 +2,9 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
             <div class="flex flex-row justify-between  w-auto items-center">
-                <div class="flex-shrink-0 hidden lg:block lg:ml-[90px]">
+                <!--<div class="flex-shrink-0 hidden lg:block lg:ml-[90px]">
                     <a href="#" class="text-[#212529] font-bold">Logo</a>
-                </div>
+                </div> -->
 
                 <div class="lg:hidden pl-[70px]">
                     <!-- Bouton du menu déroulant -->
@@ -17,7 +17,7 @@
                 <div class="hidden lg:block">
                     <div class="md:ml-40 flex items-center space-x-10">
                         <a routerLink="/home" routerLinkActive="text-orange-400" class="text-[#212529] hover:text-[#f7961c]">Home</a>
-                        <a (click)="openContactModal(ContactModal)" class="text-[#212529] hover:text-[#f7961c] cursor-pointer">Kontaktieren Sie uns</a>
+                        <a routerLink="/home/contact" routerLinkActive="text-orange-400" class="text-[#212529] hover:text-[#f7961c] cursor-pointer">Kontaktieren Sie uns</a>
                         <a href="home#team" class="text-[#212529] hover:text-[#f7961c]">unser-team</a>
                         <a href="home#links" class="text-[#212529] hover:text-[#f7961c]">Links</a>
                         <a *ngIf="isAuth" routerLink="/user/media" routerLinkActive="text-orange-400" class="text-[#212529] cursor-pointer hover:text-[#f7961c]">Meine Dokumente</a>

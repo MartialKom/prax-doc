@@ -18,6 +18,7 @@ import { MakeRequestService } from '../services/commons/make-request.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatInputModule } from "@angular/material/input";
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 
 
@@ -32,6 +33,7 @@ import { MatInputModule } from "@angular/material/input";
     TeamComponent,
     TestimonialsComponent,
     FooterComponent,
+    ContactFormComponent,
   ],
   imports: [
     CommonModule,
